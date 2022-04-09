@@ -1,0 +1,8 @@
+.alert-success,
+.alert-info,
+.alert-error {
+  z-index: 10;
+  left: 98%;
+  top: 3.5rem;
+  transform: translate(-100%, 0);
+}

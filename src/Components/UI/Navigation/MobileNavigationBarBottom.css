@@ -1,0 +1,10 @@
+.profile-theme-toggle {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 580px) {
+  .hamburger {
+    position: static;
+  }
+}

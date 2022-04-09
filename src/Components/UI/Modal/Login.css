@@ -1,0 +1,20 @@
+.create-account-btn h2 {
+  font-size: 1rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-account-btn:hover {
+  cursor: pointer;
+}
+
+.signin-modal form {
+  text-align: center;
+}
+
+.signin-modal form p span {
+  color: var(--primary-color);
+  margin-left: 1rem;
+}
