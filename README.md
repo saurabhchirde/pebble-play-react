@@ -10,7 +10,7 @@
 
 ### Link
 
-[Pebble Cart](https://pebbleplay.netlify.app/)
+[Pebble Play](https://pebbleplay.netlify.app/)
 
 </br>
 
@@ -33,7 +33,7 @@
 
 ## Tech Stack
 
-**Client:** React, React Router, Context API, Pebble UI
+**Client:** React, React Router, Context API, [Pebble UI](https://pebbleui.com/)
 
 **Server:** Mockbee (Mock Backend)
 
@@ -50,7 +50,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd pebble-cart-ecom-react
+  cd pebble-play-react
 ```
 
 Install dependencies
