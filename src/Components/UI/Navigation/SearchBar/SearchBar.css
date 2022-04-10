@@ -1,6 +1,6 @@
 .search-container {
   margin: 0.5rem 0.6rem 0.5rem 1rem;
-  width: 60%;
+  width: 90%;
   height: 2.3rem;
   border: 1px solid var(--dark-blue-gray);
   border-radius: 4px;
@@ -28,4 +28,10 @@
   padding: 0.6rem;
   margin: 0 0.6rem;
   color: var(--primary-color);
+}
+
+@media screen and (max-width: 580px) {
+  .search-container {
+    margin: 0.5rem 0.6rem 0.5rem 0rem;
+  }
 }

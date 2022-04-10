@@ -1,14 +1,23 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const themeContext = createContext(null);
 
 const ThemeProvider = ({ children }) => {
-  const [darkTheme, setDarkTheme] = useState(
-    JSON.parse(localStorage.getItem("pebbleCartTheme")) ?? true
+  const [theme, setTheme] = useState(
+    localStorage.getItem("pebbleplay-theme") ?? "light"
   );
 
+  useEffect(() => {
+    document.documentElement.setAttribute("pebbleplay-theme", theme);
+    localStorage.setItem("pebbleplay-theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((theme) => (theme === "light" ? "dark" : "light"));
+  };
+
   return (
-    <themeContext.Provider value={{ darkTheme, setDarkTheme }}>
+    <themeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </themeContext.Provider>
   );

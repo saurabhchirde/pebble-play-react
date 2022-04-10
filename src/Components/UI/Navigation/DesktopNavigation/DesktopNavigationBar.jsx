@@ -1,18 +1,20 @@
-import NavbarLoginButton from "./NavbarLoginButton/NavbarLoginButton";
-import SearchBar from "./SearchBar/SearchBar";
-import logoIcon from "../../../Data/logo/icon.svg";
-import NavbarAvatar from "./Avatar/NavbarAvatar";
-import { useAuth, useFilter, useModal, useTheme } from "../../../Context";
+import logoLight from "../../../../Data/Logo/logo-light.svg";
+import logoDark from "../../../../Data/Logo/logo-dark.svg";
+import SearchBar from "../SearchBar/SearchBar";
+import NavbarLoginButton from "../NavbarLoginButton/NavbarLoginButton";
+import NavbarAvatar from "../Avatar/NavbarAvatar";
+import { useFilter, useAuth, useModal, useTheme } from "../../../../Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import IconButton from "../Button/IconButton";
+import "./DesktopNavigationBar.css";
 
-const MobileNavigationBar = () => {
-  const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
+export const DesktopNavigationBar = () => {
+  const { setAlertText, setShowAlert } = useModal();
   const { filterDispatch, searchInput, setSearchInput } = useFilter();
+  const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
+  const { theme } = useTheme();
+
   const location = useLocation();
   const navigate = useNavigate();
-  const { setAlertText, setShowAlert, setShowNavMenu } = useModal();
-  const { darkTheme, setDarkTheme } = useTheme();
 
   const onSearchSubmitHandler = (e) => {
     e.preventDefault();
@@ -29,46 +31,26 @@ const MobileNavigationBar = () => {
     authDispatch({ type: "logout" });
     setAlertText("Logged out successfully");
     setShowAlert(true);
-    if (
-      location.pathname.includes(
-        "checkout" || "user" || "profile" || "settings"
-      )
-    ) {
-      navigate("/products");
+    if (location.pathname.includes("account" || "settings")) {
+      navigate("/videos");
     }
+    navigate("/");
   };
 
   const toggleProfileMenu = () => {
     setShowProfileMenu((show) => !show);
   };
 
-  const toggleAccountNavMenu = () => {
-    setShowNavMenu((show) => !show);
-  };
-
-  const onThemeTogglerClick = () => {
-    setDarkTheme((preTheme) => !preTheme);
-  };
-
-  const navBarClass = darkTheme
-    ? "mobile-navigation-bar dark-nav-bar"
-    : "mobile-navigation-bar";
-
-  const themeIcon = darkTheme ? "fa fa-sun" : "fa fa-moon";
-
   return (
     <>
-      <nav className={navBarClass}>
-        <div className="nav-header">
-          {location.pathname.includes("account") && (
-            <div onClick={toggleAccountNavMenu} className="hamburger">
-              <i className="fas fa-bars"></i>
-            </div>
-          )}
-          <Link to="/">
-            <img className="logo" src={logoIcon} alt="logo" />
-          </Link>
-        </div>
+      <nav className="desktop-navigation-bar">
+        <Link to="/">
+          <img
+            className="company-logo"
+            src={theme === "dark" ? logoLight : logoDark}
+            alt="logo"
+          />
+        </Link>
         <SearchBar
           searchWrapper="search-container"
           micIcon="hide"
@@ -85,12 +67,9 @@ const MobileNavigationBar = () => {
               btnClassName="btn primary-btn-md"
             />
           )}
-        </div>
-        <div className="profile-theme-toggle">
           {auth.login && (
-            <div>
+            <div onClick={toggleProfileMenu}>
               <NavbarAvatar
-                onClick={toggleProfileMenu}
                 avatarWrapper="badge-container"
                 avatarClassName="avatar text-avatar-xsm-round"
                 imgDisplay="hide"
@@ -112,15 +91,8 @@ const MobileNavigationBar = () => {
               )}
             </div>
           )}
-          <IconButton
-            onClick={onThemeTogglerClick}
-            icon={themeIcon}
-            btnClassName="btn icon-btn-md"
-          />
         </div>
       </nav>
     </>
   );
 };
-
-export default MobileNavigationBar;

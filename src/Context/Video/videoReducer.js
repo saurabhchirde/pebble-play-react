@@ -3,6 +3,9 @@ const videoReducer = (videoState, action) => {
     case "LOAD_ALL_VIDEOS":
       return { ...videoState, videos: action.payload };
 
+    case "LOAD_ALL_CATEGORIES":
+      return { ...videoState, categories: action.payload };
+
     // server
     case "AUTH_DATA_INITIALIZE":
       return {
@@ -57,6 +60,9 @@ const videoReducer = (videoState, action) => {
     case "REMOVE_FROM_HISTORY":
       return { ...videoState, history: action.payload };
 
+    case "SELECT_CATEGORY":
+      return { ...videoState, singleCategory: action.payload };
+
     case "EMPTY_ALL_LISTS":
       return {
         videos: [],
@@ -65,6 +71,8 @@ const videoReducer = (videoState, action) => {
         singlePlaylist: {},
         history: [],
         likes: [],
+        categories: [],
+        singleCategory: [],
       };
 
     default:

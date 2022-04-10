@@ -1,3 +1,8 @@
+.desktop-navigation-bar {
+  background-color: var(--bg-color);
+  box-shadow: none;
+}
+
 .profile-hover-menu {
   background-color: var(--primary-color);
   width: 8.7rem;

@@ -299,6 +299,26 @@ const AxiosCallProvider = ({ children }) => {
     }
   };
 
+  // select category
+  const selectCategoryOnServer = async (historyConfig) => {
+    const { url, headers, category } = historyConfig;
+
+    try {
+      showLoader();
+      const response = await axios.get(`${url}/${category._id}`, headers);
+      authDispatch({
+        type: "SELECT_CATEGORY",
+        payload: response.data.category,
+      });
+      alertDispatch({ type: "SELECT_CATEGORY_ALERT" });
+      showLoader();
+    } catch (error) {
+      setAlertText("Server Down, try later");
+      showLoader();
+      setShowAlert(true);
+    }
+  };
+
   return (
     <axiosContext.Provider
       value={{
@@ -315,6 +335,7 @@ const AxiosCallProvider = ({ children }) => {
         deleteVideoFromPlaylistOnServer,
         addInHistoryListOnServer,
         removeFromHistoryListOnServer,
+        selectCategoryOnServer,
       }}
     >
       {children}
