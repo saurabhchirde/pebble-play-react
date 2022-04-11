@@ -15,7 +15,9 @@ export const VerticalCard = ({ videoDetail }) => {
       </div>
       <div className="card-body">
         <div className="card-nav-icon">
-          <h2 className="p-md">{formatTimeDuration(duration)}</h2>
+          <h2 className="p-md video-duration">
+            {formatTimeDuration(duration)}
+          </h2>
           <div>
             <button className="btn primary-text-btn-sm icon-md">
               <i className="far fa-thumbs-up"></i>
@@ -30,10 +32,10 @@ export const VerticalCard = ({ videoDetail }) => {
         </div>
         <div className="card-text">
           <h1 className="card-title">{title}</h1>
-          <h2 className="video-author">by - {channelTitle}</h2>
-          <div className="flex-row flex-justify-space-between">
-            <p className="p-md mg-point6-rt">{viewCount} Views</p>
-            <p className="p-md mg-point6-lr">
+          <h2 className="video-author">{channelTitle}</h2>
+          <div className="video-views-date">
+            <p className="mg-point6-rt">{viewCount} Views</p>
+            <p className="mg-point6-lr">
               {new Date(publishedAt).toLocaleDateString()}
             </p>
           </div>

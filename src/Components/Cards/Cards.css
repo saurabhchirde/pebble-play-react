@@ -7,20 +7,6 @@
   background-color: var(--bg-color);
 }
 
-.video-time-duration {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  padding: 8px;
-  border-radius: 5px;
-  background-color: var(--btn-hover);
-}
-
-.video-time-duration > h2 {
-  font-size: 0.7rem;
-  color: var(--title-color);
-}
-
 .video-card-horizaontal .card-text {
   width: 100%;
   position: absolute;
@@ -52,13 +38,15 @@
 
 .video-card-vertical {
   padding: 0 0 1rem;
-  height: 18rem;
+  height: 19.4rem;
+  width: 14.5rem;
   background-color: var(--bg-color);
 }
 
 .video-card-vertical .card-img-container {
   margin: 0 0 4px;
   padding: 0;
+  position: relative;
 }
 
 .video-card-vertical .card-img-container img {
@@ -74,15 +62,16 @@
 }
 
 .video-card-vertical .card-nav button {
-  width: 12.9rem;
+  width: 13.3rem;
 }
 
 .video-card-vertical .card-title {
-  font-size: 1rem;
-  height: 1.3rem;
+  font-size: 0.9rem;
+  height: 2.4rem;
   width: 13rem;
   overflow: hidden;
   color: var(--title-color);
+  margin-bottom: 8px;
 }
 
 .video-card-vertical .card-nav-icon {
@@ -107,7 +96,30 @@
 }
 
 .video-author {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 400;
-  color: var(--title-color);
+}
+
+.video-views-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.video-views-date p {
+  font-size: 0.7rem;
+}
+
+@media screen and (max-width: 580px) {
+  .video-card-vertical {
+    height: 18.5rem;
+    width: 13rem;
+  }
+
+  .video-card-vertical .card-nav button {
+    width: 11.9rem;
+  }
+  .video-card-vertical .card-title {
+    width: 12.2rem;
+  }
 }
