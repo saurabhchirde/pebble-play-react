@@ -17,6 +17,8 @@ const initialVideoState = {
   singlePlaylist: {},
   history: [],
   likes: [],
+  categories: [],
+  singleCategory: [],
 };
 
 const initialVideoDetail = {
@@ -49,10 +51,15 @@ const VideoProvider = ({ children }) => {
   useEffect(() => {
     const getVideos = async () => {
       try {
-        const response = await axios.get("/api/videos");
+        const respVideos = await axios.get("/api/videos");
         videoDispatch({
           type: "LOAD_ALL_VIDEOS",
-          payload: response.data.videos,
+          payload: respVideos.data.videos,
+        });
+        const respCategories = await axios.get("/api/categories");
+        videoDispatch({
+          type: "LOAD_ALL_CATEGORIES",
+          payload: respCategories.data.categories,
         });
       } catch (error) {
         console.error(error.message);
