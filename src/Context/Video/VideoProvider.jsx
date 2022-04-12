@@ -9,6 +9,7 @@ import { videoReducer } from "./videoReducer";
 import { useAuth } from "../Auth/AuthProvider";
 import axios from "axios";
 import { useModal } from "../Modal/ModalProvider";
+import { useLocation } from "react-router-dom";
 
 const initialVideoState = {
   videos: [],
@@ -47,6 +48,7 @@ const VideoProvider = ({ children }) => {
   const [newVideo, setNewVideo] = useState(initialVideoDetail);
   const { auth, authDispatch } = useAuth();
   const { setAlertText, setShowAlert } = useModal();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const getVideos = async () => {
@@ -66,7 +68,7 @@ const VideoProvider = ({ children }) => {
       }
     };
     getVideos();
-  }, [videoDispatch]);
+  }, [pathname]);
 
   useEffect(() => {
     if (auth.login) {

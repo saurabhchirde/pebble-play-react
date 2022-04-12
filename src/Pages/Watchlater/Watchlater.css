@@ -1,0 +1,39 @@
+.watchlater-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem 0rem 2rem;
+  background-color: var(--secondary-bg-color);
+}
+
+.watchlater-video-section {
+  margin-top: 1rem;
+}
+
+.watchlater-video-section > div {
+  margin: 5px;
+}
+
+.watchlater-title {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--title-color);
+}
+
+.watchlater-title i {
+  color: var(--primary-color);
+}
+
+.watchlater-sub-title {
+  font-size: 1.2rem;
+  color: var(--sub-title-color);
+  font-weight: 400;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+@media screen and (max-width: 580px) {
+  .watchlater-body {
+    padding: 1.5rem 0.5rem 2rem;
+  }
+}

@@ -55,7 +55,7 @@
 .vertical-nav-menu h2,
 .vertical-nav-category h2 {
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .theme-toggler {
@@ -83,6 +83,10 @@
   border-radius: 4px;
   outline: 1px solid var(--primary-color);
   transition: 0.3s ease-in;
+}
+
+.active-nav i {
+  color: var(--primary-color);
 }
 
 @media screen and (max-width: 580px) {

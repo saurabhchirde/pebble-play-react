@@ -1,5 +1,6 @@
 .discard-modal-md {
   min-width: 10rem;
+  height: auto;
 }
 
 .error-modal-button {

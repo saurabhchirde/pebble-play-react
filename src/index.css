@@ -8,11 +8,11 @@
 }
 
 html[pebbleplay-theme="light"] {
-  --bg-color: #f6f6f6;
+  --bg-color: #ffffff;
   --secondary-bg-color: #f0f0f0;
   --card-bg-color: #bebebe91;
   --card-hover-bg-color: rgba(88, 88, 88, 0.162);
-  --title-color: #1a1a1a;
+  --title-color: #151515;
   --sub-title-color: #303030;
 }
 
@@ -21,7 +21,7 @@ html[pebbleplay-theme="dark"] {
   --secondary-bg-color: #222222;
   --card-bg-color: #292a2b;
   --card-hover-bg-color: rgba(229, 229, 229, 0.158);
-  --title-color: #e9e9e9;
+  --title-color: #f2f2f2;
   --sub-title-color: #cecece;
 }
 
