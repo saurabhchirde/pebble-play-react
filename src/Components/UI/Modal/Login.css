@@ -1,3 +1,7 @@
+.signin-modal {
+  z-index: 4;
+}
+
 .create-account-btn h2 {
   font-size: 1rem;
   text-align: center;

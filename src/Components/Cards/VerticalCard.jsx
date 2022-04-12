@@ -14,15 +14,27 @@ export const VerticalCard = ({ videoDetail }) => {
     auth: { token },
   } = useAuth();
 
-  const { addToWatchlaterOnServer, removeFromWatchlaterOnServer } =
-    useAxiosCalls();
+  const {
+    likeVideoOnServer,
+    unLikeVideoOnServer,
+    addToWatchlaterOnServer,
+    removeFromWatchlaterOnServer,
+  } = useAxiosCalls();
 
   const { setShowLogin } = useModal();
 
   const {
-    videoState: { watchlater },
+    videoState: { watchlater, likes },
   } = useVideo();
-  const [watchlaterButton, setWatchlaterButton] = useState("far fa-clock");
+  const [watchlaterButton, setWatchlaterButton] = useState(
+    "far fa-clock icon-inactive"
+  );
+  const [likeButton, setLikeButton] = useState(
+    "far fa-thumbs-up icon-inactive"
+  );
+  const [playlistButton, setPlaylistButton] = useState(
+    "far fa-folder icon-inactive"
+  );
 
   const watchlaterConfig = {
     url: "/api/user/watchlater",
@@ -30,10 +42,38 @@ export const VerticalCard = ({ videoDetail }) => {
     headers: { headers: { authorization: token } },
   };
 
+  const likeConfig = {
+    url: "/api/user/likes",
+    body: { video: { ...videoDetail } },
+    headers: { headers: { authorization: token } },
+  };
+
+  const addToLikeVideoHandler = () => {
+    if (token) {
+      likeVideoOnServer(likeConfig);
+      setLikeButton("fas fa-thumbs-up");
+    } else {
+      setShowLogin(true);
+    }
+  };
+
+  const removeLikeVideoHandler = () => {
+    unLikeVideoOnServer(likeConfig);
+    setLikeButton("far fa-thumbs-up icon-inactive");
+  };
+
+  const likeButtonStatus = () => {
+    if (likeButton === "far fa-thumbs-up icon-inactive") {
+      addToLikeVideoHandler();
+    } else {
+      removeLikeVideoHandler();
+    }
+  };
+
   const addToWatchlaterClickHandler = () => {
     if (token) {
       addToWatchlaterOnServer(watchlaterConfig);
-      setWatchlaterButton("fas fa-clock");
+      setWatchlaterButton("fas fa-clock icon-inactive");
     } else {
       setShowLogin(true);
     }
@@ -41,11 +81,11 @@ export const VerticalCard = ({ videoDetail }) => {
 
   const removeFromWatchlaterClickHandler = () => {
     removeFromWatchlaterOnServer(watchlaterConfig);
-    setWatchlaterButton("far fa-clock");
+    setWatchlaterButton("far fa-clock icon-inactive");
   };
 
   const watchlaterButtonStatus = () => {
-    if (watchlaterButton === "far fa-clock") {
+    if (watchlaterButton === "far fa-clock icon-inactive") {
       addToWatchlaterClickHandler();
     } else {
       removeFromWatchlaterClickHandler();
@@ -56,9 +96,15 @@ export const VerticalCard = ({ videoDetail }) => {
     if (watchlater.findIndex((el) => el._id === videoDetail._id) !== -1) {
       setWatchlaterButton("fas fa-clock");
     } else {
-      setWatchlaterButton("far fa-clock");
+      setWatchlaterButton("far fa-clock icon-inactive");
     }
-  }, [watchlater, videoDetail._id, setWatchlaterButton]);
+
+    if (likes.findIndex((el) => el._id === videoDetail._id) !== -1) {
+      setLikeButton("fas fa-thumbs-up");
+    } else {
+      setLikeButton("far fa-thumbs-up icon-inactive");
+    }
+  }, [watchlater, videoDetail._id, setWatchlaterButton, setLikeButton]);
 
   return (
     <div className="card-vertical video-card-vertical">
@@ -71,8 +117,11 @@ export const VerticalCard = ({ videoDetail }) => {
             {formatTimeDuration(duration)}
           </h2>
           <div>
-            <button className="btn primary-text-btn-sm icon-md">
-              <i className="far fa-thumbs-up"></i>
+            <button
+              onClick={likeButtonStatus}
+              className="btn primary-text-btn-sm icon-md"
+            >
+              <i className={likeButton}></i>
             </button>
             <button
               onClick={watchlaterButtonStatus}
@@ -81,7 +130,7 @@ export const VerticalCard = ({ videoDetail }) => {
               <i className={watchlaterButton}></i>
             </button>
             <button className="btn primary-text-btn-sm icon-md ">
-              <i className="far fa-folder"></i>
+              <i className={playlistButton}></i>
             </button>
           </div>
         </div>
@@ -97,7 +146,9 @@ export const VerticalCard = ({ videoDetail }) => {
         </div>
         <div className="card-nav">
           <div className="card-cta-btn">
-            <button className="btn primary-btn-md add-cart">Watch Now</button>
+            <button className="btn primary-outline-btn-md add-cart">
+              Watch Now
+            </button>
           </div>
         </div>
       </div>

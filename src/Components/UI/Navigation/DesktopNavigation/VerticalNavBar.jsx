@@ -9,11 +9,12 @@ export const VerticalNavBar = () => {
 
   const activeHome = pathname.includes("videos") ? "active-nav " : "";
   const activeTrending = pathname.includes("trending") ? "active-nav " : "";
+  const activeLiked = pathname.includes("liked") ? "active-nav " : "";
   const activePlaylist = pathname.includes("playlist") ? "active-nav " : " ";
   const activeWatchlater = pathname.includes("watchlater") ? "active-nav " : "";
   const activeHistory = pathname.includes("history") ? "active-nav " : "";
 
-  const themeIcon = theme === "dark" ? "fa fa-sun" : "fa fa-moon";
+  const themeIcon = theme === "dark" ? "fa fa-sun" : "far fa-moon";
 
   return (
     <div className="vertical-nav-container nav-bar-desktop">
@@ -31,6 +32,12 @@ export const VerticalNavBar = () => {
             <h2>Trending</h2>
           </div>
         </Link>
+        <Link to="liked">
+          <div className={activeLiked}>
+            <i className="far fa-heart"></i>
+            <h2>Liked Videos</h2>
+          </div>
+        </Link>
         <Link to="playlist">
           <div className={activePlaylist}>
             <i className="fas fa-desktop"></i>
@@ -39,7 +46,7 @@ export const VerticalNavBar = () => {
         </Link>
         <Link to="watchlater">
           <div className={activeWatchlater}>
-            <i className="fas fa-clock"></i>
+            <i className="far fa-clock"></i>
             <h2>Watchlater</h2>
           </div>
         </Link>
