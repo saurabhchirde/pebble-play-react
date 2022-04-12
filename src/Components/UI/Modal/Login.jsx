@@ -32,7 +32,6 @@ const Login = () => {
       setShowAlert(true);
     } else {
       if (loginInput.email.match(emailValidate)) {
-        console.log(loginConfig);
         userLogin(loginConfig);
       } else {
         setAlertText("Entered email is wrong, please try again");

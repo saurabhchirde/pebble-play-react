@@ -1,28 +1,18 @@
 const alertReducer = (alertState, action) => {
   switch (action.type) {
-    // all alerts
-    case "ADD_TO_WATCH_LATER_ALERT":
+    case "ALERT":
       return {
         ...alertState,
-        addToWatchlatertAlert: true,
+        showAlertBar: true,
+        alertText: action.payload.alertText,
+        alertType: action.payload.alertType,
+        alertIcon: action.payload.alertIcon,
       };
 
-    case "HIDE_ADD_TO_WATCH_LATER_ALERT":
+    case "HIDE_ALERT":
       return {
         ...alertState,
-        addToWatchlatertAlert: false,
-      };
-
-    case "REMOVE_FROM_WATCH_LATER_Alert":
-      return {
-        ...alertState,
-        removeFromWatchlaterAlert: true,
-      };
-
-    case "HIDE_REMOVE_FROM_WATCH_LATER_Alert":
-      return {
-        ...alertState,
-        removeFromWatchlaterAlert: false,
+        showAlertBar: false,
       };
 
     default:

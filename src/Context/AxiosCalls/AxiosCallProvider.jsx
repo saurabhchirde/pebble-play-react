@@ -33,6 +33,14 @@ const AxiosCallProvider = ({ children }) => {
           type: "login",
           payload: response.data,
         });
+        alertDispatch({
+          type: "ALERT",
+          payload: {
+            alertText: "Successfully Logged In",
+            alertType: "alert-success",
+            alertIcon: "fas fa-check-circle alert-icon",
+          },
+        });
         //set initial data
         videoDispatch({
           type: "AUTH_DATA_INITIALIZE",
@@ -81,7 +89,14 @@ const AxiosCallProvider = ({ children }) => {
       showLoader();
       const response = await axios.post(url, body, headers);
       videoDispatch({ type: "LIKE_VIDEO", payload: response.data.likes });
-      alertDispatch({ type: "LIKE_VIDEO_ALERT" });
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: "Video Liked",
+          alertType: "alert-success",
+          alertIcon: "fas fa-check-circle alert-icon",
+        },
+      });
       showLoader();
     } catch (error) {
       setAlertText("Server Down, Try Later");
@@ -98,7 +113,14 @@ const AxiosCallProvider = ({ children }) => {
       showLoader();
       const response = await axios.delete(`${url}/${item._id}`, headers);
       videoDispatch({ type: "UN_LIKE_VIDEO", payload: response.data.likes });
-      alertDispatch({ type: "UN_LIKE_VIDEO_ALERT" });
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: "Removed Like",
+          alertType: "alert-success",
+          alertIcon: "fas fa-check-circle alert-icon",
+        },
+      });
       showLoader();
     } catch (error) {
       setAlertText(error.response.data.errors);
@@ -117,7 +139,14 @@ const AxiosCallProvider = ({ children }) => {
         type: "ADD_TO_WATCH_LATER",
         payload: response.data.watchlater,
       });
-      alertDispatch({ type: "ADD_TO_WATCH_LATER_ALERT" });
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: "Addes to watchlater",
+          alertType: "alert-success",
+          alertIcon: "fas fa-check-circle alert-icon",
+        },
+      });
       showLoader();
     } catch (error) {
       setAlertText(error.response.data.errors);
@@ -141,7 +170,14 @@ const AxiosCallProvider = ({ children }) => {
         type: "REMOVE_FROM_WATCH_LATER",
         payload: response.data.watchlater,
       });
-      alertDispatch({ type: "REMOVE_FROM_WATCH_LATER_Alert" });
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: "Removed from watchlater",
+          alertType: "alert-info",
+          alertIcon: "fas fa-info alert-icon",
+        },
+      });
       showLoader();
     } catch (error) {
       setAlertText(error.response.data.errors);
@@ -161,8 +197,14 @@ const AxiosCallProvider = ({ children }) => {
         type: "ADD_NEW_PLAYLIST",
         payload: response.data.playlists,
       });
-
-      alertDispatch({ type: "ADD_NEW_PLAYLIST_ALERT" });
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: "New Playlist Added",
+          alertType: "alert-success",
+          alertIcon: "fas fa-check-circle alert-icon",
+        },
+      });
       showLoader();
     } catch (error) {
       setAlertText("Server Down, try later");
@@ -182,7 +224,14 @@ const AxiosCallProvider = ({ children }) => {
         type: "REMOVE_PLAYLIST",
         payload: response.data.playlists,
       });
-      alertDispatch({ type: "REMOVE_PLAYLIST_ALERT" });
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: "Playlist Removed",
+          alertType: "alert-info",
+          alertIcon: "fas fa-info alert-icon",
+        },
+      });
       showLoader();
     } catch (error) {
       setAlertText("Server Down, try later");
@@ -202,7 +251,6 @@ const AxiosCallProvider = ({ children }) => {
         type: "GET_PARTICULAR_PLAYLIST",
         payload: response.data.playlist,
       });
-      alertDispatch({ type: "GET_PARTICULAR_PLAYLIST_ALERT" });
       showLoader();
     } catch (error) {
       setAlertText("Server Down, try later");
@@ -228,7 +276,14 @@ const AxiosCallProvider = ({ children }) => {
         payload: response.data.playlist,
       });
       setShowAddressModal(false);
-      setAlertText("Address updated successfully");
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: "Playlist Updated",
+          alertType: "alert-success",
+          alertIcon: "fas fa-check-circle alert-icon",
+        },
+      });
       setShowAlert(true);
       console.log("Update", response.data);
       showLoader();
@@ -252,7 +307,14 @@ const AxiosCallProvider = ({ children }) => {
         payload: response.data.playlist,
       });
       setShowAddressModal(false);
-      setAlertText("Address updated successfully");
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: "Playlist Deleted",
+          alertType: "alert-info",
+          alertIcon: "fas fa-info alert-icon",
+        },
+      });
       setShowAlert(true);
       console.log("Update", response.data);
       showLoader();
@@ -274,7 +336,14 @@ const AxiosCallProvider = ({ children }) => {
         type: "ADD_IN_HISTORY",
         payload: response.data.history,
       });
-      alertDispatch({ type: "ADD_IN_HISTORY_ALERT" });
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: "Added in History",
+          alertType: "alert-info",
+          alertIcon: "fas fa-info alert-icon",
+        },
+      });
       showLoader();
     } catch (error) {
       setAlertText("Server Down, try later");
@@ -294,7 +363,14 @@ const AxiosCallProvider = ({ children }) => {
         type: "REMOVE_FROM_HISTORY",
         payload: response.data.history,
       });
-      alertDispatch({ type: "REMOVE_FROM_HISTORY_ALERT" });
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: "Removed from History",
+          alertType: "alert-info",
+          alertIcon: "fas fa-info alert-icon",
+        },
+      });
       showLoader();
     } catch (error) {
       setAlertText("Server Down, try later");
@@ -314,7 +390,6 @@ const AxiosCallProvider = ({ children }) => {
         type: "SELECT_CATEGORY",
         payload: response.data.category,
       });
-      alertDispatch({ type: "SELECT_CATEGORY_ALERT" });
       showLoader();
     } catch (error) {
       setAlertText("Server Down, try later");

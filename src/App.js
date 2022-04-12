@@ -8,26 +8,28 @@ import {
 } from "./Components/UI/Navigation";
 import { VideoListing, Watchlater } from "./Pages";
 import BodyWrapper from "./Components/UI/Wrapper/BodyWrapper";
-import { useAnimation, useModal } from "./Context";
+import { useAlert, useAnimation, useModal } from "./Context";
 import Login from "./Components/UI/Modal/Login";
 import Signup from "./Components/UI/Modal/Signup";
 import AlertModal from "./Components/UI/Modal/AlertModal";
 import Mockman from "mockman-js";
-import { AllAlerts } from "./Components/AllAlerts/AllAlerts";
 import AnimateLoader from "./Components/Animations/AnimateLoader";
+import Alert from "./Components/Alert/Alert";
 
 function App() {
   const { showLogin, showSignup, showAlert, showNavMenu } = useModal();
   const { loader } = useAnimation();
+  const {
+    alertState: { showAlertBar },
+  } = useAlert();
 
   return (
     <div className="App">
-      <AllAlerts />
+      {showAlertBar && <Alert />}
       {loader && <AnimateLoader />}
       {showLogin && <Login />}
       {showSignup && <Signup />}
       {showAlert && <AlertModal />}
-      {}
       <DesktopNavigationBar />
       <MobileNavigationBar />
       <BodyWrapper>
