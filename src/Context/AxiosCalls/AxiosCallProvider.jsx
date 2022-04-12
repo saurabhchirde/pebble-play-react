@@ -128,11 +128,15 @@ const AxiosCallProvider = ({ children }) => {
 
   // remove from watchlater
   const removeFromWatchlaterOnServer = async (watchlaterConfig) => {
-    const { url, headers, item } = watchlaterConfig;
+    const {
+      url,
+      body: { video },
+      headers,
+    } = watchlaterConfig;
 
     try {
       showLoader();
-      const response = await axios.delete(`${url}/${item._id}`, headers);
+      const response = await axios.delete(`${url}/${video._id}`, headers);
       videoDispatch({
         type: "REMOVE_FROM_WATCH_LATER",
         payload: response.data.watchlater,

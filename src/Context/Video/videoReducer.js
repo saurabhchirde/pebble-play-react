@@ -9,6 +9,7 @@ const videoReducer = (videoState, action) => {
     // server
     case "AUTH_DATA_INITIALIZE":
       return {
+        ...videoState,
         watchlater: action.payload.watchlater,
         playlists: action.payload.playlists,
         history: action.payload.history,

@@ -32,6 +32,7 @@ const Login = () => {
       setShowAlert(true);
     } else {
       if (loginInput.email.match(emailValidate)) {
+        console.log(loginConfig);
         userLogin(loginConfig);
       } else {
         setAlertText("Entered email is wrong, please try again");
@@ -57,6 +58,7 @@ const Login = () => {
   };
 
   const onTestButtonClickFormHandler = () => {
+    console.log(testLoginConfig);
     userLogin(testLoginConfig);
   };
 
@@ -83,7 +85,7 @@ const Login = () => {
           <InputTypeOne
             type="email"
             name="email"
-            required="required"
+            // required="required" commented for development
             placeholder="Enter your email *"
             iconWrapper="input-icon"
             icon="far fa-envelope"
@@ -94,7 +96,7 @@ const Login = () => {
           <InputTypeOne
             type="password"
             name="password"
-            required="required"
+            // required="required"   commented for development
             placeholder="Enter your password *"
             iconWrapper="input-icon"
             icon="fas fa-key"

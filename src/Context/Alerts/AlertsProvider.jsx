@@ -4,15 +4,8 @@ import { alertReducer } from "./alertReducer";
 const alertContext = createContext(null);
 
 const alertInitialState = {
-  addToCartAlert: false,
-  cartEditedAlert: false,
-  alreadyInCart: false,
-  alreadyInWishlist: false,
-  removeFromCartAlert: false,
-  addToWishlistAlert: false,
-  removeFromWishlistAlert: false,
-  addAddressAlert: false,
-  addressDeletedAlert: false,
+  addToWatchlatertAlert: false,
+  removeFromWatchlaterAlert: false,
 };
 
 const AlertProvider = ({ children }) => {
