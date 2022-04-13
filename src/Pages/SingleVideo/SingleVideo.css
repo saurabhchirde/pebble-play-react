@@ -63,6 +63,7 @@
 }
 
 .must-watch-videos .video-card-vertical {
+  height: 19rem;
   width: 13.5rem;
   margin: 1rem auto;
 }
@@ -120,5 +121,11 @@
   .video-player-container div {
     width: auto;
     height: auto;
+  }
+
+  .must-watch-videos .video-card-vertical {
+    height: 18.9rem;
+    width: 13.5rem;
+    margin: 1rem auto;
   }
 }
