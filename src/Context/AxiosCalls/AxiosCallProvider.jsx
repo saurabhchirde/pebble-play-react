@@ -81,6 +81,26 @@ const AxiosCallProvider = ({ children }) => {
     }
   };
 
+  // get single video
+  const fetchVideoFromServer = async (videoConfig) => {
+    const { url, videoId } = videoConfig;
+
+    try {
+      showLoader();
+      const response = await axios.get(`${url}/${videoId}`);
+      if (response.status === 200) {
+        showLoader();
+        videoDispatch({
+          type: "GET_SINGLE_VIDEO",
+          payload: response.data.video,
+        });
+      }
+    } catch (error) {
+      showLoader();
+      console.log(error);
+    }
+  };
+
   // like video
   const likeVideoOnServer = async (likeConfig) => {
     const { url, body, headers } = likeConfig;
@@ -117,13 +137,12 @@ const AxiosCallProvider = ({ children }) => {
       showLoader();
       const response = await axios.delete(`${url}/${video._id}`, headers);
       videoDispatch({ type: "UN_LIKE_VIDEO", payload: response.data.likes });
-      console.log(response.data.likes);
       alertDispatch({
         type: "ALERT",
         payload: {
-          alertText: "Like Removed ",
-          alertType: "alert-success",
-          alertIcon: "fas fa-check-circle alert-icon",
+          alertText: "Like Removed",
+          alertType: "alert-info",
+          alertIcon: "fas fa-info alert-icon",
         },
       });
       showLoader();
@@ -198,7 +217,7 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.post(url, body, headers);
-      authDispatch({
+      videoDispatch({
         type: "ADD_NEW_PLAYLIST",
         payload: response.data.playlists,
       });
@@ -225,7 +244,7 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.delete(`${url}/${playlist._id}`, headers);
-      authDispatch({
+      videoDispatch({
         type: "REMOVE_PLAYLIST",
         payload: response.data.playlists,
       });
@@ -252,7 +271,7 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.get(`${url}/${playlist._id}`, headers);
-      authDispatch({
+      videoDispatch({
         type: "GET_PARTICULAR_PLAYLIST",
         payload: response.data.playlist,
       });
@@ -276,7 +295,7 @@ const AxiosCallProvider = ({ children }) => {
         headers
       );
       console.log("Update", response);
-      authDispatch({
+      videoDispatch({
         type: "UPDATE_PLAYLIST",
         payload: response.data.playlist,
       });
@@ -307,7 +326,7 @@ const AxiosCallProvider = ({ children }) => {
       showLoader();
       const response = await axios.delete(`${url}/${playlist._id}`, headers);
       console.log("Update", response);
-      authDispatch({
+      videoDispatch({
         type: "DELETE_VIDEO_FROM_PLAYLIST",
         payload: response.data.playlist,
       });
@@ -337,7 +356,7 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.post(url, body, headers);
-      authDispatch({
+      videoDispatch({
         type: "ADD_IN_HISTORY",
         payload: response.data.history,
       });
@@ -351,7 +370,7 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText("Server Down, try later");
+      setAlertText(error.response.data.errors);
       showLoader();
       setShowAlert(true);
     }
@@ -364,7 +383,7 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.delete(`${url}/${history._id}`, headers);
-      authDispatch({
+      videoDispatch({
         type: "REMOVE_FROM_HISTORY",
         payload: response.data.history,
       });
@@ -378,7 +397,7 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText("Server Down, try later");
+      setAlertText(error.response.data.errors);
       showLoader();
       setShowAlert(true);
     }
@@ -391,7 +410,7 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.get(`${url}/${category._id}`, headers);
-      authDispatch({
+      videoDispatch({
         type: "SELECT_CATEGORY",
         payload: response.data.category,
       });
@@ -417,6 +436,7 @@ const AxiosCallProvider = ({ children }) => {
         getPlayListFromServer,
         updateSelectedPlaylistOnServer,
         deleteVideoFromPlaylistOnServer,
+        fetchVideoFromServer,
         addInHistoryListOnServer,
         removeFromHistoryListOnServer,
         selectCategoryOnServer,

@@ -13,6 +13,7 @@ import { useLocation } from "react-router-dom";
 
 const initialVideoState = {
   videos: [],
+  singleVideo: {},
   watchlater: [],
   playlists: [],
   singlePlaylist: {},

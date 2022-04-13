@@ -1,0 +1,124 @@
+.video-page-body {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.video-player-container {
+  width: 100%;
+  height: auto;
+  padding-top: 5px;
+}
+
+.video-description-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--sub-title-color);
+}
+
+.video-description-heading div {
+  display: flex;
+}
+
+.video-cta-buttons button {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.video-cta-buttons button p {
+  padding-left: 8px;
+}
+
+.video-cta-buttons button:nth-child(2) p {
+  width: 5.7rem;
+}
+
+.video-description div p {
+  margin: 0 10px 0 0;
+  color: var(--sub-title-color);
+  font-size: 400;
+  font-size: 0.9rem;
+}
+
+.video-description div {
+  margin: 1rem 0;
+  color: var(--title-color);
+}
+
+.must-watch-container {
+  padding: 0 10px;
+  width: 20rem;
+  height: 95vh;
+  overflow-y: scroll;
+}
+
+.video-title {
+  font-size: 1.2rem;
+  color: var(--title-color);
+  font-weight: 500;
+}
+
+.must-watch-videos .video-card-vertical {
+  width: 13.5rem;
+  margin: 1rem auto;
+}
+
+.must-watch-videos .video-card-vertical .card-nav button {
+  width: 12.3rem;
+}
+
+.must-watch-videos .video-card-vertical:hover {
+  transform: none;
+  transition: 150ms ease-in;
+  z-index: 0;
+  box-shadow: 0 4px 10px var(--card-hover);
+}
+
+@media screen and (max-width: 1050px) {
+  .video-page-body {
+    flex-wrap: wrap;
+  }
+
+  .video-player-container {
+    width: 100%;
+    height: auto;
+    padding-top: 5px;
+  }
+
+  .video-description-heading div:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .must-watch-container {
+    width: 100%;
+    height: auto;
+    padding-top: 2rem;
+    border-top: 1px solid var(--title-color);
+    overflow: hidden;
+  }
+
+  .must-watch-videos {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .video-description-heading {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .video-player-container div {
+    width: auto;
+    height: auto;
+  }
+}
