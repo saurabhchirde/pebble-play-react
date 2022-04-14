@@ -43,6 +43,12 @@
   background-color: var(--bg-color);
 }
 
+.video-card-vertical:hover {
+  transition: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: scale(1.1);
+  z-index: 2;
+}
+
 .video-card-vertical .card-img-container {
   margin: 0 0 4px;
   padding: 0;
@@ -63,6 +69,11 @@
 
 .video-card-vertical .card-nav button {
   width: 13.3rem;
+}
+
+.video-card-vertical .card-nav button:hover {
+  background-color: var(--primary-color);
+  color: var(--text-white);
 }
 
 .video-card-vertical .card-title {
@@ -97,7 +108,7 @@
 
 .video-author {
   font-size: 0.7rem;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .video-views-date {
@@ -106,8 +117,17 @@
   justify-content: space-between;
 }
 
+.video-duration {
+  font-weight: 500;
+}
+
 .video-views-date p {
   font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.icon-inactive {
+  color: var(--icon-color);
 }
 
 @media screen and (max-width: 580px) {

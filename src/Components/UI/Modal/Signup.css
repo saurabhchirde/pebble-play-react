@@ -1,3 +1,7 @@
+.signup-modal-one {
+  z-index: 4;
+}
+
 .existing-account-btn {
   text-align: center;
   cursor: pointer;

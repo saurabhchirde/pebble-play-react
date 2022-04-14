@@ -92,7 +92,7 @@ const AxiosCallProvider = ({ children }) => {
       alertDispatch({
         type: "ALERT",
         payload: {
-          alertText: "Video Liked",
+          alertText: "Liked",
           alertType: "alert-success",
           alertIcon: "fas fa-check-circle alert-icon",
         },
@@ -107,16 +107,21 @@ const AxiosCallProvider = ({ children }) => {
 
   // un-like video
   const unLikeVideoOnServer = async (likeConfig) => {
-    const { url, headers, item } = likeConfig;
+    const {
+      url,
+      body: { video },
+      headers,
+    } = likeConfig;
 
     try {
       showLoader();
-      const response = await axios.delete(`${url}/${item._id}`, headers);
+      const response = await axios.delete(`${url}/${video._id}`, headers);
       videoDispatch({ type: "UN_LIKE_VIDEO", payload: response.data.likes });
+      console.log(response.data.likes);
       alertDispatch({
         type: "ALERT",
         payload: {
-          alertText: "Removed Like",
+          alertText: "Like Removed ",
           alertType: "alert-success",
           alertIcon: "fas fa-check-circle alert-icon",
         },
@@ -142,7 +147,7 @@ const AxiosCallProvider = ({ children }) => {
       alertDispatch({
         type: "ALERT",
         payload: {
-          alertText: "Addes to watchlater",
+          alertText: "Added to watchlater",
           alertType: "alert-success",
           alertIcon: "fas fa-check-circle alert-icon",
         },

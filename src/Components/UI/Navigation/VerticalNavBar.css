@@ -22,11 +22,12 @@
 
 .vertical-nav-menu h1,
 .vertical-nav-category h1 {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   padding: 5px 8px;
   margin-left: 8px;
   margin-bottom: 5px;
   color: var(--title-color);
+  font-weight: 500;
 }
 
 .vertical-nav-menu a > div,
@@ -34,6 +35,7 @@
   display: flex;
   align-items: center;
   padding: 5px 8px;
+  margin: 5px 0;
   border-radius: 4px;
   color: var(--title-color);
   width: 13rem;
@@ -93,9 +95,9 @@
   .vertical-nav-container {
     position: fixed;
     z-index: 1;
-    top: 3.5rem;
-    width: 15rem;
-    height: 95vh;
+    top: 0;
+    width: 18rem;
+    height: 100%;
     background-color: var(--secondary-bg-color);
     justify-content: flex-start;
   }
@@ -104,7 +106,23 @@
     display: none;
   }
 
+  .vertical-nav-menu-close {
+    margin-top: 1.3rem;
+    margin-left: 75%;
+    padding: 6px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .vertical-nav-menu-close i {
+    color: var(--title-color);
+  }
+
   .nav-bar-mobile {
     display: flex;
+    z-index: 4;
   }
 }
