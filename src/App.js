@@ -44,6 +44,7 @@ function App() {
         <Routes>
           <Route path="/videos" element={<VideoListing />} />
           <Route path="/videos/:videoId" element={<SingleVideo />} />
+          <Route path="/videos/search" element={<VideoListing />} />
           <Route path="/watchlater" element={<Watchlater />} />
           <Route path="/liked" element={<LikedVideos />} />
           <Route path="/history" element={<History />} />
