@@ -22,7 +22,16 @@
   .desktop-navigation-bar {
     display: none;
   }
+
   .mobile-navigation-bar {
     display: flex;
+  }
+
+  .not-logged-in {
+    flex-direction: column;
+  }
+
+  .not-logged-in p {
+    margin-bottom: 1rem;
   }
 }
