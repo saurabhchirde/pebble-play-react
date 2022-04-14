@@ -172,9 +172,11 @@ export const VerticalCard = ({ videoDetail }) => {
           <h2 className="video-author">{channelTitle}</h2>
           <div className="video-views-date">
             <p className="mg-point6-rt">{viewCount} Views</p>
-            <p className="mg-point6-lr">
-              {new Date(publishedAt).toLocaleDateString()}
-            </p>
+            {!onHistoryPage && (
+              <p className="mg-point6-lr">
+                {new Date(publishedAt).toLocaleDateString()}
+              </p>
+            )}
           </div>
         </div>
         <div className="card-nav">
