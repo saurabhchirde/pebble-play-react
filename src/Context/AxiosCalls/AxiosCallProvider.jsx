@@ -376,13 +376,14 @@ const AxiosCallProvider = ({ children }) => {
     }
   };
 
-  // remove playlist
+  // remove from history
   const removeFromHistoryListOnServer = async (historyConfig) => {
     const { url, headers, history } = historyConfig;
 
     try {
       showLoader();
       const response = await axios.delete(`${url}/${history._id}`, headers);
+      showLoader();
       videoDispatch({
         type: "REMOVE_FROM_HISTORY",
         payload: response.data.history,
@@ -395,7 +396,33 @@ const AxiosCallProvider = ({ children }) => {
           alertIcon: "fas fa-info alert-icon",
         },
       });
+    } catch (error) {
+      setAlertText(error.response.data.errors);
       showLoader();
+      setShowAlert(true);
+    }
+  };
+
+  // remove all from history
+  const removeAllFromHistoryOnServer = async (historyConfig) => {
+    const { url, headers } = historyConfig;
+
+    try {
+      showLoader();
+      const response = await axios.delete(url, headers);
+      showLoader();
+      videoDispatch({
+        type: "REMOVE_ALL_FROM_HISTORY",
+        payload: response.data.history,
+      });
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: "Cleared All History",
+          alertType: "alert-info",
+          alertIcon: "fas fa-info alert-icon",
+        },
+      });
     } catch (error) {
       setAlertText(error.response.data.errors);
       showLoader();
@@ -439,6 +466,7 @@ const AxiosCallProvider = ({ children }) => {
         fetchVideoFromServer,
         addInHistoryListOnServer,
         removeFromHistoryListOnServer,
+        removeAllFromHistoryOnServer,
         selectCategoryOnServer,
       }}
     >
