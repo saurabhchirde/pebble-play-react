@@ -138,8 +138,8 @@ export const VerticalCard = ({ videoDetail }) => {
         {onHistoryPage && (
           <IconButton
             onClick={deleteFromHistoryHandler}
-            btnClassName="btn icon-btn-xsm history-delete-btn"
-            icon="fas fa-trash "
+            btnClassName="btn icon-btn-sm history-delete-btn"
+            icon="fas fa-times "
           />
         )}
       </div>
