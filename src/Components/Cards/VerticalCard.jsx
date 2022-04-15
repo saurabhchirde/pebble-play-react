@@ -29,6 +29,8 @@ export const VerticalCard = ({ videoDetail }) => {
 
   const {
     videoState: { watchlater, likes, playlists },
+    tempVideo,
+    setTempVideo,
   } = useVideo();
 
   const { pathname } = useLocation();
@@ -112,8 +114,8 @@ export const VerticalCard = ({ videoDetail }) => {
   // playlist
   const addToPlaylistClickHandler = () => {
     if (token) {
+      setTempVideo(videoDetail);
       setShowPlaylistModal(true);
-      setWatchlaterButton("fas fa-clock icon-inactive");
     } else {
       setShowLogin(true);
     }

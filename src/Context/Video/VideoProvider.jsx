@@ -49,6 +49,7 @@ const VideoProvider = ({ children }) => {
   const [newVideo, setNewVideo] = useState(initialVideoDetail);
   const { auth, authDispatch } = useAuth();
   const { setAlertText, setShowAlert } = useModal();
+  const [tempVideo, setTempVideo] = useState({});
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -129,6 +130,8 @@ const VideoProvider = ({ children }) => {
         videoDispatch,
         newVideo,
         setNewVideo,
+        tempVideo,
+        setTempVideo,
       }}
     >
       {children}

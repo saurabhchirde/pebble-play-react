@@ -146,9 +146,9 @@
   height: 9rem;
   object-fit: contain;
   /* color used for development */
-  background-color: aqua;
+  background-color: rgb(115, 115, 115);
   margin: 0;
-  border-radius: 4px 4px 0 0;
+  border-radius: 4px;
   position: relative;
 }
 
@@ -168,7 +168,7 @@
 }
 
 .playlist-card-detail h2 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 400;
 }
 

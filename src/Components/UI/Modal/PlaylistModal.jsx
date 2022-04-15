@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { useAuth, useAxiosCalls, useModal, useVideo } from "../../../Context";
+import {
+  useAlert,
+  useAuth,
+  useAxiosCalls,
+  useModal,
+  useVideo,
+} from "../../../Context";
 import Button from "../Button/Button";
 import IconButton from "../Button/IconButton";
 import LabelIconButton from "../Button/LabelIconButton";
@@ -7,17 +13,20 @@ import "./PlaylistModal.css";
 
 const initialPlaylist = {
   title: "",
-  description: "",
 };
 
 export const PlaylistModal = () => {
   const {
-    videoState: { playlists },
+    videoState: { playlists, singlePlaylist },
+    tempVideo,
+    setTempVideo,
   } = useVideo();
   const {
     auth: { token },
   } = useAuth();
-  const { addNewPlayListOnServer } = useAxiosCalls();
+  const { addNewPlayListOnServer, addInSelectedPlaylistOnServer } =
+    useAxiosCalls();
+  const { alertDispatch } = useAlert();
   const { setAlertText, setShowAlert, setShowPlaylistModal } = useModal();
   const [showCreate, setShowCreate] = useState(false);
   const [newPlaylist, setNewPlaylist] = useState(initialPlaylist);
@@ -42,20 +51,35 @@ export const PlaylistModal = () => {
   };
 
   const onCreatePlaylistClickHandler = () => {
-    if (
-      newPlaylist.title.trim() === "" ||
-      newPlaylist.description.trim() === ""
-    ) {
-      setAlertText("Input cannot be blank");
-      setShowAlert(true);
+    if (newPlaylist.title.trim() === "") {
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: "Playlist name cannot be blank",
+          alertType: "alert-info",
+          alertIcon: "fas fa-info alert-icon",
+        },
+      });
     } else {
       addNewPlayListOnServer(playlistConfig);
       setNewPlaylist(initialPlaylist);
     }
   };
 
+  const onPlaylistSelectHandler = (playlist) => {
+    const addInPlaylistConfig = {
+      url: "/api/user/playlists",
+      body: { video: { ...tempVideo } },
+      headers: { headers: { authorization: token } },
+      playlist: playlist,
+    };
+
+    tempVideo._id && addInSelectedPlaylistOnServer(addInPlaylistConfig);
+  };
+
   const closePlaylistModal = () => {
     setShowPlaylistModal(false);
+    setTempVideo({});
   };
 
   const playlistAvailable = playlists.length > 0 ? true : false;
@@ -82,7 +106,13 @@ export const PlaylistModal = () => {
           <div className="available-playlists">
             {playlists.map((playlist) => (
               <label key={playlist._id}>
-                <input type="checkbox" name="check" />
+                <input
+                  type="checkbox"
+                  name="check"
+                  onChange={() => {
+                    onPlaylistSelectHandler(playlist);
+                  }}
+                />
                 {playlist.title}
               </label>
             ))}
@@ -94,18 +124,12 @@ export const PlaylistModal = () => {
               <input
                 type="text"
                 name="title"
+                maxLength="20"
                 value={newPlaylist.title}
                 placeholder="Enter playlist name"
                 onChange={onPlaylistNameInputHandler}
               />
             </div>
-            <textarea
-              type="text"
-              name="description"
-              value={newPlaylist.description}
-              placeholder="Enter description"
-              onChange={onPlaylistNameInputHandler}
-            />
             <div className="create-new-playlist-bottom-section">
               <Button
                 label="Create"

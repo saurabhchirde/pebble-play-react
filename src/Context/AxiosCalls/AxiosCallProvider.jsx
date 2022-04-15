@@ -13,7 +13,7 @@ const AxiosCallProvider = ({ children }) => {
   const { setAlertText, setShowAlert, setShowLogin, setShowSignupAlert } =
     useModal();
   const { alertDispatch } = useAlert();
-  const { authDispatch, setLoginInput, setShowAddressModal } = useAuth();
+  const { authDispatch, setLoginInput } = useAuth();
   const { showLoader } = useAnimation();
 
   // login
@@ -221,7 +221,7 @@ const AxiosCallProvider = ({ children }) => {
         type: "ADD_NEW_PLAYLIST",
         payload: response.data.playlists,
       });
-      console.log(response.data.playlists);
+
       alertDispatch({
         type: "ALERT",
         payload: {
@@ -266,16 +266,16 @@ const AxiosCallProvider = ({ children }) => {
   };
 
   // get playlist
-  const getPlayListFromServer = async (playlistConfig) => {
-    const { url, headers, playlist } = playlistConfig;
-
+  const getPlayListFromServer = async (getPlaylistConfig) => {
+    const { url, headers, playlistId } = getPlaylistConfig;
     try {
       showLoader();
-      const response = await axios.get(`${url}/${playlist._id}`, headers);
+      const response = await axios.get(`${url}/${playlistId}`, headers);
       videoDispatch({
         type: "GET_PARTICULAR_PLAYLIST",
         payload: response.data.playlist,
       });
+      console.log(response.data.playlist);
       showLoader();
     } catch (error) {
       setAlertText("Server Down, try later");
@@ -285,9 +285,9 @@ const AxiosCallProvider = ({ children }) => {
   };
 
   // post in selected playlist
-  const updateSelectedPlaylistOnServer = async (playlistConfig) => {
-    const { url, body, headers } = playlistConfig;
-    const { playlist } = body;
+  const addInSelectedPlaylistOnServer = async (addInPlaylistConfig) => {
+    const { url, body, headers, playlist } = addInPlaylistConfig;
+
     try {
       showLoader();
       const response = await axios.post(
@@ -295,12 +295,11 @@ const AxiosCallProvider = ({ children }) => {
         body,
         headers
       );
-      console.log("Update", response);
+      console.log("Update", response.data.playlist);
       videoDispatch({
         type: "UPDATE_PLAYLIST",
         payload: response.data.playlist,
       });
-      setShowAddressModal(false);
       alertDispatch({
         type: "ALERT",
         payload: {
@@ -309,8 +308,6 @@ const AxiosCallProvider = ({ children }) => {
           alertIcon: "fas fa-check-circle alert-icon",
         },
       });
-      setShowAlert(true);
-      console.log("Update", response.data);
       showLoader();
     } catch (error) {
       setAlertText("Server Down, try later");
@@ -331,7 +328,6 @@ const AxiosCallProvider = ({ children }) => {
         type: "DELETE_VIDEO_FROM_PLAYLIST",
         payload: response.data.playlist,
       });
-      setShowAddressModal(false);
       alertDispatch({
         type: "ALERT",
         payload: {
@@ -340,7 +336,6 @@ const AxiosCallProvider = ({ children }) => {
           alertIcon: "fas fa-info alert-icon",
         },
       });
-      setShowAlert(true);
       console.log("Update", response.data);
       showLoader();
     } catch (error) {
@@ -462,7 +457,7 @@ const AxiosCallProvider = ({ children }) => {
         addNewPlayListOnServer,
         removePlayListFromServer,
         getPlayListFromServer,
-        updateSelectedPlaylistOnServer,
+        addInSelectedPlaylistOnServer,
         deleteVideoFromPlaylistOnServer,
         fetchVideoFromServer,
         addInHistoryListOnServer,

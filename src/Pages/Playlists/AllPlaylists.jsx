@@ -1,10 +1,10 @@
 import { useAuth, useModal, useVideo } from "../../Context";
 import { NotLogged } from "../../Components/NotLogged/NotLogged";
-import "./Playlist.css";
+import "./AllPlaylists.css";
 import LabelIconButton from "../../Components/UI/Button/LabelIconButton";
 import { PlaylistCard } from "../../Components/Cards/PlaylistCard";
 
-export const Playlist = () => {
+export const AllPlaylists = () => {
   const {
     videoState: { playlists },
   } = useVideo();
@@ -21,7 +21,7 @@ export const Playlist = () => {
     }
   };
 
-  console.log(playlists);
+  const playlistAvailable = playlists.length > 0 ? true : false;
 
   return (
     <div className="playlist-body">
@@ -30,10 +30,10 @@ export const Playlist = () => {
           <h1 className="playlist-page-title">
             Playlists <i className="fas fa-list mg-point6-lt"></i>
           </h1>
-          {playlists.length > 0 ? (
+          {playlistAvailable ? (
             <div className="playlist-section">
               {playlists.map((list) => (
-                <div key={list._id}>
+                <div className="playlist-item" key={list._id}>
                   <PlaylistCard list={list} />
                   <h1 className="title-lg-wt-bold mg-point6-tb">
                     {list.title}
