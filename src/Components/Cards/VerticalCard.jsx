@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth, useAxiosCalls, useModal, useVideo } from "../../Context";
 import { formatTimeDuration } from "../../Utils/formatTimeDuration";
+import Button from "../UI/Button/Button";
+import IconButton from "../UI/Button/IconButton";
 import "./Cards.css";
 
 export const VerticalCard = ({ videoDetail }) => {
@@ -20,6 +22,7 @@ export const VerticalCard = ({ videoDetail }) => {
     unLikeVideoOnServer,
     addToWatchlaterOnServer,
     removeFromWatchlaterOnServer,
+    removeFromHistoryListOnServer,
   } = useAxiosCalls();
 
   const { setShowLogin } = useModal();
@@ -27,6 +30,11 @@ export const VerticalCard = ({ videoDetail }) => {
   const {
     videoState: { watchlater, likes },
   } = useVideo();
+
+  const { pathname } = useLocation();
+
+  const onHistoryPage = pathname.includes("history") ? true : false;
+
   const [watchlaterButton, setWatchlaterButton] = useState(
     "far fa-clock icon-inactive"
   );
@@ -47,6 +55,12 @@ export const VerticalCard = ({ videoDetail }) => {
     url: "/api/user/likes",
     body: { video: { ...videoDetail } },
     headers: { headers: { authorization: token } },
+  };
+
+  const historyConfig = {
+    url: "/api/user/history",
+    headers: { headers: { authorization: token } },
+    history: videoDetail,
   };
 
   const addToLikeVideoHandler = () => {
@@ -93,6 +107,14 @@ export const VerticalCard = ({ videoDetail }) => {
     }
   };
 
+  const deleteFromHistoryHandler = () => {
+    removeFromHistoryListOnServer(historyConfig);
+  };
+
+  const cardOrientation = onHistoryPage
+    ? "card-horizontal video-card-horizontal"
+    : "card-vertical video-card-vertical";
+
   useEffect(() => {
     if (watchlater.findIndex((el) => el._id === videoDetail._id) !== -1) {
       setWatchlaterButton("fas fa-clock");
@@ -108,52 +130,62 @@ export const VerticalCard = ({ videoDetail }) => {
   }, [watchlater, videoDetail._id, setWatchlaterButton, setLikeButton]);
 
   return (
-    <div className="card-vertical video-card-vertical">
+    <div className={cardOrientation}>
       <div className="card-img-container">
         <Link to={`/videos/${videoDetail._id}`}>
           <img src={thumbnails.medium.url} alt="thumbnail" loading="lazy" />
         </Link>
+        {onHistoryPage && (
+          <IconButton
+            onClick={deleteFromHistoryHandler}
+            btnClassName="btn icon-btn-sm history-delete-btn"
+            icon="fas fa-times "
+          />
+        )}
       </div>
-
       <div className="card-body">
-        <div className="card-nav-icon">
-          <h2 className="p-md video-duration">
-            {formatTimeDuration(duration)}
-          </h2>
-          <div>
-            <button
-              onClick={likeButtonStatus}
-              className="btn primary-text-btn-sm icon-md"
-            >
-              <i className={likeButton}></i>
-            </button>
-            <button
-              onClick={watchlaterButtonStatus}
-              className="btn primary-text-btn-sm icon-md "
-            >
-              <i className={watchlaterButton}></i>
-            </button>
-            <button className="btn primary-text-btn-sm icon-md ">
-              <i className={playlistButton}></i>
-            </button>
+        {!onHistoryPage && (
+          <div className="card-nav-icon">
+            <h2 className="p-md video-duration">
+              {formatTimeDuration(duration)}
+            </h2>
+            <div>
+              <IconButton
+                onClick={likeButtonStatus}
+                btnClassName="btn icon-btn-sm icon-md"
+                icon={likeButton}
+              />
+              <IconButton
+                onClick={watchlaterButtonStatus}
+                btnClassName="btn icon-btn-sm icon-md"
+                icon={watchlaterButton}
+              />
+              <IconButton
+                btnClassName="btn icon-btn-sm icon-md"
+                icon={playlistButton}
+              />
+            </div>
           </div>
-        </div>
+        )}
         <div className="card-text">
           <h1 className="card-title">{title}</h1>
           <h2 className="video-author">{channelTitle}</h2>
           <div className="video-views-date">
             <p className="mg-point6-rt">{viewCount} Views</p>
-            <p className="mg-point6-lr">
-              {new Date(publishedAt).toLocaleDateString()}
-            </p>
+            {!onHistoryPage && (
+              <p className="mg-point6-lr">
+                {new Date(publishedAt).toLocaleDateString()}
+              </p>
+            )}
           </div>
         </div>
         <div className="card-nav">
           <div className="card-cta-btn">
             <Link to={`/videos/${videoDetail._id}`}>
-              <button className="btn primary-outline-btn-md add-cart">
-                Watch Now
-              </button>
+              <Button
+                label=" Watch Now"
+                btnClassName="btn primary-outline-btn-md add-cart"
+              />
             </Link>
           </div>
         </div>

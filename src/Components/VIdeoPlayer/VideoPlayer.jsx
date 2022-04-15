@@ -32,15 +32,13 @@ export const VideoPlayer = ({ videoId, videoDetails, played, setPlayed }) => {
   };
 
   return (
-    <div>
-      <ReactPlayer
-        url={`${url}${videoId}`}
-        width="100%"
-        height="70vh"
-        controls
-        onPlay={onPlayClickHandler}
-        className=""
-      />
-    </div>
+    <ReactPlayer
+      url={`${url}${videoId}`}
+      width="100%"
+      height="70vh"
+      controls
+      onPlay={onPlayClickHandler}
+      className=""
+    />
   );
 };

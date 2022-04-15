@@ -61,6 +61,9 @@ const videoReducer = (videoState, action) => {
     case "REMOVE_FROM_HISTORY":
       return { ...videoState, history: action.payload };
 
+    case "REMOVE_ALL_FROM_HISTORY":
+      return { ...videoState, history: action.payload };
+
     case "SELECT_CATEGORY":
       return { ...videoState, singleCategory: action.payload };
 

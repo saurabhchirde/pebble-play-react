@@ -145,7 +145,7 @@ export const SingleVideo = () => {
                   className="btn primary-text-btn-sm icon-xl"
                 >
                   <i className={likeButton}></i>
-                  <p>{likeCount}</p>
+                  <p>{String(likeCount)}</p>
                 </button>
                 <button
                   onClick={watchlaterButtonStatus}

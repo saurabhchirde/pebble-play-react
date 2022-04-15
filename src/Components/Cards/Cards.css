@@ -1,44 +1,11 @@
-.video-card-horizaontal {
-  display: flex;
-  flex-direction: column;
-  height: 12rem;
-  width: auto;
-  border-radius: 10px;
-  background-color: var(--bg-color);
-}
-
-.video-card-horizaontal .card-text {
-  width: 100%;
-  position: absolute;
-  bottom: 0.5rem;
-  left: 50%;
-  transform: translate(-50%, 0);
-  text-align: center;
-}
-
 .card-text h2 {
   margin-bottom: 5px;
   color: var(--title-color);
 }
 
-.video-card-horizaontal img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0%;
-  top: 0;
-  margin: 0;
-  padding: 0;
-  border-radius: 20px;
-}
-
-.video-card-horizaontal img {
-  margin: 0;
-}
-
 .video-card-vertical {
   padding: 0 0 1rem;
-  height: 19.3rem;
+  height: 19.65rem;
   width: 14.5rem;
   background-color: var(--bg-color);
 }
@@ -60,6 +27,16 @@
   height: auto;
   object-fit: contain;
   border-radius: 4px 4px 0 0;
+}
+
+.history-delete-btn {
+  position: absolute;
+  padding: 12px;
+  border-radius: 4px;
+  margin: 0;
+  color: var(--title-color);
+  right: 2px;
+  top: 2px;
 }
 
 .video-card-vertical .card-nav {
@@ -106,9 +83,47 @@
   color: var(--title-color);
 }
 
+.video-card-horizontal {
+  width: 100%;
+  max-width: 55rem;
+  background-color: var(--bg-color);
+}
+
+.video-card-horizontal .card-body {
+  width: 100%;
+}
+
+.video-card-horizontal .card-title {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.video-card-horizontal .card-img-container,
+.video-card-horizontal .card-img-container img {
+  width: 15rem;
+  height: 100%;
+  margin: 0;
+}
+
+.video-card-horizontal .card-text {
+  width: 100%;
+  color: var(--title-color);
+}
+
+.video-card-horizontal .card-nav {
+  width: 100%;
+}
+
+.video-card-horizontal .card-nav button {
+  font-size: 0.8rem;
+  margin: 0;
+  margin-left: 10px;
+}
+
 .video-author {
-  font-size: 0.7rem;
-  font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: 400;
 }
 
 .video-views-date {
@@ -122,8 +137,8 @@
 }
 
 .video-views-date p {
-  font-size: 0.7rem;
-  font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: 400;
 }
 
 .icon-inactive {
@@ -139,7 +154,12 @@
   .video-card-vertical .card-nav button {
     width: 11.9rem;
   }
+
   .video-card-vertical .card-title {
     width: 12.2rem;
+  }
+
+  .video-card-horizontal {
+    max-width: 100%;
   }
 }

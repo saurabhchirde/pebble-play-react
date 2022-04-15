@@ -1,0 +1,23 @@
+.not-logged {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--title-color);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  margin: 2rem auto 0;
+}
+
+.not-logged p {
+  margin-right: 1rem;
+}
+
+@media screen and (max-width: 580px) {
+  .not-logged {
+    flex-direction: column;
+  }
+
+  .not-logged p {
+    margin-bottom: 1rem;
+  }
+}
