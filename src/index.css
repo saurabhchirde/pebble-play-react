@@ -16,6 +16,7 @@ html[pebbleplay-theme="light"] {
   --title-color: #151515;
   --sub-title-color: #303030;
   --icon-color: rgb(118, 118, 118);
+  --card-hover: rgba(21, 21, 21, 0.463);
 }
 
 html[pebbleplay-theme="dark"] {
@@ -26,6 +27,7 @@ html[pebbleplay-theme="dark"] {
   --title-color: #f2f2f2;
   --sub-title-color: #cecece;
   --icon-color: rgb(146, 146, 146);
+  --card-hover: rgba(243, 243, 243, 0.445);
 }
 
 body {

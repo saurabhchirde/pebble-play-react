@@ -64,9 +64,13 @@ const videoReducer = (videoState, action) => {
     case "SELECT_CATEGORY":
       return { ...videoState, singleCategory: action.payload };
 
+    case "GET_SINGLE_VIDEO":
+      return { ...videoState, singleVideo: action.payload };
+
     case "EMPTY_ALL_LISTS":
       return {
         videos: [],
+        singleVideo: {},
         watchlater: [],
         playlists: [],
         singlePlaylist: {},

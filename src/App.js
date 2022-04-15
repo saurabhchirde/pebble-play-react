@@ -6,7 +6,7 @@ import {
   VerticalNavBar,
   MobileVerticalNavBar,
 } from "./Components/UI/Navigation";
-import { VideoListing, Watchlater, LikedVideos } from "./Pages";
+import { VideoListing, Watchlater, LikedVideos, SingleVideo } from "./Pages";
 import BodyWrapper from "./Components/UI/Wrapper/BodyWrapper";
 import { useAlert, useAnimation, useModal } from "./Context";
 import Login from "./Components/UI/Modal/Login";
@@ -37,6 +37,7 @@ function App() {
         {showNavMenu && <MobileVerticalNavBar />}
         <Routes>
           <Route path="/videos" element={<VideoListing />} />
+          <Route path="/videos/:videoId" element={<SingleVideo />} />
           <Route path="/watchlater" element={<Watchlater />} />
           <Route path="/liked" element={<LikedVideos />} />
           <Route path="mockman" element={<Mockman />} />

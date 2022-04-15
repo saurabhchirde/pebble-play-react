@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useAuth, useAxiosCalls, useModal, useVideo } from "../../Context";
 import { formatTimeDuration } from "../../Utils/formatTimeDuration";
 import "./Cards.css";
@@ -109,8 +110,11 @@ export const VerticalCard = ({ videoDetail }) => {
   return (
     <div className="card-vertical video-card-vertical">
       <div className="card-img-container">
-        <img src={thumbnails.medium.url} alt="thumbnail" loading="lazy" />
+        <Link to={`/videos/${videoDetail._id}`}>
+          <img src={thumbnails.medium.url} alt="thumbnail" loading="lazy" />
+        </Link>
       </div>
+
       <div className="card-body">
         <div className="card-nav-icon">
           <h2 className="p-md video-duration">
@@ -146,9 +150,11 @@ export const VerticalCard = ({ videoDetail }) => {
         </div>
         <div className="card-nav">
           <div className="card-cta-btn">
-            <button className="btn primary-outline-btn-md add-cart">
-              Watch Now
-            </button>
+            <Link to={`/videos/${videoDetail._id}`}>
+              <button className="btn primary-outline-btn-md add-cart">
+                Watch Now
+              </button>
+            </Link>
           </div>
         </div>
       </div>
