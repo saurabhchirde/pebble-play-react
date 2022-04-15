@@ -29,7 +29,7 @@ export const LikedVideos = () => {
           )}
         </>
       ) : (
-        <NotLogged />
+        <NotLogged message="Login to see liked videos" />
       )}
     </div>
   );

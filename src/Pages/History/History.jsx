@@ -62,7 +62,7 @@ export const History = () => {
           )}{" "}
         </>
       ) : (
-        <NotLogged />
+        <NotLogged message="Login to see History" />
       )}
     </div>
   );

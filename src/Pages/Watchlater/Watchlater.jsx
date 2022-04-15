@@ -29,7 +29,7 @@ export const Watchlater = () => {
           )}
         </>
       ) : (
-        <NotLogged />
+        <NotLogged message="Login to add videos in your Watch later" />
       )}
     </div>
   );

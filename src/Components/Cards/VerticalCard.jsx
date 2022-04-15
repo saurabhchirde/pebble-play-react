@@ -25,10 +25,10 @@ export const VerticalCard = ({ videoDetail }) => {
     removeFromHistoryListOnServer,
   } = useAxiosCalls();
 
-  const { setShowLogin } = useModal();
+  const { setShowLogin, setShowPlaylistModal } = useModal();
 
   const {
-    videoState: { watchlater, likes },
+    videoState: { watchlater, likes, playlists },
   } = useVideo();
 
   const { pathname } = useLocation();
@@ -42,7 +42,7 @@ export const VerticalCard = ({ videoDetail }) => {
     "far fa-thumbs-up icon-inactive"
   );
   const [playlistButton, setPlaylistButton] = useState(
-    "far fa-folder icon-inactive"
+    "fas fa-list icon-inactive"
   );
 
   const watchlaterConfig = {
@@ -63,6 +63,7 @@ export const VerticalCard = ({ videoDetail }) => {
     history: videoDetail,
   };
 
+  // like
   const addToLikeVideoHandler = () => {
     if (token) {
       likeVideoOnServer(likeConfig);
@@ -85,6 +86,7 @@ export const VerticalCard = ({ videoDetail }) => {
     }
   };
 
+  // watchlater
   const addToWatchlaterClickHandler = () => {
     if (token) {
       addToWatchlaterOnServer(watchlaterConfig);
@@ -104,6 +106,16 @@ export const VerticalCard = ({ videoDetail }) => {
       addToWatchlaterClickHandler();
     } else {
       removeFromWatchlaterClickHandler();
+    }
+  };
+
+  // playlist
+  const addToPlaylistClickHandler = () => {
+    if (token) {
+      setShowPlaylistModal(true);
+      setWatchlaterButton("fas fa-clock icon-inactive");
+    } else {
+      setShowLogin(true);
     }
   };
 
@@ -161,6 +173,7 @@ export const VerticalCard = ({ videoDetail }) => {
                 icon={watchlaterButton}
               />
               <IconButton
+                onClick={addToPlaylistClickHandler}
                 btnClassName="btn icon-btn-sm icon-md"
                 icon={playlistButton}
               />

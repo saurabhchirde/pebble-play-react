@@ -56,7 +56,7 @@ export const MobileVerticalNavBar = () => {
           </Link>
           <Link to="playlist">
             <div className={activePlaylist}>
-              <i className="fas fa-desktop"></i>
+              <i className="fas fa-list"></i>
               <h2>Playlist</h2>
             </div>
           </Link>

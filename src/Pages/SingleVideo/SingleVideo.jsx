@@ -30,7 +30,7 @@ export const SingleVideo = () => {
     "far fa-thumbs-up icon-inactive"
   );
   const [playlistButton, setPlaylistButton] = useState(
-    "far fa-folder icon-inactive"
+    "fas fa-list icon-inactive"
   );
 
   const videoConfig = {

@@ -221,6 +221,7 @@ const AxiosCallProvider = ({ children }) => {
         type: "ADD_NEW_PLAYLIST",
         payload: response.data.playlists,
       });
+      console.log(response.data.playlists);
       alertDispatch({
         type: "ALERT",
         payload: {

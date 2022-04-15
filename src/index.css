@@ -6,6 +6,7 @@
   --title-color: #1a1a1a;
   --sub-title-color: #303030;
   --icon-color: rgb(47, 47, 47);
+  --card-overlay: rgba(27, 27, 27, 0.686);
 }
 
 html[pebbleplay-theme="light"] {
@@ -16,7 +17,6 @@ html[pebbleplay-theme="light"] {
   --title-color: #151515;
   --sub-title-color: #303030;
   --icon-color: rgb(118, 118, 118);
-  --card-hover: rgba(21, 21, 21, 0.463);
 }
 
 html[pebbleplay-theme="dark"] {

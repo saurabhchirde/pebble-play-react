@@ -1,0 +1,79 @@
+.playlist-modal-container {
+  background-color: var(--bg-color);
+  color: var(--title-color);
+  padding: 0 5px;
+}
+
+.playlist-modal-container p {
+  color: var(--sub-title-color);
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.playlist-modal-container > button {
+  margin: 10px;
+}
+
+.playlist-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid var(--sub-title-color);
+  padding: 1.5rem 1rem 1rem;
+}
+
+.playlist-modal-header button {
+  margin: 0;
+}
+
+.available-playlists {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-bottom: 1px solid var(--sub-title-color);
+}
+
+.available-playlists label {
+  display: flex;
+}
+
+.available-playlists input {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 1rem;
+}
+
+.create-new-playlist-section {
+  padding: 1rem;
+}
+
+.create-new-playlist-bottom-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 5px;
+}
+
+.create-new-playlist-bottom-section button {
+  margin: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
+.no-outline-text-input {
+  margin: 0;
+  width: 100%;
+}
+
+.create-new-playlist-section input,
+.create-new-playlist-section textarea {
+  color: var(--title-color);
+}
+
+.playlist-modal-container textarea {
+  background: none;
+  outline: 1px solid var(--sub-title-color);
+  border: none;
+  resize: none;
+}
