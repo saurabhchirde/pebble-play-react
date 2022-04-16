@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { VideoPlayer } from "../../Components/VIdeoPlayer/VideoPlayer";
+import { VideoPlayer } from "../../Components/VideoPlayer/VideoPlayer";
 import { useAuth, useAxiosCalls, useModal, useVideo } from "../../Context";
 import "./SingleVideo.css";
 import { VerticalCard } from "../../Components/Cards/VerticalCard";
