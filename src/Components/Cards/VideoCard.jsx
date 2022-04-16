@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useAuth, useAxiosCalls, useModal, useVideo } from "../../Context";
 import { formatTimeDuration } from "../../Utils/formatTimeDuration";
 import Button from "../UI/Button/Button";
 import IconButton from "../UI/Button/IconButton";
 import "./Cards.css";
 
-export const VerticalCard = ({ videoDetail }) => {
+export const VideoCard = ({ videoDetail }) => {
   const {
     snippet: { title, publishedAt, thumbnails, channelTitle },
     contentDetails: { duration },
@@ -23,20 +23,23 @@ export const VerticalCard = ({ videoDetail }) => {
     addToWatchlaterOnServer,
     removeFromWatchlaterOnServer,
     removeFromHistoryListOnServer,
+    deleteVideoFromPlaylistOnServer,
   } = useAxiosCalls();
 
   const { setShowLogin, setShowPlaylistModal } = useModal();
 
   const {
     videoState: { watchlater, likes, playlists },
-    tempVideo,
     setTempVideo,
   } = useVideo();
+  const [trash, showTrash] = useState(false);
+  const { playlistId } = useParams();
 
   const { pathname } = useLocation();
 
   const onHistoryPage = pathname.includes("history") ? true : false;
   const onHomePage = pathname.includes("videos") ? true : false;
+  const onPlaylistPage = pathname.includes("/playlist/");
 
   const [watchlaterButton, setWatchlaterButton] = useState(
     "far fa-clock icon-inactive"
@@ -64,6 +67,13 @@ export const VerticalCard = ({ videoDetail }) => {
     url: "/api/user/history",
     headers: { headers: { authorization: token } },
     history: videoDetail,
+  };
+
+  const deleteVideoConfig = {
+    url: "/api/user/playlists",
+    headers: { headers: { authorization: token } },
+    videoId: videoDetail._id,
+    playlistId: playlistId,
   };
 
   // like
@@ -126,6 +136,10 @@ export const VerticalCard = ({ videoDetail }) => {
     removeFromHistoryListOnServer(historyConfig);
   };
 
+  const onPlaylistVideoDeleteClickHandler = () => {
+    deleteVideoFromPlaylistOnServer(deleteVideoConfig);
+  };
+
   const cardOrientation = onHistoryPage
     ? "card-horizontal video-card-horizontal"
     : onHomePage
@@ -147,11 +161,25 @@ export const VerticalCard = ({ videoDetail }) => {
   }, [watchlater, videoDetail._id, setWatchlaterButton, setLikeButton]);
 
   return (
-    <div className={cardOrientation}>
+    <div
+      className={cardOrientation}
+      onMouseEnter={() => {
+        showTrash(true);
+      }}
+      onMouseLeave={() => {
+        showTrash(false);
+      }}
+    >
       <div className="card-img-container">
         <Link to={`/videos/${videoDetail._id}`}>
           <img src={thumbnails.medium.url} alt="thumbnail" loading="lazy" />
         </Link>
+        {onPlaylistPage && trash && (
+          <i
+            onClick={onPlaylistVideoDeleteClickHandler}
+            className="fas fa-trash-alt trash-icon"
+          ></i>
+        )}
         {onHistoryPage && (
           <IconButton
             onClick={deleteFromHistoryHandler}

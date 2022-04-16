@@ -12,7 +12,7 @@ import {
   LikedVideos,
   SingleVideo,
   History,
-  AllPlaylists,
+  Playlists,
   Playlist,
 } from "./Pages";
 import BodyWrapper from "./Components/UI/Wrapper/BodyWrapper";
@@ -53,7 +53,7 @@ function App() {
           <Route path="/watchlater" element={<Watchlater />} />
           <Route path="/liked" element={<LikedVideos />} />
           <Route path="/history" element={<History />} />
-          <Route path="/playlists" element={<AllPlaylists />} />
+          <Route path="/playlists" element={<Playlists />} />
           <Route path="/playlist/:playlistId" element={<Playlist />} />
           <Route path="mockman" element={<Mockman />} />
         </Routes>

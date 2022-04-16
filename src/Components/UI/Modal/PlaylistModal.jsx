@@ -13,11 +13,12 @@ import "./PlaylistModal.css";
 
 const initialPlaylist = {
   title: "",
+  description: "",
 };
 
 export const PlaylistModal = () => {
   const {
-    videoState: { playlists, singlePlaylist },
+    videoState: { playlists },
     tempVideo,
     setTempVideo,
   } = useVideo();
@@ -27,7 +28,7 @@ export const PlaylistModal = () => {
   const { addNewPlayListOnServer, addInSelectedPlaylistOnServer } =
     useAxiosCalls();
   const { alertDispatch } = useAlert();
-  const { setAlertText, setShowAlert, setShowPlaylistModal } = useModal();
+  const { setShowPlaylistModal } = useModal();
   const [showCreate, setShowCreate] = useState(false);
   const [newPlaylist, setNewPlaylist] = useState(initialPlaylist);
 
@@ -64,6 +65,7 @@ export const PlaylistModal = () => {
           alertIcon: "fas fa-info alert-icon",
         },
       });
+      setNewPlaylist(initialPlaylist);
     } else {
       addNewPlayListOnServer(playlistConfig);
       setNewPlaylist(initialPlaylist);
@@ -125,7 +127,7 @@ export const PlaylistModal = () => {
         {showCreate && (
           <form
             onSubmit={onPlaylistSubmitHandler}
-            className="create-new-playlist-section "
+            className="create-new-playlist-section"
           >
             <div className="no-outline-text-input">
               <input
@@ -138,6 +140,14 @@ export const PlaylistModal = () => {
                 onChange={onPlaylistNameInputHandler}
               />
             </div>
+            <textarea
+              type="text"
+              name="description"
+              maxLength="50"
+              value={newPlaylist.description}
+              placeholder="Description (optional)"
+              onChange={onPlaylistNameInputHandler}
+            />
             <div className="create-new-playlist-bottom-section">
               <Button
                 type="submit"

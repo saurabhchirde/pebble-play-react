@@ -1,6 +1,6 @@
 import { useLocation, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
-import { VerticalCard } from "../../Components/Cards/VerticalCard";
+import { VideoCard } from "../../Components/Cards/VideoCard";
 import FloatingButton from "../../Components/UI/Button/FloatingButton";
 import { useFilter, useVideo } from "../../Context";
 import { finalFilteredData } from "../../Utils/finalFilteredData";
@@ -38,7 +38,6 @@ export const VideoListing = () => {
   useEffect(() => {
     if (searchQuery) {
       filterDispatch({ type: "SEARCH_VIDEO", payload: searchQuery });
-      urlParam.delete("query");
     } else {
       filterDispatch({ type: "ALL_CATEGORY" });
     }
@@ -96,7 +95,7 @@ export const VideoListing = () => {
       {videosAvailable ? (
         <div className="all-videos-section">
           {finalFilteredData(videos, filterState).map((video) => (
-            <VerticalCard key={video._id} videoDetail={video} />
+            <VideoCard key={video._id} videoDetail={video} />
           ))}
         </div>
       ) : (

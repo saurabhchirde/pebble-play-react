@@ -240,11 +240,11 @@ const AxiosCallProvider = ({ children }) => {
 
   // remove playlist
   const removePlayListFromServer = async (playlistConfig) => {
-    const { url, headers, playlist } = playlistConfig;
+    const { url, headers, playlistId } = playlistConfig;
 
     try {
       showLoader();
-      const response = await axios.delete(`${url}/${playlist._id}`, headers);
+      const response = await axios.delete(`${url}/${playlistId}`, headers);
       videoDispatch({
         type: "REMOVE_PLAYLIST",
         payload: response.data.playlists,
@@ -252,7 +252,7 @@ const AxiosCallProvider = ({ children }) => {
       alertDispatch({
         type: "ALERT",
         payload: {
-          alertText: "Playlist Removed",
+          alertText: "Playlist Deleted",
           alertType: "alert-info",
           alertIcon: "fas fa-info alert-icon",
         },
@@ -275,7 +275,6 @@ const AxiosCallProvider = ({ children }) => {
         type: "GET_PARTICULAR_PLAYLIST",
         payload: response.data.playlist,
       });
-      console.log(response.data.playlist);
       showLoader();
     } catch (error) {
       setAlertText("Server Down, try later");
@@ -295,7 +294,6 @@ const AxiosCallProvider = ({ children }) => {
         body,
         headers
       );
-      console.log("Update", response.data.playlist);
       videoDispatch({
         type: "UPDATE_PLAYLIST",
         payload: response.data.playlist,
@@ -303,7 +301,7 @@ const AxiosCallProvider = ({ children }) => {
       alertDispatch({
         type: "ALERT",
         payload: {
-          alertText: "Playlist Updated",
+          alertText: "Added in Playlist",
           alertType: "alert-success",
           alertIcon: "fas fa-check-circle alert-icon",
         },
@@ -317,13 +315,15 @@ const AxiosCallProvider = ({ children }) => {
   };
 
   // delete video from selected playlist
-  const deleteVideoFromPlaylistOnServer = async (updateAddressConfig) => {
-    const { url, body, headers } = updateAddressConfig;
-    const { playlist } = body;
+  const deleteVideoFromPlaylistOnServer = async (deleteVideoConfig) => {
+    const { url, headers, videoId, playlistId } = deleteVideoConfig;
+
     try {
       showLoader();
-      const response = await axios.delete(`${url}/${playlist._id}`, headers);
-      console.log("Update", response);
+      const response = await axios.delete(
+        `${url}/${playlistId}/${videoId}`,
+        headers
+      );
       videoDispatch({
         type: "DELETE_VIDEO_FROM_PLAYLIST",
         payload: response.data.playlist,
@@ -331,12 +331,11 @@ const AxiosCallProvider = ({ children }) => {
       alertDispatch({
         type: "ALERT",
         payload: {
-          alertText: "Playlist Deleted",
+          alertText: "Video deleted from this Playlist",
           alertType: "alert-info",
           alertIcon: "fas fa-info alert-icon",
         },
       });
-      console.log("Update", response.data);
       showLoader();
     } catch (error) {
       setAlertText("Server Down, try later");

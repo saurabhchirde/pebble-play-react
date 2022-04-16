@@ -20,10 +20,10 @@ html[pebbleplay-theme="light"] {
 }
 
 html[pebbleplay-theme="dark"] {
-  --bg-color: #2a2a2a;
-  --secondary-bg-color: #222222;
-  --card-bg-color: #292a2b;
-  --card-hover-bg-color: rgba(229, 229, 229, 0.158);
+  --bg-color: #141517;
+  --secondary-bg-color: #18191a;
+  --card-bg-color: #1a1b1c;
+  --card-hover-bg-color: rgba(40, 40, 40, 0.666);
   --title-color: #f2f2f2;
   --sub-title-color: #cecece;
   --icon-color: rgb(146, 146, 146);

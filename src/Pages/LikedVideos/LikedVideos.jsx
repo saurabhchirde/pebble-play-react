@@ -1,4 +1,4 @@
-import { VerticalCard } from "../../Components/Cards/VerticalCard";
+import { VideoCard } from "../../Components/Cards/VideoCard";
 import { useAuth, useVideo } from "../../Context";
 import { NotLogged } from "../../Components/NotLogged/NotLogged";
 import "./LikedVideos.css";
@@ -21,7 +21,7 @@ export const LikedVideos = () => {
           {likes.length > 0 ? (
             <div className="liked-videos-video-section flex-row">
               {likes.map((video) => (
-                <VerticalCard key={video._id} videoDetail={video} />
+                <VideoCard key={video._id} videoDetail={video} />
               ))}
             </div>
           ) : (

@@ -2,6 +2,7 @@
   background-color: var(--bg-color);
   color: var(--title-color);
   padding: 0 1rem 10px;
+  width: 20rem;
 }
 
 .playlist-modal-container p {
@@ -72,6 +73,12 @@
 }
 
 .create-new-playlist-section input {
+  color: var(--title-color);
+}
+
+.create-new-playlist-section textarea {
+  background-color: transparent;
+  resize: none;
   color: var(--title-color);
 }
 

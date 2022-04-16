@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { VideoPlayer } from "../../Components/VideoPlayer/VideoPlayer";
 import { useAuth, useAxiosCalls, useModal, useVideo } from "../../Context";
 import "./SingleVideo.css";
-import { VerticalCard } from "../../Components/Cards/VerticalCard";
+import { VideoCard } from "../../Components/Cards/VideoCard";
 
 export const SingleVideo = () => {
   const { videoId } = useParams();
@@ -17,9 +17,10 @@ export const SingleVideo = () => {
   const {
     auth: { token },
   } = useAuth();
-  const { setShowLogin } = useModal();
+  const { setShowLogin, setShowPlaylistModal } = useModal();
   const {
     videoState: { videos, singleVideo, watchlater, likes },
+    setTempVideo,
   } = useVideo();
   const [played, setPlayed] = useState(false);
   const { snippet, statistics } = singleVideo;
@@ -94,6 +95,16 @@ export const SingleVideo = () => {
     }
   };
 
+  // playlist
+  const addToPlaylistClickHandler = () => {
+    if (token) {
+      setTempVideo(singleVideo);
+      setShowPlaylistModal(true);
+    } else {
+      setShowLogin(true);
+    }
+  };
+
   useEffect(() => {
     if (watchlater.findIndex((el) => el._id === singleVideo._id) !== -1) {
       setWatchlaterButton("fas fa-clock");
@@ -153,7 +164,10 @@ export const SingleVideo = () => {
                 >
                   <i className={watchlaterButton}></i> <p>Watch Later</p>
                 </button>
-                <button className="btn primary-text-btn-sm icon-xl ">
+                <button
+                  onClick={addToPlaylistClickHandler}
+                  className="btn primary-text-btn-sm icon-xl "
+                >
                   <i className={playlistButton}></i> <p>Save</p>
                 </button>
               </div>
@@ -174,7 +188,7 @@ export const SingleVideo = () => {
           {videos.map((video) => {
             return (
               video.mustWatch && (
-                <VerticalCard key={video._id} videoDetail={video} />
+                <VideoCard key={video._id} videoDetail={video} />
               )
             );
           })}
