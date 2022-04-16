@@ -1,24 +1,6 @@
-import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { useAuth, useAxiosCalls } from "../../Context";
+import { Link } from "react-router-dom";
 
 export const PlaylistCard = ({ list }) => {
-  const { getPlayListFromServer } = useAxiosCalls();
-  const {
-    auth: { token },
-  } = useAuth();
-  const { playlistId } = useParams();
-
-  const getPlaylistConfig = {
-    url: "/api/user/playlists",
-    headers: { headers: { authorization: token } },
-    playlistId: playlistId,
-  };
-
-  useEffect(() => {
-    getPlayListFromServer(getPlaylistConfig);
-  }, [playlistId, list]);
-
   return (
     <Link to={`/playlist/${list._id}`}>
       <div className="playlist-card-container">

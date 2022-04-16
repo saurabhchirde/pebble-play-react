@@ -50,6 +50,10 @@ export const PlaylistModal = () => {
     });
   };
 
+  const onPlaylistSubmitHandler = (e) => {
+    e.preventDefault();
+  };
+
   const onCreatePlaylistClickHandler = () => {
     if (newPlaylist.title.trim() === "") {
       alertDispatch({
@@ -119,12 +123,16 @@ export const PlaylistModal = () => {
           </div>
         )}
         {showCreate && (
-          <div className="create-new-playlist-section ">
+          <form
+            onSubmit={onPlaylistSubmitHandler}
+            className="create-new-playlist-section "
+          >
             <div className="no-outline-text-input">
               <input
                 type="text"
                 name="title"
                 maxLength="20"
+                autoFocus
                 value={newPlaylist.title}
                 placeholder="Enter playlist name"
                 onChange={onPlaylistNameInputHandler}
@@ -132,12 +140,13 @@ export const PlaylistModal = () => {
             </div>
             <div className="create-new-playlist-bottom-section">
               <Button
+                type="submit"
                 label="Create"
                 btnClassName="btn primary-text-btn-lg"
                 onClick={onCreatePlaylistClickHandler}
               />
             </div>
-          </div>
+          </form>
         )}
         {!showCreate && (
           <LabelIconButton

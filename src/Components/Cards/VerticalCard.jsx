@@ -36,6 +36,7 @@ export const VerticalCard = ({ videoDetail }) => {
   const { pathname } = useLocation();
 
   const onHistoryPage = pathname.includes("history") ? true : false;
+  const onHomePage = pathname.includes("videos") ? true : false;
 
   const [watchlaterButton, setWatchlaterButton] = useState(
     "far fa-clock icon-inactive"
@@ -127,6 +128,8 @@ export const VerticalCard = ({ videoDetail }) => {
 
   const cardOrientation = onHistoryPage
     ? "card-horizontal video-card-horizontal"
+    : onHomePage
+    ? "card-vertical video-card-vertical animate-card"
     : "card-vertical video-card-vertical";
 
   useEffect(() => {

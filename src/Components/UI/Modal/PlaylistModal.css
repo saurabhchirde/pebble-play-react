@@ -1,7 +1,7 @@
 .playlist-modal-container {
   background-color: var(--bg-color);
   color: var(--title-color);
-  padding: 0 5px;
+  padding: 0 1rem 10px;
 }
 
 .playlist-modal-container p {
@@ -19,23 +19,28 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  border-bottom: 1px solid var(--sub-title-color);
-  padding: 1.5rem 1rem 1rem;
+  padding: 1.5rem 10px 1rem;
 }
 
 .playlist-modal-header button {
   margin: 0;
+  margin-right: -10px;
 }
 
 .available-playlists {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 1rem 0;
   border-bottom: 1px solid var(--sub-title-color);
+  border-top: 1px solid var(--sub-title-color);
+  width: 90%;
+  margin: 0 auto 1rem;
 }
 
 .available-playlists label {
   display: flex;
+  margin: 5px 0;
+  cursor: pointer;
 }
 
 .available-playlists input {
@@ -66,14 +71,10 @@
   width: 100%;
 }
 
-.create-new-playlist-section input,
-.create-new-playlist-section textarea {
+.create-new-playlist-section input {
   color: var(--title-color);
 }
 
-.playlist-modal-container textarea {
-  background: none;
-  outline: 1px solid var(--sub-title-color);
-  border: none;
-  resize: none;
+.create-new-playlist-section input:focus {
+  border-bottom: 1px solid var(--primary-color);
 }
