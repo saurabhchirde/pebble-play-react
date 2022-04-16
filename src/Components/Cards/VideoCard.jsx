@@ -32,7 +32,7 @@ export const VideoCard = ({ videoDetail }) => {
     videoState: { watchlater, likes, playlists },
     setTempVideo,
   } = useVideo();
-  const [trash, showTrash] = useState(false);
+  const [trash, showTrash] = useState(true);
   const { playlistId } = useParams();
 
   const { pathname } = useLocation();
@@ -183,7 +183,7 @@ export const VideoCard = ({ videoDetail }) => {
         {onHistoryPage && (
           <IconButton
             onClick={deleteFromHistoryHandler}
-            btnClassName="btn icon-btn-sm history-delete-btn"
+            btnClassName="btn icon-btn-xsm history-delete-btn"
             icon="fas fa-times "
           />
         )}

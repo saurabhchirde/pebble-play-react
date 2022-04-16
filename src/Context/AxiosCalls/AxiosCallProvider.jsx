@@ -57,8 +57,14 @@ const AxiosCallProvider = ({ children }) => {
         setShowAlert(true);
       }
     } catch (error) {
-      setAlertText(error.response.data.errors);
-      setShowAlert(true);
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
     }
   };
@@ -75,9 +81,15 @@ const AxiosCallProvider = ({ children }) => {
       }
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -119,9 +131,15 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText("Server Down, Try Later");
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -147,9 +165,15 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -173,9 +197,15 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -204,9 +234,15 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -232,9 +268,15 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText("Server Down, try later");
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -259,9 +301,15 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText("Server Down, try later");
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -277,9 +325,15 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText("Server Down, try later");
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -308,9 +362,15 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText("Server Down, try later");
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-info",
+          alertIcon: "fas fa-info alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -338,9 +398,15 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText("Server Down, try later");
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -365,9 +431,15 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -392,9 +464,15 @@ const AxiosCallProvider = ({ children }) => {
         },
       });
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -419,9 +497,15 @@ const AxiosCallProvider = ({ children }) => {
         },
       });
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -438,9 +522,15 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText("Server Down, try later");
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 

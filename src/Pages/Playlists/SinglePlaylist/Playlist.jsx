@@ -27,7 +27,6 @@ export const Playlist = () => {
     getPlayListFromServer(getPlaylistConfig);
   }, []);
 
-  console.log(singlePlaylist);
   const thumbnail = singlePlaylist?.videos[0]?.snippet?.thumbnails?.medium.url;
 
   return (

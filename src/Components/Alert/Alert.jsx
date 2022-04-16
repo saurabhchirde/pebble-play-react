@@ -11,7 +11,7 @@ const Alert = () => {
   useEffect(() => {
     const alertTime = setTimeout(() => {
       alertDispatch({ type: "HIDE_ALERT" });
-    }, 1000);
+    }, 1300);
     return () => {
       clearTimeout(alertTime);
     };

@@ -8,6 +8,7 @@
   height: 19.65rem;
   width: 14.5rem;
   background-color: var(--bg-color);
+  border: 1px solid var(--card-hover-bg-color);
 }
 
 .animate-card:hover {
@@ -29,7 +30,8 @@
   right: 0;
   border-radius: 4px;
   color: var(--title-color);
-  background-color: var(--card-bg-color);
+  background-color: var(--card-hover-bg-color);
+  font-size: 0.8rem;
   cursor: pointer;
 }
 

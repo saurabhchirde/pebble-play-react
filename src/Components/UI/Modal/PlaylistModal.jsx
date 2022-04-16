@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   useAlert,
   useAuth,
@@ -18,19 +18,24 @@ const initialPlaylist = {
 
 export const PlaylistModal = () => {
   const {
-    videoState: { playlists },
+    videoState: { playlists, singlePlaylist },
     tempVideo,
     setTempVideo,
   } = useVideo();
   const {
     auth: { token },
   } = useAuth();
-  const { addNewPlayListOnServer, addInSelectedPlaylistOnServer } =
-    useAxiosCalls();
+  const {
+    addNewPlayListOnServer,
+    addInSelectedPlaylistOnServer,
+    getPlayListFromServer,
+    deleteVideoFromPlaylistOnServer,
+  } = useAxiosCalls();
   const { alertDispatch } = useAlert();
   const { setShowPlaylistModal } = useModal();
   const [showCreate, setShowCreate] = useState(false);
   const [newPlaylist, setNewPlaylist] = useState(initialPlaylist);
+  const [tempPlaylistId, setTempPlaylistId] = useState("");
 
   const playlistConfig = {
     url: "/api/user/playlists",
@@ -72,15 +77,25 @@ export const PlaylistModal = () => {
     }
   };
 
-  const onPlaylistSelectHandler = (playlist) => {
-    const addInPlaylistConfig = {
-      url: "/api/user/playlists",
-      body: { video: { ...tempVideo } },
-      headers: { headers: { authorization: token } },
-      playlist: playlist,
-    };
-
-    tempVideo._id && addInSelectedPlaylistOnServer(addInPlaylistConfig);
+  const onPlaylistSelectHandler = (playlist, e) => {
+    console.log(e.target.checked);
+    if (e.target.checked) {
+      const addInPlaylistConfig = {
+        url: "/api/user/playlists",
+        body: { video: { ...tempVideo } },
+        headers: { headers: { authorization: token } },
+        playlist: playlist,
+      };
+      tempVideo._id && addInSelectedPlaylistOnServer(addInPlaylistConfig);
+    } else if (!e.target.checked) {
+      const deleteVideoConfig = {
+        url: "/api/user/playlists",
+        headers: { headers: { authorization: token } },
+        videoId: tempVideo._id,
+        playlistId: playlist._id,
+      };
+      deleteVideoFromPlaylistOnServer(deleteVideoConfig);
+    }
   };
 
   const closePlaylistModal = () => {
@@ -89,6 +104,16 @@ export const PlaylistModal = () => {
   };
 
   const playlistAvailable = playlists.length > 0 ? true : false;
+
+  const getPlaylistConfig = {
+    url: "/api/user/playlists",
+    headers: { headers: { authorization: token } },
+    playlistId: tempPlaylistId,
+  };
+
+  useEffect(() => {
+    getPlayListFromServer(getPlaylistConfig);
+  }, [playlists]);
 
   return (
     <>
@@ -110,13 +135,17 @@ export const PlaylistModal = () => {
         </div>
         {playlistAvailable && (
           <div className="available-playlists">
-            {playlists.map((playlist) => (
+            {playlists?.map((playlist) => (
               <label key={playlist._id}>
                 <input
                   type="checkbox"
                   name="check"
-                  onChange={() => {
-                    onPlaylistSelectHandler(playlist);
+                  // checked={singlePlaylist?.videos.some(
+                  //   (item) => item._id === tempVideo._id
+                  // )}
+                  onChange={(e) => {
+                    setTempPlaylistId(playlist._id);
+                    onPlaylistSelectHandler(playlist, e);
                   }}
                 />
                 {playlist.title}
