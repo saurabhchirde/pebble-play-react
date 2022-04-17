@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { VideoPlayer } from "../../Components/VideoPlayer/VideoPlayer";
-import { useAuth, useAxiosCalls, useModal, useVideo } from "../../Context";
+import { VideoPlayer } from "Components/VideoPlayer/VideoPlayer";
+import { useAuth, useAxiosCalls, useModal, useVideo } from "Context";
 import "./SingleVideo.css";
-import { VideoCard } from "../../Components/Cards/VideoCard";
+import { VideoCard } from "Components/Cards/VideoCard";
 
 export const SingleVideo = () => {
   const { videoId } = useParams();

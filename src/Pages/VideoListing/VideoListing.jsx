@@ -1,9 +1,9 @@
 import { useLocation, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
-import { VideoCard } from "../../Components/Cards/VideoCard";
-import FloatingButton from "../../Components/UI/Button/FloatingButton";
-import { useFilter, useVideo } from "../../Context";
-import { finalFilteredData } from "../../Utils/finalFilteredData";
+import { VideoCard } from "Components/Cards/VideoCard";
+import FloatingButton from "Components/UI/Button/FloatingButton";
+import { useFilter, useVideo } from "Context";
+import { finalFilteredData } from "Utils/finalFilteredData";
 import "./VideoListing.css";
 
 export const VideoListing = () => {

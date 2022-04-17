@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { VideoCard } from "../../../Components/Cards/VideoCard";
-import { useAuth, useAxiosCalls, useVideo } from "../../../Context";
+import { VideoCard } from "Components/Cards/VideoCard";
+import { useAuth, useAxiosCalls, useVideo } from "Context";
 import "./Playlist.css";
 
 export const Playlist = () => {
