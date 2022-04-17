@@ -52,9 +52,6 @@ const VideoProvider = ({ children }) => {
   const [tempVideo, setTempVideo] = useState({});
   const { pathname } = useLocation();
 
-  console.log("all playlists", videoState.playlists);
-  console.log("single playlist", videoState.singlePlaylist);
-
   useEffect(() => {
     const getVideos = async () => {
       try {
@@ -124,6 +121,7 @@ const VideoProvider = ({ children }) => {
     videoDispatch,
     setAlertText,
     setShowAlert,
+    videoState.singleVideo,
   ]);
 
   return (

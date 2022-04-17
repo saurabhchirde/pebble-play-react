@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   useAlert,
   useAuth,
@@ -18,24 +18,21 @@ const initialPlaylist = {
 
 export const PlaylistModal = () => {
   const {
-    videoState: { playlists, singlePlaylist },
+    videoState: { playlists },
     tempVideo,
     setTempVideo,
   } = useVideo();
-  const {
-    auth: { token },
-  } = useAuth();
+  const { auth } = useAuth();
+  const { token } = auth;
   const {
     addNewPlayListOnServer,
     addInSelectedPlaylistOnServer,
-    getPlayListFromServer,
     deleteVideoFromPlaylistOnServer,
   } = useAxiosCalls();
   const { alertDispatch } = useAlert();
   const { setShowPlaylistModal } = useModal();
   const [showCreate, setShowCreate] = useState(false);
   const [newPlaylist, setNewPlaylist] = useState(initialPlaylist);
-  const [tempPlaylistId, setTempPlaylistId] = useState("");
 
   const playlistConfig = {
     url: "/api/user/playlists",
@@ -78,7 +75,6 @@ export const PlaylistModal = () => {
   };
 
   const onPlaylistSelectHandler = (playlist, e) => {
-    console.log(e.target.checked);
     if (e.target.checked) {
       const addInPlaylistConfig = {
         url: "/api/user/playlists",
@@ -105,16 +101,6 @@ export const PlaylistModal = () => {
 
   const playlistAvailable = playlists.length > 0 ? true : false;
 
-  const getPlaylistConfig = {
-    url: "/api/user/playlists",
-    headers: { headers: { authorization: token } },
-    playlistId: tempPlaylistId,
-  };
-
-  useEffect(() => {
-    getPlayListFromServer(getPlaylistConfig);
-  }, [playlists]);
-
   return (
     <>
       <div className="modal-backdrop" onClick={closePlaylistModal}></div>
@@ -140,11 +126,10 @@ export const PlaylistModal = () => {
                 <input
                   type="checkbox"
                   name="check"
-                  // checked={singlePlaylist?.videos.some(
-                  //   (item) => item._id === tempVideo._id
-                  // )}
+                  checked={playlist?.videos.some(
+                    (item) => item._id === tempVideo._id
+                  )}
                   onChange={(e) => {
-                    setTempPlaylistId(playlist._id);
                     onPlaylistSelectHandler(playlist, e);
                   }}
                 />

@@ -4,6 +4,7 @@ import { useAuth, useAxiosCalls, useModal, useVideo } from "../../Context";
 import { formatTimeDuration } from "../../Utils/formatTimeDuration";
 import Button from "../UI/Button/Button";
 import IconButton from "../UI/Button/IconButton";
+import axios from "axios";
 import "./Cards.css";
 
 export const VideoCard = ({ videoDetail }) => {
@@ -13,9 +14,8 @@ export const VideoCard = ({ videoDetail }) => {
     statistics: { viewCount },
   } = videoDetail;
 
-  const {
-    auth: { token },
-  } = useAuth();
+  const { auth } = useAuth();
+  const { token } = auth;
 
   const {
     likeVideoOnServer,
@@ -29,9 +29,11 @@ export const VideoCard = ({ videoDetail }) => {
   const { setShowLogin, setShowPlaylistModal } = useModal();
 
   const {
-    videoState: { watchlater, likes, playlists },
+    videoState: { watchlater, likes, singlePlaylist },
     setTempVideo,
+    videoDispatch,
   } = useVideo();
+
   const [trash, showTrash] = useState(true);
   const { playlistId } = useParams();
 
@@ -159,6 +161,21 @@ export const VideoCard = ({ videoDetail }) => {
       setLikeButton("far fa-thumbs-up icon-inactive");
     }
   }, [watchlater, videoDetail._id, setWatchlaterButton, setLikeButton]);
+
+  useEffect(() => {
+    const fetchPlatlists = async () => {
+      const respPlaylist = await axios.get("/api/user/playlists", {
+        headers: { authorization: auth.token },
+      });
+
+      videoDispatch({
+        type: "GET_PLAYLIST_FROM_SERVER",
+        payload: respPlaylist.data.playlists,
+      });
+    };
+
+    fetchPlatlists();
+  }, [singlePlaylist, auth.token, videoDispatch]);
 
   return (
     <div
