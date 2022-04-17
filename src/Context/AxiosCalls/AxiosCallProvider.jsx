@@ -391,7 +391,7 @@ const AxiosCallProvider = ({ children }) => {
       alertDispatch({
         type: "ALERT",
         payload: {
-          alertText: "Video deleted from this Playlist",
+          alertText: "Deleted from Playlist",
           alertType: "alert-info",
           alertIcon: "fas fa-info alert-icon",
         },
