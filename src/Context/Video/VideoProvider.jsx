@@ -70,7 +70,7 @@ const VideoProvider = ({ children }) => {
       }
     };
     getVideos();
-  }, [pathname]);
+  }, [videoDispatch]);
 
   useEffect(() => {
     if (auth.login) {
@@ -121,7 +121,6 @@ const VideoProvider = ({ children }) => {
     videoDispatch,
     setAlertText,
     setShowAlert,
-    videoState.singleVideo,
   ]);
 
   return (
