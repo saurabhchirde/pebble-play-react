@@ -2,8 +2,9 @@ import { createContext, useContext, useReducer, useState } from "react";
 import { filterReducer } from "./filterReducer";
 
 const filterInitialState = {
-  sort: "",
+  byCategory: "all",
   bySearch: "",
+  byLatest: "",
 };
 
 const filterContext = createContext(filterInitialState);

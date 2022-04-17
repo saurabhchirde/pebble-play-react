@@ -18,8 +18,8 @@ export const DesktopNavigationBar = () => {
 
   const onSearchSubmitHandler = (e) => {
     e.preventDefault();
-    filterDispatch({ type: "bySearch", payload: searchInput });
-    navigate(`/products/search?query=${searchInput}`);
+    filterDispatch({ type: "SEARCH_VIDEO", payload: searchInput });
+    navigate(`/videos/search?query=${searchInput}`);
     setSearchInput("");
   };
 

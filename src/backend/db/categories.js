@@ -9,6 +9,7 @@ export const categories = [
   {
     _id: uuid(),
     categoryName: "Photography",
+    category: "photography",
     description:
       "Photography tutorials for capturing better landscape pictures.",
     icon: "fas fa-camera",
@@ -16,6 +17,7 @@ export const categories = [
   {
     _id: uuid(),
     categoryName: "Editing",
+    category: "edit",
     description:
       "Photo editing using softwares such as Adobe Photoshop, Lightroom etc",
     icon: "fas fa-desktop",
@@ -23,12 +25,14 @@ export const categories = [
   {
     _id: uuid(),
     categoryName: "Film",
+    category: "film",
     description: "Film making",
     icon: "fas fa-film",
   },
   {
     _id: uuid(),
     categoryName: "Vlogs",
+    category: "vlog",
     description: "vlogs",
     icon: "fas fa-video",
   },

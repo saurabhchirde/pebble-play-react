@@ -1,6 +1,6 @@
 .search-container {
   margin: 0.5rem 0.6rem 0.5rem 1rem;
-  width: 90%;
+  width: 80%;
   height: 2.3rem;
   border: 1px solid var(--dark-blue-gray);
   border-radius: 4px;
@@ -17,6 +17,7 @@
   font-size: 1rem;
   background-color: transparent;
   border: none;
+  color: var(--title-color);
 }
 
 .search-container input:focus {

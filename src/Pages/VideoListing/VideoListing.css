@@ -40,9 +40,30 @@
 }
 
 .category-label:hover {
+  color: var(--title-color);
+  cursor: pointer;
+}
+
+.category-label:active {
+  background-color: var(--primary-color);
+}
+
+.active-label {
   background-color: var(--primary-color);
   color: var(--text-white);
-  cursor: pointer;
+}
+
+.no-video-message {
+  font-size: 1.2rem;
+  color: var(--title-color);
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.result-message {
+  font-size: 1.2rem;
+  color: var(--title-color);
+  margin: 10px;
 }
 
 @media screen and (max-width: 580px) {

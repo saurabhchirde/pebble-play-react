@@ -9,6 +9,7 @@ export const videos = [
     etag: "oFBVzncz4DEBn_cnhJJD4eLwJjY",
     _id: "fhEuPDa-Xxc",
     mustWatch: true,
+    category: "edit",
     snippet: {
       publishedAt: "2022-02-05T16:12:12Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -88,6 +89,7 @@ export const videos = [
     etag: "J56K-0KBw-m3cVVoH2AoD93PpbQ",
     _id: "yjIAr_g8Qpw",
     mustWatch: false,
+    category: "edit",
     snippet: {
       publishedAt: "2022-01-11T14:59:47Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -161,6 +163,7 @@ export const videos = [
     etag: "CT4CkrqZRrFVlP5bILwIqq2BlhU",
     _id: "PQczqpwXXZg",
     mustWatch: true,
+    category: "edit",
     snippet: {
       publishedAt: "2022-01-24T14:59:55Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -238,6 +241,7 @@ export const videos = [
     etag: "rynzo1vxp2QizQzCHqAsRFuC-IY",
     _id: "6PaHHY_QtvU",
     mustWatch: false,
+    category: "edit",
     snippet: {
       publishedAt: "2022-01-18T14:59:51Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -317,6 +321,7 @@ export const videos = [
     etag: "vBK4xkJv91iXP4BRvT8SaerjMnY",
     _id: "YqQ6yxclfWA",
     mustWatch: false,
+    category: "edit",
     snippet: {
       publishedAt: "2021-11-30T14:59:47Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -399,6 +404,7 @@ export const videos = [
     etag: "Dl4nQUR4GeP7pRk5hyO_Epoo2RM",
     _id: "nyzHq3a57zA",
     mustWatch: true,
+    category: "edit",
     snippet: {
       publishedAt: "2021-10-08T15:26:02Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -485,6 +491,7 @@ export const videos = [
     etag: "pxLIWSfYk3qR-IFSMkbe15Usn2Q",
     _id: "dHFhOQuEHnU",
     mustWatch: false,
+    category: "edit",
     snippet: {
       publishedAt: "2021-10-02T15:05:04Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -567,6 +574,7 @@ export const videos = [
     etag: "ZJN9JjQLFh3zNSUdPMmPsY34mHE",
     _id: "cL1BvOtd5zY",
     mustWatch: true,
+    category: "edit",
     snippet: {
       publishedAt: "2021-06-17T15:00:00Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -651,6 +659,7 @@ export const videos = [
     etag: "DhSbKzuLC7QQnFoY8SlarOeSkNU",
     _id: "rSpx2s39Avs",
     mustWatch: true,
+    category: "edit",
     snippet: {
       publishedAt: "2018-08-22T14:59:49Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -728,6 +737,7 @@ export const videos = [
     etag: "aMcbgbHDva84_GgWN2DHC1NEidk",
     _id: "RKdsbXGHrPU",
     mustWatch: false,
+    category: "edit",
     snippet: {
       publishedAt: "2018-07-18T15:10:03Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -814,6 +824,7 @@ export const videos = [
     etag: "auq9I8rrym25UzCS36SvsvPghc4",
     _id: "ZR2zlG8sc38",
     mustWatch: false,
+    category: "photography",
     snippet: {
       publishedAt: "2018-03-28T17:00:06Z",
       channelId: "UCKIebaFbubF2L_ol3ujxoSA",
@@ -895,6 +906,7 @@ export const videos = [
     etag: "N9KDHbEuWILG3eVgGt-avt7epBU",
     _id: "VArISvUuyr0",
     mustWatch: false,
+    category: "photography",
     snippet: {
       publishedAt: "2020-02-27T09:36:31Z",
       channelId: "UCxCFQfO05RinX6x_r5VVuiA",
@@ -980,6 +992,7 @@ export const videos = [
     etag: "rOaEvsU8wzOmXD4KDP3ZLQRzP2Y",
     _id: "fM64ycm7tz4",
     mustWatch: true,
+    category: "photography",
     snippet: {
       publishedAt: "2017-05-26T02:44:37Z",
       channelId: "UCQyoKfULtJaHqSxB80Efw4w",
@@ -1067,6 +1080,7 @@ export const videos = [
     etag: "e5Sik-LvYXxzoiYj9_RWvYSDuvs",
     _id: "EJWNQv01VtI",
     mustWatch: true,
+    category: "photography",
     snippet: {
       publishedAt: "2012-08-13T20:29:29Z",
       channelId: "UCzYoPONSfo9izLEHZKq9V2g",
@@ -1135,6 +1149,7 @@ export const videos = [
     etag: "VcEoJcdGELIldmC1L27SGIdc4WY",
     _id: "KVBc2Pg81rw",
     mustWatch: false,
+    category: "film",
     snippet: {
       publishedAt: "2021-04-14T15:43:33Z",
       channelId: "UCK8a56y4aVNhlpsJ1f3ZA4Q",
@@ -1223,6 +1238,7 @@ export const videos = [
     etag: "FTT8RXJL6nDA0fcWhtErdIa9Hzc",
     _id: "ZAkRV4lz8sI",
     mustWatch: false,
+    category: "photography",
     snippet: {
       publishedAt: "2021-01-09T13:30:05Z",
       channelId: "UCKIebaFbubF2L_ol3ujxoSA",
@@ -1298,6 +1314,7 @@ export const videos = [
     etag: "tcOzFlU9WAH4gcVm5hhUWYMysIU",
     _id: "5IpmafMQ6AU",
     mustWatch: true,
+    category: "photography",
     snippet: {
       publishedAt: "2020-04-19T14:47:00Z",
       channelId: "UC-Md_S_A6VcSJiAhStZCKbw",
@@ -1390,6 +1407,7 @@ export const videos = [
     etag: "N1JT5fxTgosZDieS-KRnfh6xggM",
     _id: "2lleGP6mYHs",
     mustWatch: false,
+    category: "photography",
     snippet: {
       publishedAt: "2020-12-08T16:30:00Z",
       channelId: "UCkuqaHz3WWM2oUgFh3H9q9w",
@@ -1509,6 +1527,7 @@ export const videos = [
     etag: "ifS6Oboho-dBq_ZQEYPRbZ0ySr0",
     _id: "N2bhaD9tiWI",
     mustWatch: true,
+    category: "photography",
     snippet: {
       publishedAt: "2019-12-20T15:14:22Z",
       channelId: "UCyW3WMyacFpUsfQ2VK26qcg",
@@ -1573,6 +1592,7 @@ export const videos = [
     etag: "VwLcrkN55LmsWuyhE82cK70rSmc",
     _id: "CK1MHIoxR0k",
     mustWatch: true,
+    category: "photography",
     snippet: {
       publishedAt: "2019-08-30T06:44:50Z",
       channelId: "UCxgAIKVbejB9KGZ5TKGmcRA",
@@ -1654,6 +1674,7 @@ export const videos = [
     etag: "0nrK5SdUh-EZ8GrTZCTW1oJu_a4",
     _id: "dkNzvPo3QmI",
     mustWatch: false,
+    category: "photography",
     snippet: {
       publishedAt: "2021-12-12T14:30:05Z",
       channelId: "UCeRR3gl2xCB68ZO7O_z7cmA",
@@ -1735,6 +1756,7 @@ export const videos = [
     etag: "qOlAHemF9ChBo0Iz60HdHeydW1U",
     _id: "DP6UtePp8yw",
     mustWatch: false,
+    category: "photography",
     snippet: {
       publishedAt: "2019-10-24T13:35:12Z",
       channelId: "UC-Md_S_A6VcSJiAhStZCKbw",
@@ -1832,6 +1854,7 @@ export const videos = [
     etag: "cOptTpq05aS-zsnQI_0h0IqWkco",
     _id: "fTz4Nhgm_SQ",
     mustWatch: true,
+    category: "photography",
     snippet: {
       publishedAt: "2014-08-25T13:00:02Z",
       channelId: "UCn5C6P1rxY6PEU6xUKapbCQ",
@@ -1915,6 +1938,7 @@ export const videos = [
     etag: "gQABXNn_t04_wDQGsMDyrfgS5X4",
     _id: "ineZXLbL7s8",
     mustWatch: true,
+    category: "photography",
     snippet: {
       publishedAt: "2019-03-19T08:59:03Z",
       channelId: "UCJMb9zgxUbigdIxkSvwdXRA",
@@ -2003,6 +2027,7 @@ export const videos = [
     etag: "ULxxbkbM8wQHqxXaBPq4xJrtBP8",
     _id: "Cb5bjlnDkCs",
     mustWatch: false,
+    category: "photography",
     snippet: {
       publishedAt: "2016-12-23T11:00:23Z",
       channelId: "UC3DkFux8Iv-aYnTRWzwaiBA",
@@ -2091,6 +2116,7 @@ export const videos = [
     etag: "FZDYqwaaIzZAvQhRnfAXg5GX6rg",
     _id: "PW8tr4j1ZWE",
     mustWatch: false,
+    category: "photography",
     snippet: {
       publishedAt: "2018-08-27T16:33:08Z",
       channelId: "UC3DkFux8Iv-aYnTRWzwaiBA",
@@ -2173,6 +2199,7 @@ export const videos = [
     etag: "M50ZyCMAlDfE-2CCgtUecfxzGQ8",
     _id: "5qbrxlZMS5Y",
     mustWatch: false,
+    category: "photography",
     snippet: {
       publishedAt: "2019-04-18T13:59:50Z",
       channelId: "UCn5C6P1rxY6PEU6xUKapbCQ",
@@ -2250,6 +2277,7 @@ export const videos = [
     etag: "bAqM62ctc6tkfsQivwIngFz25rg",
     _id: "8TbWgwBz2EI",
     mustWatch: false,
+    category: "photography",
     snippet: {
       publishedAt: "2015-04-20T13:59:35Z",
       channelId: "UCn5C6P1rxY6PEU6xUKapbCQ",
@@ -2336,6 +2364,7 @@ export const videos = [
     etag: "3_YOPDUKYX8Yo8bgbe0N4Z7zeq0",
     _id: "Gdol2bzWGCs",
     mustWatch: false,
+    category: "photography",
     snippet: {
       publishedAt: "2020-06-09T11:14:35Z",
       channelId: "UC8rraUhqs1GHjXj86gvt4FQ",
@@ -2430,6 +2459,7 @@ export const videos = [
     etag: "3jMjl7uAP3VxhNkFJ5loo0M_6aA",
     _id: "x4uKf56DXeI",
     mustWatch: false,
+    category: "photography",
     snippet: {
       publishedAt: "2018-10-30T09:45:00Z",
       channelId: "UC-z7VouoGEHEWf_cDhoN-dA",
@@ -2504,6 +2534,7 @@ export const videos = [
     etag: "Gi9L_PIlfpyC8ktqJtsVACy4fy0",
     _id: "V7z7BAZdt2M",
     mustWatch: true,
+    category: "photography",
     snippet: {
       publishedAt: "2019-01-31T21:13:37Z",
       channelId: "UC_sSJZnJdsnjuAKdr95D9HQ",
@@ -2599,6 +2630,7 @@ export const videos = [
     etag: "pkF7TKNyxId1N0z2fc2PsaURNyg",
     _id: "XzwVlTrIlgc",
     mustWatch: false,
+    category: "vlog",
     snippet: {
       publishedAt: "2021-02-09T04:30:02Z",
       channelId: "UCmH6MvVVACJ0jNEzmCxa6fA",
@@ -2684,6 +2716,7 @@ export const videos = [
     etag: "fKjik0TwasyjooPX5OnnR4L_p_E",
     _id: "OAY54HqbGwo",
     mustWatch: false,
+    category: "vlog",
     snippet: {
       publishedAt: "2019-04-27T12:30:17Z",
       channelId: "UCKIebaFbubF2L_ol3ujxoSA",
@@ -2757,6 +2790,7 @@ export const videos = [
     etag: "eXrTXLPqClxoqKkftyAKJDMqT18",
     _id: "WXdAX0No2hM",
     mustWatch: true,
+    category: "photography",
     snippet: {
       publishedAt: "2017-09-22T13:44:21Z",
       channelId: "UCuwxuGc36QSFZsOPJEFzvmw",
@@ -2826,6 +2860,7 @@ export const videos = [
     etag: "LRjvYTYGrtU3DsJkiAPufQnd8iE",
     _id: "NRPLSwqgHQw",
     mustWatch: false,
+    category: "vlog",
     snippet: {
       publishedAt: "2017-10-08T22:06:09Z",
       channelId: "UCYzMdQa5aD6dnKHLdBxDMkw",
@@ -2929,6 +2964,7 @@ export const videos = [
     etag: "e2RsM0GfJLFl60QKdVSOXx8RJpo",
     _id: "KnWhWVarfqM",
     mustWatch: false,
+    category: "film",
     snippet: {
       publishedAt: "2018-08-16T17:33:53Z",
       channelId: "UC3DkFux8Iv-aYnTRWzwaiBA",
@@ -3017,6 +3053,7 @@ export const videos = [
     etag: "hl8MKmakgfFzbX1X_m_y0XqXu5k",
     _id: "SYCwU-u79sI",
     mustWatch: false,
+    category: "edit",
     snippet: {
       publishedAt: "2017-12-27T15:39:39Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -3103,6 +3140,7 @@ export const videos = [
     etag: "yIgmWi3kEC0JvSWg7uSfL369pPk",
     _id: "xHR_UWraRs0",
     mustWatch: true,
+    category: "photography",
     snippet: {
       publishedAt: "2018-10-23T15:00:06Z",
       channelId: "UCdf6WtVkThVyEFARiUbr5yQ",
@@ -3189,6 +3227,7 @@ export const videos = [
     etag: "HZGovXWtu4mdqalm8QeB7uyOh5M",
     _id: "ktm6Dkkj-uk",
     mustWatch: false,
+    category: "photography",
     snippet: {
       publishedAt: "2019-01-17T12:27:45Z",
       channelId: "UCeRR3gl2xCB68ZO7O_z7cmA",
@@ -3271,6 +3310,7 @@ export const videos = [
     etag: "uGjQgm0tRdrDSbO2rI6-5FFj0ic",
     _id: "HPytBIKUD-k",
     mustWatch: false,
+    category: "photography",
     snippet: {
       publishedAt: "2018-01-29T20:38:24Z",
       channelId: "UC3DkFux8Iv-aYnTRWzwaiBA",
@@ -3353,6 +3393,7 @@ export const videos = [
     etag: "jvY4XiKvepjBgQICbN8YhvYgR5o",
     _id: "kaXg5GB_FVI",
     mustWatch: false,
+    category: "vlog",
     snippet: {
       publishedAt: "2018-09-25T03:30:00Z",
       channelId: "UCeRR3gl2xCB68ZO7O_z7cmA",
