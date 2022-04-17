@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { VideoPlayer } from "Components/VideoPlayer/VideoPlayer";
+import { PebblePlayer } from "Components/PebblePlayer/PebblePlayer";
 import { useAuth, useAxiosCalls, useModal, useVideo } from "Context";
 import "./SingleVideo.css";
 import { VideoCard } from "Components/Cards/VideoCard";
@@ -134,7 +134,7 @@ export const SingleVideo = () => {
     <div className="video-page-body">
       {singleVideo && (
         <div className="video-player-container">
-          <VideoPlayer
+          <PebblePlayer
             videoId={videoId}
             videoDetails={singleVideo}
             played={played}

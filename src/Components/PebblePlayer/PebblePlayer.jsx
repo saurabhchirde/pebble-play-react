@@ -1,7 +1,7 @@
 import ReactPlayer from "react-player";
 import { useAuth, useAxiosCalls, useVideo } from "../../Context";
 
-export const VideoPlayer = ({ videoId, videoDetails, played, setPlayed }) => {
+export const PebblePlayer = ({ videoId, videoDetails, played, setPlayed }) => {
   const {
     auth: { token },
   } = useAuth();
