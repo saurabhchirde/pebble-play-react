@@ -38,6 +38,8 @@ export const VideoListing = () => {
   useEffect(() => {
     if (searchQuery) {
       filterDispatch({ type: "SEARCH_VIDEO", payload: searchQuery });
+    } else if (byCategory) {
+      filterDispatch({ type: "FILTER_CATEGORY", payload: byCategory });
     } else {
       filterDispatch({ type: "ALL_CATEGORY" });
     }

@@ -184,18 +184,107 @@
   font-size: 1.3rem;
 }
 
+.banner-card {
+  padding: 0;
+  max-width: 58rem;
+  height: auto;
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  margin: auto;
+}
+
+.banner-card img {
+  width: 100%;
+  margin: 0;
+  border-radius: 20px;
+}
+
+.banner-card h1 {
+  position: absolute;
+  color: var(--text-white);
+  background-color: var(--primary-color);
+  width: auto;
+  padding: 1rem;
+  border-radius: 0 0 20px 20px;
+  font-size: 1.3rem;
+  text-align: center;
+  font-weight: 500;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 0;
+  width: 100%;
+}
+
+.category-card {
+  border-radius: 20px;
+  width: 9rem;
+  height: 7.8rem;
+  padding: 0;
+  margin: 0 10px;
+  margin-bottom: 10px;
+  background-color: var(--card-hover-bg-color);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.category-card:hover {
+  background-color: var(--card-overlay);
+  color: var(--text-white);
+}
+
+.category-text-section {
+  text-align: center;
+}
+
+.category-card i,
+.category-card h1 {
+  font-size: 1.1rem;
+  color: var(--title-color);
+  margin: 6px 0;
+}
+
 .icon-inactive {
   color: var(--icon-color);
 }
 
-@media screen and (max-width: 580px) {
-  .video-card-vertical {
-    height: 18.5rem;
-    width: 13rem;
+@media screen and (max-width: 1024px) {
+  .category-card {
+    border-radius: 20px;
+    width: 6.5rem;
+    height: 6rem;
   }
 
-  .video-card-vertical .card-nav button {
-    width: 11.9rem;
+  .category-card i,
+  .category-card h1 {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .video-card-vertical {
+    width: 14rem;
+  }
+
+  .category-card {
+    border-radius: 20px;
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .category-card i,
+  .category-card h1 {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .video-card-vertical {
+    width: 14.5rem;
   }
 
   .video-card-vertical .card-title {
@@ -204,5 +293,17 @@
 
   .video-card-horizontal {
     max-width: 100%;
+  }
+
+  .category-card {
+    border-radius: 20px;
+    width: 6.5rem;
+    height: 6.5rem;
+    margin: 5px;
+  }
+
+  .category-card i,
+  .category-card h1 {
+    font-size: 0.9rem;
   }
 }

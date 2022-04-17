@@ -1,5 +1,5 @@
-import ReactPlayer from "react-player";
-import { useAuth, useAxiosCalls, useVideo } from "../../Context";
+import ReactPlayer from "react-player/lazy";
+import { useAuth, useAxiosCalls, useVideo } from "Context";
 
 export const PebblePlayer = ({ videoId, videoDetails, played, setPlayed }) => {
   const {

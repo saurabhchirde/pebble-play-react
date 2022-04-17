@@ -9,7 +9,7 @@ export const videos = [
     etag: "oFBVzncz4DEBn_cnhJJD4eLwJjY",
     _id: "fhEuPDa-Xxc",
     mustWatch: true,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2022-02-05T16:12:12Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -89,7 +89,7 @@ export const videos = [
     etag: "J56K-0KBw-m3cVVoH2AoD93PpbQ",
     _id: "yjIAr_g8Qpw",
     mustWatch: false,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2022-01-11T14:59:47Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -111,6 +111,11 @@ export const videos = [
           url: "https://i.ytimg.com/vi/yjIAr_g8Qpw/hqdefault.jpg",
           width: 480,
           height: 360,
+        },
+        maxres: {
+          url: "https://i.ytimg.com/vi/yjIAr_g8Qpw/hqdefault.jpg",
+          width: 1280,
+          height: 720,
         },
       },
       channelTitle: "PiXimperfect",
@@ -163,7 +168,7 @@ export const videos = [
     etag: "CT4CkrqZRrFVlP5bILwIqq2BlhU",
     _id: "PQczqpwXXZg",
     mustWatch: true,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2022-01-24T14:59:55Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -241,7 +246,7 @@ export const videos = [
     etag: "rynzo1vxp2QizQzCHqAsRFuC-IY",
     _id: "6PaHHY_QtvU",
     mustWatch: false,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2022-01-18T14:59:51Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -321,7 +326,7 @@ export const videos = [
     etag: "vBK4xkJv91iXP4BRvT8SaerjMnY",
     _id: "YqQ6yxclfWA",
     mustWatch: false,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2021-11-30T14:59:47Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -404,7 +409,7 @@ export const videos = [
     etag: "Dl4nQUR4GeP7pRk5hyO_Epoo2RM",
     _id: "nyzHq3a57zA",
     mustWatch: true,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2021-10-08T15:26:02Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -491,7 +496,7 @@ export const videos = [
     etag: "pxLIWSfYk3qR-IFSMkbe15Usn2Q",
     _id: "dHFhOQuEHnU",
     mustWatch: false,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2021-10-02T15:05:04Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -574,7 +579,7 @@ export const videos = [
     etag: "ZJN9JjQLFh3zNSUdPMmPsY34mHE",
     _id: "cL1BvOtd5zY",
     mustWatch: true,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2021-06-17T15:00:00Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -659,7 +664,7 @@ export const videos = [
     etag: "DhSbKzuLC7QQnFoY8SlarOeSkNU",
     _id: "rSpx2s39Avs",
     mustWatch: true,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2018-08-22T14:59:49Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -737,7 +742,7 @@ export const videos = [
     etag: "aMcbgbHDva84_GgWN2DHC1NEidk",
     _id: "RKdsbXGHrPU",
     mustWatch: false,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2018-07-18T15:10:03Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -1107,6 +1112,11 @@ export const videos = [
           url: "https://i.ytimg.com/vi/EJWNQv01VtI/sddefault.jpg",
           width: 640,
           height: 480,
+        },
+        maxres: {
+          url: "https://i.ytimg.com/vi/EJWNQv01VtI/sddefault.jpg",
+          width: 1280,
+          height: 720,
         },
       },
       channelTitle: "Ed Verosky",
@@ -3053,7 +3063,7 @@ export const videos = [
     etag: "hl8MKmakgfFzbX1X_m_y0XqXu5k",
     _id: "SYCwU-u79sI",
     mustWatch: false,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2017-12-27T15:39:39Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",

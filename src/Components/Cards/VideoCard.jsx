@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { useAuth, useAxiosCalls, useModal, useVideo } from "../../Context";
-import { formatTimeDuration } from "../../Utils/formatTimeDuration";
-import Button from "../UI/Button/Button";
-import IconButton from "../UI/Button/IconButton";
+import { useAuth, useAxiosCalls, useModal, useVideo } from "Context";
+import { formatTimeDuration } from "Utils/formatTimeDuration";
+import Button from "Components/UI/Button/Button";
+import IconButton from "Components/UI/Button/IconButton";
 import axios from "axios";
 import "./Cards.css";
 
@@ -39,8 +39,8 @@ export const VideoCard = ({ videoDetail }) => {
 
   const { pathname } = useLocation();
 
-  const onHistoryPage = pathname.includes("history") ? true : false;
-  const onHomePage = pathname.includes("videos") ? true : false;
+  const onHistoryPage = pathname.includes("history");
+  const onHomePage = pathname.includes("videos");
   const onPlaylistPage = pathname.includes("/playlist/");
 
   const [watchlaterButton, setWatchlaterButton] = useState(

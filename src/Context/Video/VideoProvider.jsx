@@ -9,7 +9,7 @@ import { videoReducer } from "./videoReducer";
 import { useAuth } from "../Auth/AuthProvider";
 import axios from "axios";
 import { useModal } from "../Modal/ModalProvider";
-import { useLocation } from "react-router-dom";
+import { useAnimation } from "Context";
 
 const initialVideoState = {
   videos: [],
@@ -50,12 +50,14 @@ const VideoProvider = ({ children }) => {
   const { auth, authDispatch } = useAuth();
   const { setAlertText, setShowAlert } = useModal();
   const [tempVideo, setTempVideo] = useState({});
-  const { pathname } = useLocation();
+  const { showLoader } = useAnimation();
 
   useEffect(() => {
     const getVideos = async () => {
       try {
+        showLoader();
         const respVideos = await axios.get("/api/videos");
+        showLoader();
         videoDispatch({
           type: "LOAD_ALL_VIDEOS",
           payload: respVideos.data.videos,
@@ -67,15 +69,17 @@ const VideoProvider = ({ children }) => {
         });
       } catch (error) {
         console.error(error.message);
+        showLoader();
       }
     };
     getVideos();
-  }, [videoDispatch]);
+  }, [videoDispatch, auth.login]);
 
   useEffect(() => {
     if (auth.login) {
       const fetchData = async () => {
         try {
+          showLoader();
           const respWatchlater = await axios.get("/api/user/watchlater", {
             headers: { authorization: auth.token },
           });
@@ -88,7 +92,7 @@ const VideoProvider = ({ children }) => {
           const respLikes = await axios.get("/api/user/likes", {
             headers: { authorization: auth.token },
           });
-
+          showLoader();
           videoDispatch({
             type: "GET_WATCHLATER_FROM_SERVER",
             payload: respWatchlater.data.watchlater,

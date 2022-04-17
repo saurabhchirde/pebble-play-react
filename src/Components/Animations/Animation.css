@@ -1,24 +1,14 @@
-.camera-animation {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-}
-
-.animation {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  z-index: 3;
-}
-
+.camera-animation,
 .loader-animation {
   background-color: rgba(0, 0, 0, 0.087);
   width: 100%;
   height: 100vh;
   position: fixed;
   z-index: 5;
+}
+
+.camera-animation {
+  background-color: var(--bg-color);
 }
 
 .loader-animation > div {
@@ -33,6 +23,11 @@
 #camera-dark {
   width: 20rem;
   animation: loader 2500ms ease-in-out;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
 }
 
 @keyframes loader {

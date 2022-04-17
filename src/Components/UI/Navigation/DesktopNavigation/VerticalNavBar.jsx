@@ -7,8 +7,8 @@ export const VerticalNavBar = () => {
   const { theme, toggleTheme } = useTheme();
   const { pathname } = useLocation();
 
-  const activeHome = pathname.includes("videos") ? "active-nav " : "";
-  const activeTrending = pathname.includes("trending") ? "active-nav " : "";
+  const activeHome = pathname === "/" ? "active-nav " : "";
+  const activeExplore = pathname.includes("videos") ? "active-nav " : "";
   const activeLiked = pathname.includes("liked") ? "active-nav " : "";
   const activePlaylist = pathname.includes("playlist") ? "active-nav " : " ";
   const activeWatchlater = pathname.includes("watchlater") ? "active-nav " : "";
@@ -20,16 +20,16 @@ export const VerticalNavBar = () => {
     <div className="vertical-nav-container nav-bar-desktop">
       <div className="vertical-nav-menu">
         <h1>Menu</h1>
-        <Link to="/videos">
+        <Link to="/">
           <div className={activeHome}>
             <i className="fas fa-home"></i>
             <h2>Home</h2>
           </div>
         </Link>
-        <Link to="trending">
-          <div className={activeTrending}>
+        <Link to="videos">
+          <div className={activeExplore}>
             <i className="fas fa-globe"></i>
-            <h2>Trending</h2>
+            <h2>Explore</h2>
           </div>
         </Link>
         <Link to="liked">

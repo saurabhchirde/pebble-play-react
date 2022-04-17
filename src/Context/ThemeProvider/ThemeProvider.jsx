@@ -4,7 +4,7 @@ const themeContext = createContext(null);
 
 const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(
-    localStorage.getItem("pebbleplay-theme") ?? "light"
+    localStorage.getItem("pebbleplay-theme") ?? "dark"
   );
 
   useEffect(() => {
