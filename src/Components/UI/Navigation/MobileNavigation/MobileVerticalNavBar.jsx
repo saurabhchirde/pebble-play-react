@@ -54,10 +54,10 @@ export const MobileVerticalNavBar = () => {
               <h2>Liked Videos</h2>
             </div>
           </Link>
-          <Link to="playlist">
+          <Link to="playlists">
             <div className={activePlaylist}>
-              <i className="fas fa-desktop"></i>
-              <h2>Playlist</h2>
+              <i className="fas fa-list"></i>
+              <h2>Playlists</h2>
             </div>
           </Link>
           <Link to="watchlater">

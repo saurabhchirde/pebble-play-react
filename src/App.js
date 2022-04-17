@@ -12,6 +12,8 @@ import {
   LikedVideos,
   SingleVideo,
   History,
+  Playlists,
+  Playlist,
 } from "./Pages";
 import BodyWrapper from "./Components/UI/Wrapper/BodyWrapper";
 import { useAlert, useAnimation, useModal } from "./Context";
@@ -21,9 +23,11 @@ import AlertModal from "./Components/UI/Modal/AlertModal";
 import Mockman from "mockman-js";
 import AnimateLoader from "./Components/Animations/AnimateLoader";
 import Alert from "./Components/Alert/Alert";
+import { PlaylistModal } from "./Components/UI/Modal/PlaylistModal";
 
 function App() {
-  const { showLogin, showSignup, showAlert, showNavMenu } = useModal();
+  const { showLogin, showSignup, showAlert, showNavMenu, showPlaylistModal } =
+    useModal();
   const { loader } = useAnimation();
   const {
     alertState: { showAlertBar },
@@ -36,6 +40,7 @@ function App() {
       {showLogin && <Login />}
       {showSignup && <Signup />}
       {showAlert && <AlertModal />}
+      {showPlaylistModal && <PlaylistModal />}
       <DesktopNavigationBar />
       <MobileNavigationBar />
       <BodyWrapper>
@@ -48,6 +53,8 @@ function App() {
           <Route path="/watchlater" element={<Watchlater />} />
           <Route path="/liked" element={<LikedVideos />} />
           <Route path="/history" element={<History />} />
+          <Route path="/playlists" element={<Playlists />} />
+          <Route path="/playlist/:playlistId" element={<Playlist />} />
           <Route path="mockman" element={<Mockman />} />
         </Routes>
       </BodyWrapper>

@@ -1,6 +1,6 @@
-import { VerticalCard } from "../../Components/Cards/VerticalCard";
-import { useAuth, useModal, useVideo } from "../../Context";
-import { NotLogged } from "../../Components/NotLogged/NotLogged";
+import { VideoCard } from "Components/Cards/VideoCard";
+import { useAuth, useVideo } from "Context";
+import { NotLogged } from "Components/NotLogged/NotLogged";
 import "./Watchlater.css";
 
 export const Watchlater = () => {
@@ -21,7 +21,7 @@ export const Watchlater = () => {
           {watchlater.length > 0 ? (
             <div className="watchlater-video-section flex-row">
               {watchlater.map((video) => (
-                <VerticalCard key={video._id} videoDetail={video} />
+                <VideoCard key={video._id} videoDetail={video} />
               ))}
             </div>
           ) : (
@@ -29,7 +29,7 @@ export const Watchlater = () => {
           )}
         </>
       ) : (
-        <NotLogged />
+        <NotLogged message="Login to add videos in your Watch later" />
       )}
     </div>
   );

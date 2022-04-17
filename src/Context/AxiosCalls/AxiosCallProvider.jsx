@@ -13,7 +13,7 @@ const AxiosCallProvider = ({ children }) => {
   const { setAlertText, setShowAlert, setShowLogin, setShowSignupAlert } =
     useModal();
   const { alertDispatch } = useAlert();
-  const { authDispatch, setLoginInput, setShowAddressModal } = useAuth();
+  const { authDispatch, setLoginInput } = useAuth();
   const { showLoader } = useAnimation();
 
   // login
@@ -57,8 +57,14 @@ const AxiosCallProvider = ({ children }) => {
         setShowAlert(true);
       }
     } catch (error) {
-      setAlertText(error.response.data.errors);
-      setShowAlert(true);
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
     }
   };
@@ -75,9 +81,15 @@ const AxiosCallProvider = ({ children }) => {
       }
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -119,9 +131,15 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText("Server Down, Try Later");
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -147,9 +165,15 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -173,9 +197,15 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -204,9 +234,15 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -221,6 +257,7 @@ const AxiosCallProvider = ({ children }) => {
         type: "ADD_NEW_PLAYLIST",
         payload: response.data.playlists,
       });
+
       alertDispatch({
         type: "ALERT",
         payload: {
@@ -231,106 +268,29 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText("Server Down, try later");
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
   // remove playlist
   const removePlayListFromServer = async (playlistConfig) => {
-    const { url, headers, playlist } = playlistConfig;
+    const { url, headers, playlistId } = playlistConfig;
 
     try {
       showLoader();
-      const response = await axios.delete(`${url}/${playlist._id}`, headers);
+      const response = await axios.delete(`${url}/${playlistId}`, headers);
       videoDispatch({
         type: "REMOVE_PLAYLIST",
         payload: response.data.playlists,
       });
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: "Playlist Removed",
-          alertType: "alert-info",
-          alertIcon: "fas fa-info alert-icon",
-        },
-      });
-      showLoader();
-    } catch (error) {
-      setAlertText("Server Down, try later");
-      showLoader();
-      setShowAlert(true);
-    }
-  };
-
-  // get playlist
-  const getPlayListFromServer = async (playlistConfig) => {
-    const { url, headers, playlist } = playlistConfig;
-
-    try {
-      showLoader();
-      const response = await axios.get(`${url}/${playlist._id}`, headers);
-      videoDispatch({
-        type: "GET_PARTICULAR_PLAYLIST",
-        payload: response.data.playlist,
-      });
-      showLoader();
-    } catch (error) {
-      setAlertText("Server Down, try later");
-      showLoader();
-      setShowAlert(true);
-    }
-  };
-
-  // post in selected playlist
-  const updateSelectedPlaylistOnServer = async (playlistConfig) => {
-    const { url, body, headers } = playlistConfig;
-    const { playlist } = body;
-    try {
-      showLoader();
-      const response = await axios.post(
-        `${url}/${playlist._id}`,
-        body,
-        headers
-      );
-      console.log("Update", response);
-      videoDispatch({
-        type: "UPDATE_PLAYLIST",
-        payload: response.data.playlist,
-      });
-      setShowAddressModal(false);
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: "Playlist Updated",
-          alertType: "alert-success",
-          alertIcon: "fas fa-check-circle alert-icon",
-        },
-      });
-      setShowAlert(true);
-      console.log("Update", response.data);
-      showLoader();
-    } catch (error) {
-      setAlertText("Server Down, try later");
-      showLoader();
-      setShowAlert(true);
-    }
-  };
-
-  // delete video from selected playlist
-  const deleteVideoFromPlaylistOnServer = async (updateAddressConfig) => {
-    const { url, body, headers } = updateAddressConfig;
-    const { playlist } = body;
-    try {
-      showLoader();
-      const response = await axios.delete(`${url}/${playlist._id}`, headers);
-      console.log("Update", response);
-      videoDispatch({
-        type: "DELETE_VIDEO_FROM_PLAYLIST",
-        payload: response.data.playlist,
-      });
-      setShowAddressModal(false);
       alertDispatch({
         type: "ALERT",
         payload: {
@@ -339,13 +299,114 @@ const AxiosCallProvider = ({ children }) => {
           alertIcon: "fas fa-info alert-icon",
         },
       });
-      setShowAlert(true);
-      console.log("Update", response.data);
       showLoader();
     } catch (error) {
-      setAlertText("Server Down, try later");
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
+    }
+  };
+
+  // get playlist
+  const getPlayListFromServer = async (getPlaylistConfig) => {
+    const { url, headers, playlistId } = getPlaylistConfig;
+    try {
+      showLoader();
+      const response = await axios.get(`${url}/${playlistId}`, headers);
+      videoDispatch({
+        type: "GET_PARTICULAR_PLAYLIST",
+        payload: response.data.playlist,
+      });
+      showLoader();
+    } catch (error) {
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
+      showLoader();
+    }
+  };
+
+  // post in selected playlist
+  const addInSelectedPlaylistOnServer = async (addInPlaylistConfig) => {
+    const { url, body, headers, playlist } = addInPlaylistConfig;
+
+    try {
+      showLoader();
+      const response = await axios.post(
+        `${url}/${playlist._id}`,
+        body,
+        headers
+      );
+      videoDispatch({
+        type: "UPDATE_PLAYLIST",
+        payload: response.data.playlist,
+      });
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: "Added in Playlist",
+          alertType: "alert-success",
+          alertIcon: "fas fa-check-circle alert-icon",
+        },
+      });
+      showLoader();
+    } catch (error) {
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-info",
+          alertIcon: "fas fa-info alert-icon",
+        },
+      });
+      showLoader();
+    }
+  };
+
+  // delete video from selected playlist
+  const deleteVideoFromPlaylistOnServer = async (deleteVideoConfig) => {
+    const { url, headers, videoId, playlistId } = deleteVideoConfig;
+
+    try {
+      showLoader();
+      const response = await axios.delete(
+        `${url}/${playlistId}/${videoId}`,
+        headers
+      );
+      videoDispatch({
+        type: "DELETE_VIDEO_FROM_PLAYLIST",
+        payload: response.data.playlist,
+      });
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: "Deleted from Playlist",
+          alertType: "alert-info",
+          alertIcon: "fas fa-info alert-icon",
+        },
+      });
+      showLoader();
+    } catch (error) {
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
+      showLoader();
     }
   };
 
@@ -370,9 +431,15 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -397,9 +464,15 @@ const AxiosCallProvider = ({ children }) => {
         },
       });
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -424,9 +497,15 @@ const AxiosCallProvider = ({ children }) => {
         },
       });
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -443,9 +522,15 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      setAlertText("Server Down, try later");
+      alertDispatch({
+        type: "ALERT",
+        payload: {
+          alertText: error.response.data.errors,
+          alertType: "alert-error",
+          alertIcon: "fas  fa-exclamation-circle alert-icon",
+        },
+      });
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -461,7 +546,7 @@ const AxiosCallProvider = ({ children }) => {
         addNewPlayListOnServer,
         removePlayListFromServer,
         getPlayListFromServer,
-        updateSelectedPlaylistOnServer,
+        addInSelectedPlaylistOnServer,
         deleteVideoFromPlaylistOnServer,
         fetchVideoFromServer,
         addInHistoryListOnServer,

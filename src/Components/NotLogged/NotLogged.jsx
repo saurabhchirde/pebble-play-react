@@ -1,16 +1,13 @@
-import { useAuth, useModal } from "../../Context";
+import { useModal } from "../../Context";
 import Button from "../UI/Button/Button";
 import "./NotLogged.css";
 
-export const NotLogged = () => {
-  const {
-    auth: { token },
-  } = useAuth();
+export const NotLogged = (props) => {
   const { setShowLogin } = useModal();
 
   return (
     <div className="not-logged">
-      <p>Login to add videos in your Watch later</p>
+      <p>{props.message}</p>
       <Button
         onClick={() => {
           setShowLogin(true);
