@@ -17,7 +17,11 @@ export const BannerCard = () => {
   const title = video?.snippet?.title;
 
   const onPreviousBannerClickHandler = () => {
-    setImgIndex((preIndex) => preIndex - 1);
+    if (imgIndex <= 0) {
+      setImgIndex(40);
+    } else {
+      setImgIndex((preIndex) => preIndex - 1);
+    }
   };
 
   const onNextBannerClickHandler = () => {
@@ -25,13 +29,16 @@ export const BannerCard = () => {
   };
 
   useEffect(() => {
+    if (imgIndex > 40) {
+      setImgIndex(0);
+    }
     const bannerTime = setInterval(() => {
       setImgIndex((preIndex) => preIndex + 1);
     }, 5000);
     return () => {
       clearInterval(bannerTime);
     };
-  }, [setImgIndex]);
+  }, [imgIndex, setImgIndex]);
 
   return (
     <>
