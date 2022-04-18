@@ -84,12 +84,6 @@
     flex-wrap: wrap;
   }
 
-  .landing-must-watch-container {
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* margin-top: 0; */
-  }
-
   .landing-must-watch-container > h1 {
     text-align: center;
   }
