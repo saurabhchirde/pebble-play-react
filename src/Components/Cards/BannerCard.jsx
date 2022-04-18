@@ -1,7 +1,7 @@
 import { useVideo } from "Context";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "./Cards.css";
+import "./BannerCard.css";
 import { IconButton } from "Components";
 
 export const BannerCard = () => {

@@ -1,6 +1,6 @@
 import { useFilter } from "Context";
 import { useNavigate } from "react-router-dom";
-import "./Cards.css";
+import "./CategoryCard.css";
 
 export const CategoryCard = ({ category }) => {
   const { filterDispatch } = useFilter();

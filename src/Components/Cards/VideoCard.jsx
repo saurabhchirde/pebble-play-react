@@ -4,7 +4,7 @@ import { useAuth, useAxiosCalls, useModal, useVideo } from "Context";
 import { formatTimeDuration } from "Utils/formatTimeDuration";
 import { Button, IconButton } from "Components";
 import axios from "axios";
-import "./Cards.css";
+import "./VideoCard.css";
 
 export const VideoCard = ({ videoDetail }) => {
   const {
@@ -188,17 +188,23 @@ export const VideoCard = ({ videoDetail }) => {
           <img src={thumbnails.medium.url} alt="thumbnail" loading="lazy" />
         </Link>
         {onPlaylistPage && trash && (
-          <i
-            onClick={onPlaylistVideoDeleteClickHandler}
-            className="fas fa-trash-alt trash-icon"
-          ></i>
+          <div className="tool-tip">
+            <i
+              onClick={onPlaylistVideoDeleteClickHandler}
+              className="fas fa-trash-alt trash-icon"
+            ></i>{" "}
+            <p className="tool-tip-playlist">Delete from Playlist</p>
+          </div>
         )}
         {onHistoryPage && (
-          <IconButton
-            onClick={deleteFromHistoryHandler}
-            btnClassName="btn icon-btn-xsm history-delete-btn"
-            icon="fas fa-times "
-          />
+          <div className="tool-tip">
+            <IconButton
+              onClick={deleteFromHistoryHandler}
+              btnClassName="btn icon-btn-xsm history-delete-btn"
+              icon="fas fa-times "
+            />
+            <p className="tool-tip-history">Remove from History</p>
+          </div>
         )}
       </div>
       <div className="card-body">
@@ -208,21 +214,30 @@ export const VideoCard = ({ videoDetail }) => {
               {formatTimeDuration(duration)}
             </h2>
             <div>
-              <IconButton
-                onClick={likeButtonStatus}
-                btnClassName="btn icon-btn-sm icon-md"
-                icon={likeButton}
-              />
-              <IconButton
-                onClick={watchlaterButtonStatus}
-                btnClassName="btn icon-btn-sm icon-md"
-                icon={watchlaterButton}
-              />
-              <IconButton
-                onClick={addToPlaylistClickHandler}
-                btnClassName="btn icon-btn-sm icon-md"
-                icon="fas fa-list icon-inactive"
-              />
+              <div className="tool-tip">
+                <IconButton
+                  onClick={likeButtonStatus}
+                  btnClassName="btn icon-btn-sm icon-md"
+                  icon={likeButton}
+                />
+                <p className="tool-tip-like">Like</p>
+              </div>
+              <div className="tool-tip">
+                <IconButton
+                  onClick={watchlaterButtonStatus}
+                  btnClassName="btn icon-btn-sm icon-md"
+                  icon={watchlaterButton}
+                />
+                <p className="tool-tip-watchlater">Watchlater</p>
+              </div>
+              <div className="tool-tip">
+                <IconButton
+                  onClick={addToPlaylistClickHandler}
+                  btnClassName="btn icon-btn-sm icon-md"
+                  icon="fas fa-list icon-inactive"
+                />
+                <p className="tool-tip-playlist">Playlist</p>
+              </div>
             </div>
           </div>
         )}

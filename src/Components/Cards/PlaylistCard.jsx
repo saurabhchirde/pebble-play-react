@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAuth, useAxiosCalls } from "Context";
+import "./PlaylistCard.css";
 
 export const PlaylistCard = ({ list }) => {
   const { removePlayListFromServer } = useAxiosCalls();
