@@ -1,19 +1,13 @@
-export { VideoProvider, useVideo } from "./Video/VideoProvider";
-export { FilterProvider, useFilter } from "./Filter/FilterProvider";
-export { ModalProvider, useModal } from "./Modal/ModalProvider";
+export { VideoProvider, useVideo } from "./Video/VideoContext";
+export { FilterProvider, useFilter } from "./Filter/FilterContext";
+export { ModalProvider, useModal } from "./Modal/ModalContext";
 export { ScrollToTop } from "./ScrollToTop/ScrollToTop";
-export { AuthProvider, useAuth } from "./Auth/AuthProvider";
+export { AuthProvider, useAuth } from "./Auth/AuthContext";
 export {
   useSessionStorageGet,
   useSessionStorageSet,
 } from "../Hooks/useSessionStorage";
-export {
-  AnimationProvider,
-  useAnimation,
-} from "./Animations/AnimationProvider";
-export {
-  AxiosCallProvider,
-  useAxiosCalls,
-} from "./AxiosCalls/AxiosCallProvider";
-export { AlertProvider, useAlert } from "./Alerts/AlertsProvider";
-export { ThemeProvider, useTheme } from "./ThemeProvider/ThemeProvider";
+export { AnimationProvider, useAnimation } from "./Animations/AnimationContext";
+export { AxiosCallProvider, useAxiosCalls } from "./AxiosCalls/AxiosContext";
+export { AlertProvider, useAlert } from "./Alerts/AlertContext";
+export { ThemeProvider, useTheme } from "./Theme/ThemeContext";

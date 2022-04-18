@@ -9,7 +9,7 @@ export const videos = [
     etag: "oFBVzncz4DEBn_cnhJJD4eLwJjY",
     _id: "fhEuPDa-Xxc",
     mustWatch: true,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2022-02-05T16:12:12Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -89,7 +89,7 @@ export const videos = [
     etag: "J56K-0KBw-m3cVVoH2AoD93PpbQ",
     _id: "yjIAr_g8Qpw",
     mustWatch: false,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2022-01-11T14:59:47Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -111,6 +111,11 @@ export const videos = [
           url: "https://i.ytimg.com/vi/yjIAr_g8Qpw/hqdefault.jpg",
           width: 480,
           height: 360,
+        },
+        maxres: {
+          url: "https://i.ytimg.com/vi/yjIAr_g8Qpw/hqdefault.jpg",
+          width: 1280,
+          height: 720,
         },
       },
       channelTitle: "PiXimperfect",
@@ -163,7 +168,7 @@ export const videos = [
     etag: "CT4CkrqZRrFVlP5bILwIqq2BlhU",
     _id: "PQczqpwXXZg",
     mustWatch: true,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2022-01-24T14:59:55Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -241,7 +246,7 @@ export const videos = [
     etag: "rynzo1vxp2QizQzCHqAsRFuC-IY",
     _id: "6PaHHY_QtvU",
     mustWatch: false,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2022-01-18T14:59:51Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -321,7 +326,7 @@ export const videos = [
     etag: "vBK4xkJv91iXP4BRvT8SaerjMnY",
     _id: "YqQ6yxclfWA",
     mustWatch: false,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2021-11-30T14:59:47Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -404,7 +409,7 @@ export const videos = [
     etag: "Dl4nQUR4GeP7pRk5hyO_Epoo2RM",
     _id: "nyzHq3a57zA",
     mustWatch: true,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2021-10-08T15:26:02Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -491,7 +496,7 @@ export const videos = [
     etag: "pxLIWSfYk3qR-IFSMkbe15Usn2Q",
     _id: "dHFhOQuEHnU",
     mustWatch: false,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2021-10-02T15:05:04Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -574,7 +579,7 @@ export const videos = [
     etag: "ZJN9JjQLFh3zNSUdPMmPsY34mHE",
     _id: "cL1BvOtd5zY",
     mustWatch: true,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2021-06-17T15:00:00Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -659,7 +664,7 @@ export const videos = [
     etag: "DhSbKzuLC7QQnFoY8SlarOeSkNU",
     _id: "rSpx2s39Avs",
     mustWatch: true,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2018-08-22T14:59:49Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -737,7 +742,7 @@ export const videos = [
     etag: "aMcbgbHDva84_GgWN2DHC1NEidk",
     _id: "RKdsbXGHrPU",
     mustWatch: false,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2018-07-18T15:10:03Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",
@@ -1075,75 +1080,7 @@ export const videos = [
       commentCount: "1247",
     },
   },
-  {
-    kind: "youtube#video",
-    etag: "e5Sik-LvYXxzoiYj9_RWvYSDuvs",
-    _id: "EJWNQv01VtI",
-    mustWatch: true,
-    category: "photography",
-    snippet: {
-      publishedAt: "2012-08-13T20:29:29Z",
-      channelId: "UCzYoPONSfo9izLEHZKq9V2g",
-      title: "Three Rules of Lighting for Photography",
-      description:
-        "The three important rules regarding the behavior of light.  Use these rules to achieve the type of lighting we want, including the look of soft light. \n\nFREE OFF-CAMERA FLASH GUIDE: \nhttps://veroskycourses.com/off-camera-flash-photography-10-minute-guide/\n\nCHECK OUT MY ULTIMATE FLASH GUIDE!\nhttps://veroskycourses.com/product/ed-veroskys-guide-to-flash-photography/\n\nCHECK OUT MY EBOOKS AND COURSES\n-------------------------------\nhttps://veroskycourses.com\n\nRECOMMENDED\nGodox AD400Pro \nhttps://amzn.to/32HQcES\n\nABOUT\n------------------\n\nHi, I'm Ed Verosky.  This channel is about my on-going adventures in photography, art, and life.  Check out some videos, have fun, and definitely connect with me in the comments.\n\n► MY SITE: https://www.edverosky.com\n\n► MY GEAR:  https://www.edverosky.com/recommended-gear\n\n\nDISCLOSURE\n------------------\n\n*Affiliate Partnerships.  Many of the links I provide to 3rd-party products or services are affiliate links. It doesn’t cost you anything extra to use these links, but if you do, the seller will pay me a small referral fee.",
-      thumbnails: {
-        default: {
-          url: "https://i.ytimg.com/vi/EJWNQv01VtI/default.jpg",
-          width: 120,
-          height: 90,
-        },
-        medium: {
-          url: "https://i.ytimg.com/vi/EJWNQv01VtI/mqdefault.jpg",
-          width: 320,
-          height: 180,
-        },
-        high: {
-          url: "https://i.ytimg.com/vi/EJWNQv01VtI/hqdefault.jpg",
-          width: 480,
-          height: 360,
-        },
-        standard: {
-          url: "https://i.ytimg.com/vi/EJWNQv01VtI/sddefault.jpg",
-          width: 640,
-          height: 480,
-        },
-      },
-      channelTitle: "Ed Verosky",
-      tags: [
-        "Photography",
-        "Lighting",
-        "Photography Basics",
-        "Portraiture Lighting",
-        "Soft Light",
-        "Contrast",
-        "Photography Lighting Tutorial",
-      ],
-      categoryId: "27",
-      liveBroadcastContent: "none",
-      localized: {
-        title: "Three Rules of Lighting for Photography",
-        description:
-          "The three important rules regarding the behavior of light.  Use these rules to achieve the type of lighting we want, including the look of soft light. \n\nFREE OFF-CAMERA FLASH GUIDE: \nhttps://veroskycourses.com/off-camera-flash-photography-10-minute-guide/\n\nCHECK OUT MY ULTIMATE FLASH GUIDE!\nhttps://veroskycourses.com/product/ed-veroskys-guide-to-flash-photography/\n\nCHECK OUT MY EBOOKS AND COURSES\n-------------------------------\nhttps://veroskycourses.com\n\nRECOMMENDED\nGodox AD400Pro \nhttps://amzn.to/32HQcES\n\nABOUT\n------------------\n\nHi, I'm Ed Verosky.  This channel is about my on-going adventures in photography, art, and life.  Check out some videos, have fun, and definitely connect with me in the comments.\n\n► MY SITE: https://www.edverosky.com\n\n► MY GEAR:  https://www.edverosky.com/recommended-gear\n\n\nDISCLOSURE\n------------------\n\n*Affiliate Partnerships.  Many of the links I provide to 3rd-party products or services are affiliate links. It doesn’t cost you anything extra to use these links, but if you do, the seller will pay me a small referral fee.",
-      },
-      defaultAudioLanguage: "en-US",
-    },
-    contentDetails: {
-      duration: "PT3M31S",
-      dimension: "2d",
-      definition: "hd",
-      caption: "false",
-      licensedContent: true,
-      contentRating: {},
-      projection: "rectangular",
-    },
-    statistics: {
-      viewCount: "450076",
-      likeCount: "4771",
-      favoriteCount: "0",
-      commentCount: "78",
-    },
-  },
+
   {
     kind: "youtube#video",
     etag: "VcEoJcdGELIldmC1L27SGIdc4WY",
@@ -2961,6 +2898,80 @@ export const videos = [
   },
   {
     kind: "youtube#video",
+    etag: "e5Sik-LvYXxzoiYj9_RWvYSDuvs",
+    _id: "EJWNQv01VtI",
+    mustWatch: true,
+    category: "photography",
+    snippet: {
+      publishedAt: "2012-08-13T20:29:29Z",
+      channelId: "UCzYoPONSfo9izLEHZKq9V2g",
+      title: "Three Rules of Lighting for Photography",
+      description:
+        "The three important rules regarding the behavior of light.  Use these rules to achieve the type of lighting we want, including the look of soft light. \n\nFREE OFF-CAMERA FLASH GUIDE: \nhttps://veroskycourses.com/off-camera-flash-photography-10-minute-guide/\n\nCHECK OUT MY ULTIMATE FLASH GUIDE!\nhttps://veroskycourses.com/product/ed-veroskys-guide-to-flash-photography/\n\nCHECK OUT MY EBOOKS AND COURSES\n-------------------------------\nhttps://veroskycourses.com\n\nRECOMMENDED\nGodox AD400Pro \nhttps://amzn.to/32HQcES\n\nABOUT\n------------------\n\nHi, I'm Ed Verosky.  This channel is about my on-going adventures in photography, art, and life.  Check out some videos, have fun, and definitely connect with me in the comments.\n\n► MY SITE: https://www.edverosky.com\n\n► MY GEAR:  https://www.edverosky.com/recommended-gear\n\n\nDISCLOSURE\n------------------\n\n*Affiliate Partnerships.  Many of the links I provide to 3rd-party products or services are affiliate links. It doesn’t cost you anything extra to use these links, but if you do, the seller will pay me a small referral fee.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/EJWNQv01VtI/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/EJWNQv01VtI/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/EJWNQv01VtI/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+        standard: {
+          url: "https://i.ytimg.com/vi/EJWNQv01VtI/sddefault.jpg",
+          width: 640,
+          height: 480,
+        },
+        maxres: {
+          url: "https://i.ytimg.com/vi/EJWNQv01VtI/sddefault.jpg",
+          width: 1280,
+          height: 720,
+        },
+      },
+      channelTitle: "Ed Verosky",
+      tags: [
+        "Photography",
+        "Lighting",
+        "Photography Basics",
+        "Portraiture Lighting",
+        "Soft Light",
+        "Contrast",
+        "Photography Lighting Tutorial",
+      ],
+      categoryId: "27",
+      liveBroadcastContent: "none",
+      localized: {
+        title: "Three Rules of Lighting for Photography",
+        description:
+          "The three important rules regarding the behavior of light.  Use these rules to achieve the type of lighting we want, including the look of soft light. \n\nFREE OFF-CAMERA FLASH GUIDE: \nhttps://veroskycourses.com/off-camera-flash-photography-10-minute-guide/\n\nCHECK OUT MY ULTIMATE FLASH GUIDE!\nhttps://veroskycourses.com/product/ed-veroskys-guide-to-flash-photography/\n\nCHECK OUT MY EBOOKS AND COURSES\n-------------------------------\nhttps://veroskycourses.com\n\nRECOMMENDED\nGodox AD400Pro \nhttps://amzn.to/32HQcES\n\nABOUT\n------------------\n\nHi, I'm Ed Verosky.  This channel is about my on-going adventures in photography, art, and life.  Check out some videos, have fun, and definitely connect with me in the comments.\n\n► MY SITE: https://www.edverosky.com\n\n► MY GEAR:  https://www.edverosky.com/recommended-gear\n\n\nDISCLOSURE\n------------------\n\n*Affiliate Partnerships.  Many of the links I provide to 3rd-party products or services are affiliate links. It doesn’t cost you anything extra to use these links, but if you do, the seller will pay me a small referral fee.",
+      },
+      defaultAudioLanguage: "en-US",
+    },
+    contentDetails: {
+      duration: "PT3M31S",
+      dimension: "2d",
+      definition: "hd",
+      caption: "false",
+      licensedContent: true,
+      contentRating: {},
+      projection: "rectangular",
+    },
+    statistics: {
+      viewCount: "450076",
+      likeCount: "4771",
+      favoriteCount: "0",
+      commentCount: "78",
+    },
+  },
+  {
+    kind: "youtube#video",
     etag: "e2RsM0GfJLFl60QKdVSOXx8RJpo",
     _id: "KnWhWVarfqM",
     mustWatch: false,
@@ -3053,7 +3064,7 @@ export const videos = [
     etag: "hl8MKmakgfFzbX1X_m_y0XqXu5k",
     _id: "SYCwU-u79sI",
     mustWatch: false,
-    category: "edit",
+    category: "editing",
     snippet: {
       publishedAt: "2017-12-27T15:39:39Z",
       channelId: "UCMrvLMUITAImCHMOhX88PYQ",

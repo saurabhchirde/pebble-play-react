@@ -2,6 +2,12 @@
   z-index: 4;
 }
 
+.signup-modal-one .close-modal-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
 .existing-account-btn {
   text-align: center;
   cursor: pointer;

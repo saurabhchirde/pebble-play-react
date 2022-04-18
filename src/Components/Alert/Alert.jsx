@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { useAlert } from "../../Context";
+import { useAlert } from "Context";
 import "./Alert.css";
 
-const Alert = () => {
+export const Alert = () => {
   const {
     alertState: { alertText, alertType, alertIcon },
     alertDispatch,
@@ -24,5 +24,3 @@ const Alert = () => {
     </div>
   );
 };
-
-export default Alert;

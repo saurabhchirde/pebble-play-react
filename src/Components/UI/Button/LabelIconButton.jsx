@@ -1,4 +1,4 @@
-const LabelIconButton = (props) => {
+export const LabelIconButton = (props) => {
   return (
     <button className={props.btnClassName} onClick={props.onClick}>
       <i className={props.icon}></i>
@@ -6,5 +6,3 @@ const LabelIconButton = (props) => {
     </button>
   );
 };
-
-export default LabelIconButton;

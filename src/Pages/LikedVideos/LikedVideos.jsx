@@ -1,6 +1,5 @@
-import { VideoCard } from "Components/Cards/VideoCard";
 import { useAuth, useVideo } from "Context";
-import { NotLogged } from "Components/NotLogged/NotLogged";
+import { VideoCard, NotLogged } from "Components";
 import "./LikedVideos.css";
 
 export const LikedVideos = () => {

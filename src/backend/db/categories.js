@@ -17,7 +17,7 @@ export const categories = [
   {
     _id: uuid(),
     categoryName: "Editing",
-    category: "edit",
+    category: "editing",
     description:
       "Photo editing using softwares such as Adobe Photoshop, Lightroom etc",
     icon: "fas fa-desktop",

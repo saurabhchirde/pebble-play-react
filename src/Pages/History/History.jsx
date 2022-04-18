@@ -1,7 +1,5 @@
-import { VideoCard } from "Components/Cards/VideoCard";
-import Button from "Components/UI/Button/Button";
+import { VideoCard, Button, NotLogged } from "Components";
 import { useAlert, useAuth, useAxiosCalls, useVideo } from "Context";
-import { NotLogged } from "Components/NotLogged/NotLogged";
 import "./History.css";
 
 export const History = () => {

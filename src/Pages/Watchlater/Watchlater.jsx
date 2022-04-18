@@ -1,6 +1,5 @@
-import { VideoCard } from "Components/Cards/VideoCard";
+import { VideoCard, NotLogged } from "Components";
 import { useAuth, useVideo } from "Context";
-import { NotLogged } from "Components/NotLogged/NotLogged";
 import "./Watchlater.css";
 
 export const Watchlater = () => {

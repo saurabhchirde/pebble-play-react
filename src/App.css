@@ -2,6 +2,28 @@
   background-color: var(--bg-color);
 }
 
+.app {
+  animation: app 200ms ease-in-out;
+}
+
+@keyframes app {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  40% {
+    opacity: 0.8;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .desktop-navigation-bar {
   display: flex;
 }

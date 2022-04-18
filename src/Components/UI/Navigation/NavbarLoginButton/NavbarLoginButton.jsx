@@ -1,8 +1,8 @@
-import Button from "../../Button/Button";
-import { useAuth, useModal } from "../../../../Context";
+import { Button } from "../../Button/Button";
+import { useAuth, useModal } from "Context";
 import { useNavigate } from "react-router-dom";
 
-const NavbarLoginButton = (props) => {
+export const NavbarLoginButton = (props) => {
   const { auth, authDispatch } = useAuth();
   const { setShowLogin, setShowSignup, setAlertText, setShowAlert } =
     useModal();
@@ -33,5 +33,3 @@ const NavbarLoginButton = (props) => {
     </>
   );
 };
-
-export default NavbarLoginButton;

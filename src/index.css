@@ -27,7 +27,6 @@ html[pebbleplay-theme="dark"] {
   --title-color: #b5b5b5;
   --sub-title-color: #9b9b9b;
   --icon-color: rgb(146, 146, 146);
-  --card-hover: rgba(243, 243, 243, 0.445);
 }
 
 body {

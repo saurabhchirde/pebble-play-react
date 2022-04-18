@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 
-const modalContext = createContext(null);
+const ModalContext = createContext(null);
 
 const ModalProvider = ({ children }) => {
   const [showLogin, setShowLogin] = useState(false);
@@ -12,7 +12,7 @@ const ModalProvider = ({ children }) => {
   const [showPlaylistModal, setShowPlaylistModal] = useState(false);
 
   return (
-    <modalContext.Provider
+    <ModalContext.Provider
       value={{
         showLogin,
         setShowLogin,
@@ -31,10 +31,10 @@ const ModalProvider = ({ children }) => {
       }}
     >
       {children}
-    </modalContext.Provider>
+    </ModalContext.Provider>
   );
 };
 
-const useModal = () => useContext(modalContext);
+const useModal = () => useContext(ModalContext);
 
 export { ModalProvider, useModal };

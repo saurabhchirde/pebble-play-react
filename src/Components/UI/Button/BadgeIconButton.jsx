@@ -1,4 +1,4 @@
-const BadgeIconButton = (props) => {
+export const BadgeIconButton = (props) => {
   return (
     <>
       <div className={props.btnWrapper}>
@@ -12,5 +12,3 @@ const BadgeIconButton = (props) => {
     </>
   );
 };
-
-export default BadgeIconButton;

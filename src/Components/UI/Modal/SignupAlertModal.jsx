@@ -1,8 +1,8 @@
-import { useModal } from "../../../Context";
+import { useModal } from "Context";
 import "./SignupAlertModal.css";
-import Button from "../Button/Button";
+import { Button } from "Components";
 
-const SignupAlertModal = () => {
+export const SignupAlertModal = () => {
   const { setShowLogin, setShowSignupAlert } = useModal();
 
   const loginClickHandler = () => {
@@ -39,5 +39,3 @@ const SignupAlertModal = () => {
     </>
   );
 };
-
-export default SignupAlertModal;

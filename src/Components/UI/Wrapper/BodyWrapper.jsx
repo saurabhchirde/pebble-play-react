@@ -1,7 +1,7 @@
-import { useAuth } from "../../../Context";
+import { useAuth } from "Context";
 import "./BodyWrapper.css";
 
-const BodyWrapper = ({ children }) => {
+export const BodyWrapper = ({ children }) => {
   const { setShowProfileMenu } = useAuth();
   return (
     <div
@@ -14,5 +14,3 @@ const BodyWrapper = ({ children }) => {
     </div>
   );
 };
-
-export default BodyWrapper;

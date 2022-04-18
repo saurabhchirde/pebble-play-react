@@ -1,8 +1,8 @@
-import { useModal } from "../../../Context";
+import { useModal } from "Context";
 import "./AlertModal.css";
-import Button from "../Button/Button";
+import { Button } from "Components";
 
-const AlertModal = () => {
+export const AlertModal = () => {
   const { alertText, setAlertText, setShowAlert } = useModal();
 
   const closeClickHandler = () => {
@@ -26,5 +26,3 @@ const AlertModal = () => {
     </>
   );
 };
-
-export default AlertModal;

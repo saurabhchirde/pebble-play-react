@@ -1,4 +1,4 @@
-const NavbarAvatar = (props) => {
+export const NavbarAvatar = (props) => {
   return (
     <>
       <div className={props.avatarWrapper} onClick={props.onClick}>
@@ -16,5 +16,3 @@ const NavbarAvatar = (props) => {
     </>
   );
 };
-
-export default NavbarAvatar;

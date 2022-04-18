@@ -1,17 +1,15 @@
-import logoLight from "../../../../Data/Logo/logo-light.svg";
-import logoDark from "../../../../Data/Logo/logo-dark.svg";
-import SearchBar from "../SearchBar/SearchBar";
-import NavbarLoginButton from "../NavbarLoginButton/NavbarLoginButton";
-import NavbarAvatar from "../Avatar/NavbarAvatar";
-import { useFilter, useAuth, useModal, useTheme } from "../../../../Context";
+import logoLight from "Data/Logo/logo-light.svg";
+import logoDark from "Data/Logo/logo-dark.svg";
+import { SearchBar, NavbarLoginButton, NavbarAvatar } from "Components";
+import { useFilter, useAuth, useTheme, useAlert } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./DesktopNavigationBar.css";
 
 export const DesktopNavigationBar = () => {
-  const { setAlertText, setShowAlert } = useModal();
   const { filterDispatch, searchInput, setSearchInput } = useFilter();
   const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
   const { theme } = useTheme();
+  const { alertDispatch } = useAlert();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -29,12 +27,17 @@ export const DesktopNavigationBar = () => {
 
   const logoutClickHandler = () => {
     authDispatch({ type: "logout" });
-    setAlertText("Logged out successfully");
-    setShowAlert(true);
+    alertDispatch({
+      type: "ALERT",
+      payload: {
+        alertText: "Logged out Successfully",
+        alertType: "alert-success",
+        alertIcon: "fas fa-check-circle alert-icon",
+      },
+    });
     if (location.pathname.includes("account" || "settings")) {
       navigate("/videos");
     }
-    navigate("/");
   };
 
   const toggleProfileMenu = () => {

@@ -1,7 +1,6 @@
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { VideoCard } from "Components/Cards/VideoCard";
-import FloatingButton from "Components/UI/Button/FloatingButton";
+import { VideoCard, FloatingButton } from "Components";
 import { useFilter, useVideo } from "Context";
 import { finalFilteredData } from "Utils/finalFilteredData";
 import "./VideoListing.css";
@@ -38,10 +37,12 @@ export const VideoListing = () => {
   useEffect(() => {
     if (searchQuery) {
       filterDispatch({ type: "SEARCH_VIDEO", payload: searchQuery });
+    } else if (byCategory) {
+      filterDispatch({ type: "FILTER_CATEGORY", payload: byCategory });
     } else {
       filterDispatch({ type: "ALL_CATEGORY" });
     }
-  }, [searchQuery]);
+  }, [searchQuery, byCategory, filterDispatch]);
 
   return (
     <div className="video-listing-body">

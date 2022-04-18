@@ -1,9 +1,8 @@
-import { useAuth, useAxiosCalls, useModal } from "../../../Context";
-import Button from "../Button/Button";
-import InputTypeOne from "../Input/InputTypeOne";
+import { useAuth, useAxiosCalls, useModal } from "Context";
+import { Button, IconButton, InputTypeOne } from "Components";
 import "./Login.css";
 
-const Login = () => {
+export const Login = () => {
   const { loginInput, setLoginInput } = useAuth();
 
   const { setShowLogin, setShowSignup, setAlertText, setShowAlert } =
@@ -71,15 +70,15 @@ const Login = () => {
       ></div>
       <div className="signin-modal">
         <h1>Welcome Back</h1>
-        <p>Enter your credentials to access your account</p>
-        <a
+        <p>Enter your credentials to access your account</p>{" "}
+        <IconButton
+          btnClassName="btn icon-btn-sm close-modal-btn"
+          icon="fas fa-times"
           onClick={() => {
             setShowLogin(false);
             setShowSignup(false);
           }}
-        >
-          <i className="fas fa-times"></i>
-        </a>
+        />
         <form onSubmit={onLoginSubmitHandler}>
           <InputTypeOne
             type="email"
@@ -136,5 +135,3 @@ const Login = () => {
     </>
   );
 };
-
-export default Login;

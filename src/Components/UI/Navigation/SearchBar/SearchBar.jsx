@@ -1,6 +1,6 @@
 import "./SearchBar.css";
 
-const SearchBar = (props) => {
+export const SearchBar = (props) => {
   return (
     <>
       <form onSubmit={props.onSubmit} className={props.searchWrapper}>
@@ -17,4 +17,3 @@ const SearchBar = (props) => {
     </>
   );
 };
-export default SearchBar;

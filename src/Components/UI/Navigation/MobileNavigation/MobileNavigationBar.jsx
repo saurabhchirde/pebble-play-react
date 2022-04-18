@@ -1,8 +1,6 @@
-import NavbarLoginButton from "../NavbarLoginButton/NavbarLoginButton";
-import SearchBar from "../SearchBar/SearchBar";
-import logoIcon from "../../../../Data/Logo/icon.svg";
-import NavbarAvatar from "../Avatar/NavbarAvatar";
-import { useAuth, useFilter, useModal } from "../../../../Context";
+import { NavbarLoginButton, SearchBar, NavbarAvatar } from "Components";
+import logoIcon from "Data/Logo/logoIcon.svg";
+import { useAuth, useFilter, useModal } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./MobileNavigationBar.css";
 

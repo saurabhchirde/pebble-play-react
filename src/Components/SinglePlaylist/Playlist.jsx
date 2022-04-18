@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { VideoCard } from "Components/Cards/VideoCard";
+import { VideoCard } from "Components";
 import { useAuth, useAxiosCalls, useVideo } from "Context";
 import "./Playlist.css";
 

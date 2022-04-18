@@ -73,6 +73,13 @@
     background-color: var(--secondary-bg-color);
   }
 
+  .all-videos-section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+  }
+
   .category-section {
     flex-wrap: wrap;
     justify-content: center;
