@@ -16,7 +16,7 @@ export const NavbarLoginButton = (props) => {
       setAlertText(`Logged out successfully`);
       setShowAlert(true);
       authDispatch({ type: "logout" });
-      navigate("/products");
+      navigate("/videos");
       setShowLogin(false);
       setShowSignup(false);
     }

@@ -15,6 +15,8 @@ import {
   Playlists,
   Playlist,
   Landing,
+  User,
+  NotFound,
 } from "./Pages";
 import {
   BodyWrapper,
@@ -27,7 +29,6 @@ import {
   AnimateCamera,
 } from "./Components";
 import { useAlert, useAnimation, useModal } from "./Context";
-import Mockman from "mockman-js";
 
 function App() {
   const { showLogin, showSignup, showAlert, showNavMenu, showPlaylistModal } =
@@ -63,7 +64,8 @@ function App() {
               <Route path="/history" element={<History />} />
               <Route path="/playlists" element={<Playlists />} />
               <Route path="/playlist/:playlistId" element={<Playlist />} />
-              <Route path="mockman" element={<Mockman />} />
+              <Route path="/user" element={<User />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </BodyWrapper>
         </div>
