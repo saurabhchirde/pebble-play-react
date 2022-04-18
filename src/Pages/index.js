@@ -6,3 +6,5 @@ export { History } from "./History/History";
 export { Playlists } from "./Playlists/Playlists";
 export { Playlist } from "../Components/SinglePlaylist/Playlist";
 export { Landing } from "./Landing/Landing";
+export { User } from "./User/User";
+export { NotFound } from "./NotFound/NotFound";
