@@ -28,3 +28,13 @@
   color: var(--primary-color);
   margin-left: 1rem;
 }
+
+.password-input-field input:focus {
+  outline: none;
+}
+
+.password-input-field i:nth-child(3) {
+  left: 100%;
+  transform: translate(-100%, 0);
+  cursor: pointer;
+}

@@ -16,6 +16,7 @@ export const Signup = () => {
     useModal();
   const [user, setUser] = useState(initialSignupState);
   const { userSignup } = useAxiosCalls();
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const signupConfig = {
     url: "/api/auth/signup",
@@ -33,15 +34,24 @@ export const Signup = () => {
       user.password.match(passwordValidate) &&
       user.email.match(emailValidate)
     ) {
-      userSignup(signupConfig);
-      setShowSignup(false);
-      setUser(initialSignupState);
+      if (user.password === confirmPassword) {
+        userSignup(signupConfig);
+        setShowSignup(false);
+        setAlertText(
+          "Account created Successfully, please login in to continue"
+        );
+        setUser(initialSignupState);
+        setConfirmPassword("");
+      } else {
+        setConfirmPassword("");
+        setAlertText("Password mismatched");
+      }
     } else {
       setAlertText(
         "Minimum 8 char, 1 Uppercase, 1 Lowercase, 1 number & 1 Special Character required"
       );
-      setShowAlert(true);
     }
+    setShowAlert(true);
   };
 
   const onInputChangeHandler = (e) => {
@@ -54,6 +64,10 @@ export const Signup = () => {
         [name]: value,
       };
     });
+  };
+
+  const onConfirmPasswordHandler = (e) => {
+    setConfirmPassword(e.target.value);
   };
 
   const onCloseClick = () => {
@@ -112,7 +126,7 @@ export const Signup = () => {
           />
           <InputTypeOne
             label="Password *"
-            type="text"
+            type="password"
             name="password"
             required="required"
             autoComplete="current-password"
@@ -120,6 +134,16 @@ export const Signup = () => {
             inputWrapper="outline-password-input"
             onChange={onInputChangeHandler}
             value={user.password}
+          />
+          <InputTypeOne
+            label="Confirm Password *"
+            type="text"
+            name="confirm-password"
+            required="required"
+            placeholder="Confirm password"
+            inputWrapper="outline-password-input"
+            onChange={onConfirmPasswordHandler}
+            value={confirmPassword}
           />
           <p>
             By continuing you agree to our Terms of Service and

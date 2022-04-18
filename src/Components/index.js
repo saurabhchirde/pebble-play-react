@@ -15,6 +15,7 @@ export { IconButton } from "./UI/Button";
 export { LabelIconButton } from "./UI/Button";
 export { InputTypeOne } from "./UI/Input";
 export { InputTypeTwo } from "./UI/Input";
+export { InputTypePassword } from "./UI/Input";
 export { AlertModal } from "./UI/Modal";
 export { Login } from "./UI/Modal";
 export { PlaylistModal } from "./UI/Modal";
