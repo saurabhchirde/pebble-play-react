@@ -50,7 +50,7 @@ const authReducer = (auth, action) => {
   }
 };
 
-const authContext = createContext(initialAuthState);
+const AuthContext = createContext(initialAuthState);
 
 const AuthProvider = ({ children }) => {
   const [auth, authDispatch] = useReducer(
@@ -62,7 +62,7 @@ const AuthProvider = ({ children }) => {
 
   useSessionStorageSet("authState", auth);
   return (
-    <authContext.Provider
+    <AuthContext.Provider
       value={{
         auth,
         authDispatch,
@@ -73,10 +73,10 @@ const AuthProvider = ({ children }) => {
       }}
     >
       {children}
-    </authContext.Provider>
+    </AuthContext.Provider>
   );
 };
 
-const useAuth = () => useContext(authContext);
+const useAuth = () => useContext(AuthContext);
 
 export { AuthProvider, useAuth };

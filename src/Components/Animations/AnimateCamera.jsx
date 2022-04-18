@@ -1,11 +1,11 @@
 import "./Animation.css";
 import { useEffect } from "react";
-import camera_dark from "../../Data/Img/Animation/camera_dark.json";
-import camera_light from "../../Data/Img/Animation/camera_light.json";
-import { useAnimation, useTheme } from "../../Context";
+import camera_dark from "Data/Img/Animation/camera_dark.json";
+import camera_light from "Data/Img/Animation/camera_light.json";
+import { useAnimation, useTheme } from "Context";
 import lottie from "lottie-web";
 
-const AnimateCamera = () => {
+export const AnimateCamera = () => {
   const { setLoaderCamera } = useAnimation();
   const { theme } = useTheme();
 
@@ -20,7 +20,7 @@ const AnimateCamera = () => {
     return () => {
       clearTimeout(animateTime);
     };
-  }, [setLoaderCamera]);
+  }, [theme, setLoaderCamera]);
 
   return (
     <div className="camera-animation">
@@ -28,5 +28,3 @@ const AnimateCamera = () => {
     </div>
   );
 };
-
-export default AnimateCamera;

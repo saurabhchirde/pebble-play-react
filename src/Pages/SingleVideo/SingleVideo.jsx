@@ -1,9 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { PebblePlayer } from "Components/PebblePlayer/PebblePlayer";
+import { PebblePlayer, VideoCard } from "Components";
 import { useAuth, useAxiosCalls, useModal, useVideo } from "Context";
 import "./SingleVideo.css";
-import { VideoCard } from "Components/Cards/VideoCard";
 
 export const SingleVideo = () => {
   const { videoId } = useParams();
@@ -29,9 +28,6 @@ export const SingleVideo = () => {
   );
   const [likeButton, setLikeButton] = useState(
     "far fa-thumbs-up icon-inactive"
-  );
-  const [playlistButton, setPlaylistButton] = useState(
-    "fas fa-list icon-inactive"
   );
 
   const videoConfig = {
@@ -117,7 +113,7 @@ export const SingleVideo = () => {
     } else {
       setLikeButton("far fa-thumbs-up icon-inactive");
     }
-  }, [watchlater, singleVideo._id, setWatchlaterButton, setLikeButton]);
+  }, [likes, watchlater, singleVideo._id, setWatchlaterButton, setLikeButton]);
 
   const likedStatus =
     likes.findIndex((el) => el._id === singleVideo._id) !== -1;
@@ -168,7 +164,7 @@ export const SingleVideo = () => {
                   onClick={addToPlaylistClickHandler}
                   className="btn primary-text-btn-sm icon-xl "
                 >
-                  <i className={playlistButton}></i> <p>Save</p>
+                  <i className="fas fa-list icon-inactive"></i> <p>Save</p>
                 </button>
               </div>
             </div>

@@ -6,9 +6,9 @@ import {
   useState,
 } from "react";
 import { videoReducer } from "./videoReducer";
-import { useAuth } from "../Auth/AuthProvider";
+import { useAuth } from "../Auth/AuthContext";
 import axios from "axios";
-import { useModal } from "../Modal/ModalProvider";
+import { useModal } from "../Modal/ModalContext";
 import { useAnimation } from "Context";
 
 const initialVideoState = {
@@ -39,7 +39,7 @@ const initialVideoDetail = {
   notes: [],
 };
 
-const cartContext = createContext({});
+const VideoContext = createContext({});
 
 const VideoProvider = ({ children }) => {
   const [videoState, videoDispatch] = useReducer(
@@ -128,7 +128,7 @@ const VideoProvider = ({ children }) => {
   ]);
 
   return (
-    <cartContext.Provider
+    <VideoContext.Provider
       value={{
         videoState,
         videoDispatch,
@@ -139,10 +139,10 @@ const VideoProvider = ({ children }) => {
       }}
     >
       {children}
-    </cartContext.Provider>
+    </VideoContext.Provider>
   );
 };
 
-const useVideo = () => useContext(cartContext);
+const useVideo = () => useContext(VideoContext);
 
 export { VideoProvider, useVideo };

@@ -1,5 +1,5 @@
 import { useModal } from "Context";
-import Button from "Components/UI/Button/Button";
+import { Button } from "Components";
 import "./NotLogged.css";
 
 export const NotLogged = (props) => {

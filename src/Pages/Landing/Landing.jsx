@@ -1,8 +1,6 @@
-import { VideoCard } from "Components/Cards/VideoCard";
+import { VideoCard, BannerCard, CategoryCard } from "Components";
 import { useVideo } from "Context";
 import "./Landing.css";
-import { BannerCard } from "Components/Cards/BannerCard";
-import { CategoryCard } from "Components/Cards/CategoryCard";
 
 export const Landing = () => {
   const {

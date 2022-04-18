@@ -1,4 +1,4 @@
-const Input = (props) => {
+export const InputTypeOne = (props) => {
   return (
     <div className={props.inputWrapper}>
       <label>
@@ -18,5 +18,3 @@ const Input = (props) => {
     </div>
   );
 };
-
-export default Input;

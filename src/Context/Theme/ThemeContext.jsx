@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
-const themeContext = createContext(null);
+const ThemeContext = createContext(null);
 
 const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(
@@ -17,12 +17,12 @@ const ThemeProvider = ({ children }) => {
   };
 
   return (
-    <themeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
-    </themeContext.Provider>
+    </ThemeContext.Provider>
   );
 };
 
-const useTheme = () => useContext(themeContext);
+const useTheme = () => useContext(ThemeContext);
 
 export { ThemeProvider, useTheme };

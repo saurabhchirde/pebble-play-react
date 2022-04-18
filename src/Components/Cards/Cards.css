@@ -216,6 +216,13 @@
   width: 100%;
 }
 
+.banner-change-btn {
+  margin: 1rem 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 .category-card {
   border-radius: 20px;
   width: 9rem;

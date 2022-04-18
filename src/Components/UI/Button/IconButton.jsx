@@ -1,4 +1,4 @@
-const IconButton = (props) => {
+export const IconButton = (props) => {
   return (
     <>
       <button onClick={props.onClick} className={props.btnClassName}>
@@ -7,5 +7,3 @@ const IconButton = (props) => {
     </>
   );
 };
-
-export default IconButton;

@@ -7,7 +7,7 @@ const filterInitialState = {
   byLatest: "",
 };
 
-const filterContext = createContext(filterInitialState);
+const FilterContext = createContext(filterInitialState);
 
 const FilterProvider = ({ children }) => {
   const [filterState, filterDispatch] = useReducer(
@@ -17,14 +17,14 @@ const FilterProvider = ({ children }) => {
   const [searchInput, setSearchInput] = useState("");
 
   return (
-    <filterContext.Provider
+    <FilterContext.Provider
       value={{ filterState, filterDispatch, searchInput, setSearchInput }}
     >
       {children}
-    </filterContext.Provider>
+    </FilterContext.Provider>
   );
 };
 
-const useFilter = () => useContext(filterContext);
+const useFilter = () => useContext(FilterContext);
 
 export { FilterProvider, useFilter };

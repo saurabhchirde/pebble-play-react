@@ -1,7 +1,7 @@
-import Button from "../Button/Button";
+import { Button } from "../Button/Button";
+import { IconButton, InputTypeOne } from "Components";
 import "./Signup.css";
-import InputTypeOne from "../Input/InputTypeOne";
-import { useAxiosCalls, useModal } from "../../../Context";
+import { useAxiosCalls, useModal } from "Context";
 import { useState } from "react";
 
 const initialSignupState = {
@@ -11,7 +11,7 @@ const initialSignupState = {
   password: "",
 };
 
-const Signup = () => {
+export const Signup = () => {
   const { setShowLogin, setShowSignup, setAlertText, setShowAlert } =
     useModal();
   const [user, setUser] = useState(initialSignupState);
@@ -72,9 +72,12 @@ const Signup = () => {
       <div className="signup-modal-one">
         <h1>Sign Up</h1>
         <p>Please provide your details.</p>
-        <a onClick={onCloseClick}>
-          <i className="fas fa-times"></i>
-        </a>
+        <IconButton
+          btnClassName="btn icon-btn-sm close-modal-btn"
+          icon="fas fa-times"
+          onClick={onCloseClick}
+        />
+
         <form onSubmit={onSignupFormSubmitHandler}>
           <InputTypeOne
             label="First Name"
@@ -140,5 +143,3 @@ const Signup = () => {
     </>
   );
 };
-
-export default Signup;

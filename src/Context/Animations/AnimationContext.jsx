@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 
-const animationContext = createContext(null);
+const AnimationContext = createContext(null);
 
 const AnimationProvider = ({ children }) => {
   const [loader, setLoader] = useState(false);
@@ -11,7 +11,7 @@ const AnimationProvider = ({ children }) => {
   };
 
   return (
-    <animationContext.Provider
+    <AnimationContext.Provider
       value={{
         loader,
         setLoader,
@@ -21,10 +21,10 @@ const AnimationProvider = ({ children }) => {
       }}
     >
       {children}
-    </animationContext.Provider>
+    </AnimationContext.Provider>
   );
 };
 
-const useAnimation = () => useContext(animationContext);
+const useAnimation = () => useContext(AnimationContext);
 
 export { AnimationProvider, useAnimation };

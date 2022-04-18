@@ -1,4 +1,4 @@
-const Button = (props) => {
+export const Button = (props) => {
   return (
     <div className={props.btnWrapper}>
       <button
@@ -11,5 +11,3 @@ const Button = (props) => {
     </div>
   );
 };
-
-export default Button;

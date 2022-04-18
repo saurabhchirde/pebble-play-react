@@ -1,12 +1,12 @@
 import { createContext, useContext } from "react";
 import axios from "axios";
-import { useVideo } from "../Video/VideoProvider";
-import { useModal } from "../Modal/ModalProvider";
-import { useAuth } from "../Auth/AuthProvider";
+import { useVideo } from "../Video/VideoContext";
+import { useModal } from "../Modal/ModalContext";
+import { useAuth } from "../Auth/AuthContext";
 import { useAnimation } from "../index";
-import { useAlert } from "../Alerts/AlertsProvider";
+import { useAlert } from "../Alerts/AlertContext";
 
-const axiosContext = createContext(null);
+const AxiosContext = createContext(null);
 
 const AxiosCallProvider = ({ children }) => {
   const { videoDispatch } = useVideo();
@@ -535,7 +535,7 @@ const AxiosCallProvider = ({ children }) => {
   };
 
   return (
-    <axiosContext.Provider
+    <AxiosContext.Provider
       value={{
         userLogin,
         userSignup,
@@ -556,10 +556,10 @@ const AxiosCallProvider = ({ children }) => {
       }}
     >
       {children}
-    </axiosContext.Provider>
+    </AxiosContext.Provider>
   );
 };
 
-const useAxiosCalls = () => useContext(axiosContext);
+const useAxiosCalls = () => useContext(AxiosContext);
 
 export { AxiosCallProvider, useAxiosCalls };

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import { useModal, useTheme } from "../../../../Context";
-import IconButton from "../../Button/IconButton";
+import { useModal, useTheme } from "Context";
+import { IconButton } from "Components";
 import "../VerticalNavBar.css";
 
 export const MobileVerticalNavBar = () => {

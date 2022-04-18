@@ -1,4 +1,4 @@
-const InputTypeTwo = (props) => {
+export const InputTypeTwo = (props) => {
   return (
     <label>
       <div onClick={props.onClick} className={props.inputWrapper}>
@@ -19,5 +19,3 @@ const InputTypeTwo = (props) => {
     </label>
   );
 };
-
-export default InputTypeTwo;

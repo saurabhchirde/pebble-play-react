@@ -1,15 +1,7 @@
-import logoLight from "../../../../Data/Logo/logo-light.svg";
-import logoDark from "../../../../Data/Logo/logo-dark.svg";
-import SearchBar from "../SearchBar/SearchBar";
-import NavbarLoginButton from "../NavbarLoginButton/NavbarLoginButton";
-import NavbarAvatar from "../Avatar/NavbarAvatar";
-import {
-  useFilter,
-  useAuth,
-  useModal,
-  useTheme,
-  useAlert,
-} from "../../../../Context";
+import logoLight from "Data/Logo/logo-light.svg";
+import logoDark from "Data/Logo/logo-dark.svg";
+import { SearchBar, NavbarLoginButton, NavbarAvatar } from "Components";
+import { useFilter, useAuth, useTheme, useAlert } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./DesktopNavigationBar.css";
 

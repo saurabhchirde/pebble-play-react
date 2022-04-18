@@ -1,14 +1,6 @@
 import { useState } from "react";
-import {
-  useAlert,
-  useAuth,
-  useAxiosCalls,
-  useModal,
-  useVideo,
-} from "../../../Context";
-import Button from "../Button/Button";
-import IconButton from "../Button/IconButton";
-import LabelIconButton from "../Button/LabelIconButton";
+import { useAlert, useAuth, useAxiosCalls, useModal, useVideo } from "Context";
+import { Button, IconButton, LabelIconButton } from "Components";
 import "./PlaylistModal.css";
 
 const initialPlaylist = {

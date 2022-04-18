@@ -1,4 +1,4 @@
-const FloatingButton = (props) => {
+export const FloatingButton = (props) => {
   return (
     <>
       <a href={props.href} className="float-up-btn">
@@ -9,5 +9,3 @@ const FloatingButton = (props) => {
     </>
   );
 };
-
-export default FloatingButton;

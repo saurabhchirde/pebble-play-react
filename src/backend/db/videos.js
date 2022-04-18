@@ -1080,80 +1080,7 @@ export const videos = [
       commentCount: "1247",
     },
   },
-  {
-    kind: "youtube#video",
-    etag: "e5Sik-LvYXxzoiYj9_RWvYSDuvs",
-    _id: "EJWNQv01VtI",
-    mustWatch: true,
-    category: "photography",
-    snippet: {
-      publishedAt: "2012-08-13T20:29:29Z",
-      channelId: "UCzYoPONSfo9izLEHZKq9V2g",
-      title: "Three Rules of Lighting for Photography",
-      description:
-        "The three important rules regarding the behavior of light.  Use these rules to achieve the type of lighting we want, including the look of soft light. \n\nFREE OFF-CAMERA FLASH GUIDE: \nhttps://veroskycourses.com/off-camera-flash-photography-10-minute-guide/\n\nCHECK OUT MY ULTIMATE FLASH GUIDE!\nhttps://veroskycourses.com/product/ed-veroskys-guide-to-flash-photography/\n\nCHECK OUT MY EBOOKS AND COURSES\n-------------------------------\nhttps://veroskycourses.com\n\nRECOMMENDED\nGodox AD400Pro \nhttps://amzn.to/32HQcES\n\nABOUT\n------------------\n\nHi, I'm Ed Verosky.  This channel is about my on-going adventures in photography, art, and life.  Check out some videos, have fun, and definitely connect with me in the comments.\n\n► MY SITE: https://www.edverosky.com\n\n► MY GEAR:  https://www.edverosky.com/recommended-gear\n\n\nDISCLOSURE\n------------------\n\n*Affiliate Partnerships.  Many of the links I provide to 3rd-party products or services are affiliate links. It doesn’t cost you anything extra to use these links, but if you do, the seller will pay me a small referral fee.",
-      thumbnails: {
-        default: {
-          url: "https://i.ytimg.com/vi/EJWNQv01VtI/default.jpg",
-          width: 120,
-          height: 90,
-        },
-        medium: {
-          url: "https://i.ytimg.com/vi/EJWNQv01VtI/mqdefault.jpg",
-          width: 320,
-          height: 180,
-        },
-        high: {
-          url: "https://i.ytimg.com/vi/EJWNQv01VtI/hqdefault.jpg",
-          width: 480,
-          height: 360,
-        },
-        standard: {
-          url: "https://i.ytimg.com/vi/EJWNQv01VtI/sddefault.jpg",
-          width: 640,
-          height: 480,
-        },
-        maxres: {
-          url: "https://i.ytimg.com/vi/EJWNQv01VtI/sddefault.jpg",
-          width: 1280,
-          height: 720,
-        },
-      },
-      channelTitle: "Ed Verosky",
-      tags: [
-        "Photography",
-        "Lighting",
-        "Photography Basics",
-        "Portraiture Lighting",
-        "Soft Light",
-        "Contrast",
-        "Photography Lighting Tutorial",
-      ],
-      categoryId: "27",
-      liveBroadcastContent: "none",
-      localized: {
-        title: "Three Rules of Lighting for Photography",
-        description:
-          "The three important rules regarding the behavior of light.  Use these rules to achieve the type of lighting we want, including the look of soft light. \n\nFREE OFF-CAMERA FLASH GUIDE: \nhttps://veroskycourses.com/off-camera-flash-photography-10-minute-guide/\n\nCHECK OUT MY ULTIMATE FLASH GUIDE!\nhttps://veroskycourses.com/product/ed-veroskys-guide-to-flash-photography/\n\nCHECK OUT MY EBOOKS AND COURSES\n-------------------------------\nhttps://veroskycourses.com\n\nRECOMMENDED\nGodox AD400Pro \nhttps://amzn.to/32HQcES\n\nABOUT\n------------------\n\nHi, I'm Ed Verosky.  This channel is about my on-going adventures in photography, art, and life.  Check out some videos, have fun, and definitely connect with me in the comments.\n\n► MY SITE: https://www.edverosky.com\n\n► MY GEAR:  https://www.edverosky.com/recommended-gear\n\n\nDISCLOSURE\n------------------\n\n*Affiliate Partnerships.  Many of the links I provide to 3rd-party products or services are affiliate links. It doesn’t cost you anything extra to use these links, but if you do, the seller will pay me a small referral fee.",
-      },
-      defaultAudioLanguage: "en-US",
-    },
-    contentDetails: {
-      duration: "PT3M31S",
-      dimension: "2d",
-      definition: "hd",
-      caption: "false",
-      licensedContent: true,
-      contentRating: {},
-      projection: "rectangular",
-    },
-    statistics: {
-      viewCount: "450076",
-      likeCount: "4771",
-      favoriteCount: "0",
-      commentCount: "78",
-    },
-  },
+
   {
     kind: "youtube#video",
     etag: "VcEoJcdGELIldmC1L27SGIdc4WY",
@@ -2967,6 +2894,80 @@ export const videos = [
       likeCount: "31027",
       favoriteCount: "0",
       commentCount: "1102",
+    },
+  },
+  {
+    kind: "youtube#video",
+    etag: "e5Sik-LvYXxzoiYj9_RWvYSDuvs",
+    _id: "EJWNQv01VtI",
+    mustWatch: true,
+    category: "photography",
+    snippet: {
+      publishedAt: "2012-08-13T20:29:29Z",
+      channelId: "UCzYoPONSfo9izLEHZKq9V2g",
+      title: "Three Rules of Lighting for Photography",
+      description:
+        "The three important rules regarding the behavior of light.  Use these rules to achieve the type of lighting we want, including the look of soft light. \n\nFREE OFF-CAMERA FLASH GUIDE: \nhttps://veroskycourses.com/off-camera-flash-photography-10-minute-guide/\n\nCHECK OUT MY ULTIMATE FLASH GUIDE!\nhttps://veroskycourses.com/product/ed-veroskys-guide-to-flash-photography/\n\nCHECK OUT MY EBOOKS AND COURSES\n-------------------------------\nhttps://veroskycourses.com\n\nRECOMMENDED\nGodox AD400Pro \nhttps://amzn.to/32HQcES\n\nABOUT\n------------------\n\nHi, I'm Ed Verosky.  This channel is about my on-going adventures in photography, art, and life.  Check out some videos, have fun, and definitely connect with me in the comments.\n\n► MY SITE: https://www.edverosky.com\n\n► MY GEAR:  https://www.edverosky.com/recommended-gear\n\n\nDISCLOSURE\n------------------\n\n*Affiliate Partnerships.  Many of the links I provide to 3rd-party products or services are affiliate links. It doesn’t cost you anything extra to use these links, but if you do, the seller will pay me a small referral fee.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/EJWNQv01VtI/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/EJWNQv01VtI/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/EJWNQv01VtI/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+        standard: {
+          url: "https://i.ytimg.com/vi/EJWNQv01VtI/sddefault.jpg",
+          width: 640,
+          height: 480,
+        },
+        maxres: {
+          url: "https://i.ytimg.com/vi/EJWNQv01VtI/sddefault.jpg",
+          width: 1280,
+          height: 720,
+        },
+      },
+      channelTitle: "Ed Verosky",
+      tags: [
+        "Photography",
+        "Lighting",
+        "Photography Basics",
+        "Portraiture Lighting",
+        "Soft Light",
+        "Contrast",
+        "Photography Lighting Tutorial",
+      ],
+      categoryId: "27",
+      liveBroadcastContent: "none",
+      localized: {
+        title: "Three Rules of Lighting for Photography",
+        description:
+          "The three important rules regarding the behavior of light.  Use these rules to achieve the type of lighting we want, including the look of soft light. \n\nFREE OFF-CAMERA FLASH GUIDE: \nhttps://veroskycourses.com/off-camera-flash-photography-10-minute-guide/\n\nCHECK OUT MY ULTIMATE FLASH GUIDE!\nhttps://veroskycourses.com/product/ed-veroskys-guide-to-flash-photography/\n\nCHECK OUT MY EBOOKS AND COURSES\n-------------------------------\nhttps://veroskycourses.com\n\nRECOMMENDED\nGodox AD400Pro \nhttps://amzn.to/32HQcES\n\nABOUT\n------------------\n\nHi, I'm Ed Verosky.  This channel is about my on-going adventures in photography, art, and life.  Check out some videos, have fun, and definitely connect with me in the comments.\n\n► MY SITE: https://www.edverosky.com\n\n► MY GEAR:  https://www.edverosky.com/recommended-gear\n\n\nDISCLOSURE\n------------------\n\n*Affiliate Partnerships.  Many of the links I provide to 3rd-party products or services are affiliate links. It doesn’t cost you anything extra to use these links, but if you do, the seller will pay me a small referral fee.",
+      },
+      defaultAudioLanguage: "en-US",
+    },
+    contentDetails: {
+      duration: "PT3M31S",
+      dimension: "2d",
+      definition: "hd",
+      caption: "false",
+      licensedContent: true,
+      contentRating: {},
+      projection: "rectangular",
+    },
+    statistics: {
+      viewCount: "450076",
+      likeCount: "4771",
+      favoriteCount: "0",
+      commentCount: "78",
     },
   },
   {

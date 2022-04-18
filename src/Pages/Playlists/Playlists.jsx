@@ -1,8 +1,6 @@
 import { useAuth, useModal, useVideo } from "Context";
-import { NotLogged } from "Components/NotLogged/NotLogged";
+import { NotLogged, LabelIconButton, PlaylistCard } from "Components";
 import "./Playlists.css";
-import LabelIconButton from "Components/UI/Button/LabelIconButton";
-import { PlaylistCard } from "Components/Cards/PlaylistCard";
 
 export const Playlists = () => {
   const {

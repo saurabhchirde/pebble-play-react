@@ -2,6 +2,12 @@
   z-index: 4;
 }
 
+.signin-modal .close-modal-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
 .create-account-btn h2 {
   font-size: 1rem;
   text-align: center;

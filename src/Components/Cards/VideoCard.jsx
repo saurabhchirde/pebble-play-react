@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { useAuth, useAxiosCalls, useModal, useVideo } from "Context";
 import { formatTimeDuration } from "Utils/formatTimeDuration";
-import Button from "Components/UI/Button/Button";
-import IconButton from "Components/UI/Button/IconButton";
+import { Button, IconButton } from "Components";
 import axios from "axios";
 import "./Cards.css";
 
@@ -48,9 +47,6 @@ export const VideoCard = ({ videoDetail }) => {
   );
   const [likeButton, setLikeButton] = useState(
     "far fa-thumbs-up icon-inactive"
-  );
-  const [playlistButton, setPlaylistButton] = useState(
-    "fas fa-list icon-inactive"
   );
 
   const watchlaterConfig = {
@@ -160,7 +156,7 @@ export const VideoCard = ({ videoDetail }) => {
     } else {
       setLikeButton("far fa-thumbs-up icon-inactive");
     }
-  }, [watchlater, videoDetail._id, setWatchlaterButton, setLikeButton]);
+  }, [likes, watchlater, videoDetail._id, setWatchlaterButton, setLikeButton]);
 
   useEffect(() => {
     const fetchPlatlists = async () => {
@@ -225,7 +221,7 @@ export const VideoCard = ({ videoDetail }) => {
               <IconButton
                 onClick={addToPlaylistClickHandler}
                 btnClassName="btn icon-btn-sm icon-md"
-                icon={playlistButton}
+                icon="fas fa-list icon-inactive"
               />
             </div>
           </div>
