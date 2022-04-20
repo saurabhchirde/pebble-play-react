@@ -81,16 +81,6 @@
   cursor: pointer;
 }
 
-.active-nav {
-  border-radius: 4px;
-  outline: 1px solid var(--primary-color);
-  transition: 0.3s ease-in;
-}
-
-.active-nav i {
-  color: var(--primary-color);
-}
-
 @media screen and (max-width: 580px) {
   .vertical-nav-container {
     position: fixed;
