@@ -24,6 +24,18 @@ export const Playlist = () => {
     playlistId: playlistId,
   };
 
+  const showPlaylist = (
+    <div className="playlist-video-section flex-row">
+      {singlePlaylist?.videos?.map((video) => (
+        <VideoCard key={video._id} videoDetail={video} />
+      ))}
+    </div>
+  );
+
+  const noVideosMessage = (
+    <h2 className="playlist-sub-title">No videos in {singlePlaylist?.title}</h2>
+  );
+
   useEffect(() => {
     getPlayListFromServer(getPlaylistConfig);
 
@@ -40,18 +52,7 @@ export const Playlist = () => {
           Total videos : {singlePlaylist?.videos?.length}
         </h1>
       </div>
-
-      {singlePlaylist?.videos?.length > 0 ? (
-        <div className="playlist-video-section flex-row">
-          {singlePlaylist?.videos?.map((video) => (
-            <VideoCard key={video._id} videoDetail={video} />
-          ))}
-        </div>
-      ) : (
-        <h2 className="playlist-sub-title">
-          No videos in {singlePlaylist?.title}
-        </h2>
-      )}
+      {singlePlaylist?.videos?.length > 0 ? showPlaylist : noVideosMessage}
     </div>
   );
 };

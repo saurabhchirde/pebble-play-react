@@ -1,4 +1,4 @@
-import { Button } from "../../Button/Button";
+import { Button } from "Components";
 import { useAuth, useModal } from "Context";
 import { useNavigate } from "react-router-dom";
 
@@ -23,13 +23,11 @@ export const NavbarLoginButton = (props) => {
   };
 
   return (
-    <>
-      <Button
-        btnWrapper="signin"
-        label={props.label}
-        btnClassName={props.btnClassName}
-        onClick={onNavbarLoginClickHandler}
-      />
-    </>
+    <Button
+      btnWrapper="signin"
+      label={props.label}
+      btnClassName={props.btnClassName}
+      onClick={onNavbarLoginClickHandler}
+    />
   );
 };

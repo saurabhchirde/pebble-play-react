@@ -35,6 +35,17 @@ export const History = () => {
     }
   };
 
+  const mapHistory =
+    history.length > 0 ? (
+      <div className="history-video-section flex-row">
+        {history.map((video) => (
+          <VideoCard key={video._id} videoDetail={video} />
+        ))}
+      </div>
+    ) : (
+      <h2 className="history-sub-title">No History Available </h2>
+    );
+
   return (
     <div className="history-body">
       {token ? (
@@ -49,15 +60,7 @@ export const History = () => {
               label="Remove all"
             />
           </div>
-          {history.length > 0 ? (
-            <div className="history-video-section flex-row">
-              {history.map((video) => (
-                <VideoCard key={video._id} videoDetail={video} />
-              ))}
-            </div>
-          ) : (
-            <h2 className="history-sub-title">No History Available </h2>
-          )}{" "}
+          {mapHistory}
         </>
       ) : (
         <NotLogged message="Login to see History" />

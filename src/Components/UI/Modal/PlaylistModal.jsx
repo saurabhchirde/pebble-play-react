@@ -93,18 +93,32 @@ export const PlaylistModal = () => {
 
   const playlistAvailable = playlists.length > 0 ? true : false;
 
+  const modalTitle = playlistAvailable
+    ? "Save to"
+    : showCreate
+    ? "New Playlist"
+    : "No Playlist available";
+
+  const mapPlaylists = playlists?.map((playlist) => (
+    <label key={playlist._id}>
+      <input
+        type="checkbox"
+        name="check"
+        checked={playlist?.videos.some((item) => item._id === tempVideo._id)}
+        onChange={(e) => {
+          onPlaylistSelectHandler(playlist, e);
+        }}
+      />
+      {playlist.title}
+    </label>
+  ));
+
   return (
     <>
       <div className="modal-backdrop" onClick={closePlaylistModal}></div>
       <div className="discard-modal-md playlist-modal-container">
         <div className="playlist-modal-header">
-          <h2 className="title-md-wt-4">
-            {playlistAvailable
-              ? "Save to"
-              : showCreate
-              ? "New Playlist"
-              : "No Playlist available"}
-          </h2>
+          <h2 className="title-md-wt-4">{modalTitle}</h2>
           <IconButton
             icon="fas fa-times"
             btnClassName="btn icon-btn-md"
@@ -112,23 +126,7 @@ export const PlaylistModal = () => {
           />
         </div>
         {playlistAvailable && (
-          <div className="available-playlists">
-            {playlists?.map((playlist) => (
-              <label key={playlist._id}>
-                <input
-                  type="checkbox"
-                  name="check"
-                  checked={playlist?.videos.some(
-                    (item) => item._id === tempVideo._id
-                  )}
-                  onChange={(e) => {
-                    onPlaylistSelectHandler(playlist, e);
-                  }}
-                />
-                {playlist.title}
-              </label>
-            ))}
-          </div>
+          <div className="available-playlists">{mapPlaylists}</div>
         )}
         {showCreate && (
           <form

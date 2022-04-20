@@ -86,7 +86,7 @@ export const Login = () => {
           <InputTypeOne
             type="email"
             name="email"
-            // required="required" commented for development
+            required="required"
             placeholder="Enter your email *"
             iconWrapper="input-icon"
             icon="far fa-envelope"
@@ -97,7 +97,7 @@ export const Login = () => {
           <InputTypePassword
             type={showPassword ? "text" : "password"}
             name="password"
-            // required="required"   commented for development
+            required="required"
             placeholder="Enter your password *"
             iconWrapper="input-icon"
             icon="fas fa-key"
@@ -109,7 +109,6 @@ export const Login = () => {
             }}
             value={loginInput.password}
           />
-
           <Button
             btnWrapper="signin-btn"
             type="submit"

@@ -3,7 +3,7 @@ import { createContext, useContext, useReducer, useState } from "react";
 import {
   useSessionStorageGet,
   useSessionStorageSet,
-} from "../../Hooks/useSessionStorage";
+} from "Hooks/useSessionStorage";
 
 const initialAuthState = {
   login: false,

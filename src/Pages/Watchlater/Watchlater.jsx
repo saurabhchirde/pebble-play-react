@@ -10,6 +10,17 @@ export const Watchlater = () => {
     auth: { token },
   } = useAuth();
 
+  const mapWatchlater =
+    watchlater.length > 0 ? (
+      <div className="watchlater-video-section flex-row">
+        {watchlater.map((video) => (
+          <VideoCard key={video._id} videoDetail={video} />
+        ))}
+      </div>
+    ) : (
+      <h2 className="watchlater-sub-title">No videos in watchlater</h2>
+    );
+
   return (
     <div className="watchlater-body">
       {token ? (
@@ -17,15 +28,7 @@ export const Watchlater = () => {
           <h1 className="watchlater-title">
             Watch Later <i className="fas fa-clock mg-point6-lt"></i>
           </h1>
-          {watchlater.length > 0 ? (
-            <div className="watchlater-video-section flex-row">
-              {watchlater.map((video) => (
-                <VideoCard key={video._id} videoDetail={video} />
-              ))}
-            </div>
-          ) : (
-            <h2 className="watchlater-sub-title">No videos in watchlater</h2>
-          )}
+          {mapWatchlater}
         </>
       ) : (
         <NotLogged message="Login to add videos in your Watch later" />

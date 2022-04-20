@@ -122,6 +122,10 @@ export const SingleVideo = () => {
     ? Number(singleVideo.statistics?.likeCount) + 1
     : Number(singleVideo.statistics?.likeCount);
 
+  const mapMustWatched = videos.map((video) => {
+    return video.mustWatch && <VideoCard key={video._id} videoDetail={video} />;
+  });
+
   useEffect(() => {
     fetchVideoFromServer(videoConfig);
   }, [videoId]);
@@ -179,16 +183,7 @@ export const SingleVideo = () => {
       )}
       <div className="must-watch-container">
         <h1 className="video-title text-center">Must Watch</h1>
-
-        <div className="must-watch-videos">
-          {videos.map((video) => {
-            return (
-              video.mustWatch && (
-                <VideoCard key={video._id} videoDetail={video} />
-              )
-            );
-          })}
-        </div>
+        <div className="must-watch-videos">{mapMustWatched}</div>
       </div>
     </div>
   );

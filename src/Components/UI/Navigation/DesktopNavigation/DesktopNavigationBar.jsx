@@ -45,51 +45,49 @@ export const DesktopNavigationBar = () => {
   };
 
   return (
-    <>
-      <nav className="desktop-navigation-bar">
-        <Link to="/">
-          <img
-            className="company-logo"
-            src={theme === "dark" ? logoLight : logoDark}
-            alt="logo"
-          />
-        </Link>
-        <SearchBar
-          searchWrapper="search-container"
-          micIcon="hide"
-          searchIcon="fas fa-search"
-          placeholder="Search"
-          onChange={onSearchInputHandler}
-          onSubmit={onSearchSubmitHandler}
-          value={searchInput}
+    <nav className="desktop-navigation-bar">
+      <Link to="/">
+        <img
+          className="company-logo"
+          src={theme === "dark" ? logoLight : logoDark}
+          alt="logo"
         />
-        <div className="nav-bar-btns">
-          {!auth.login && (
-            <NavbarLoginButton
-              label={auth.login ? "Logout" : "Login"}
-              btnClassName="btn primary-btn-md"
+      </Link>
+      <SearchBar
+        searchWrapper="search-container"
+        micIcon="hide"
+        searchIcon="fas fa-search"
+        placeholder="Search"
+        onChange={onSearchInputHandler}
+        onSubmit={onSearchSubmitHandler}
+        value={searchInput}
+      />
+      <div className="nav-bar-btns">
+        {!auth.login && (
+          <NavbarLoginButton
+            label={auth.login ? "Logout" : "Login"}
+            btnClassName="btn primary-btn-md"
+          />
+        )}
+        {auth.login && (
+          <div onClick={toggleProfileMenu}>
+            <NavbarAvatar
+              avatarWrapper="badge-container"
+              avatarClassName="avatar text-avatar-xsm-round"
+              imgDisplay="hide"
+              src={auth.user.dp !== "" ? auth.user.dp.toUpperCase() : ""}
             />
-          )}
-          {auth.login && (
-            <div onClick={toggleProfileMenu}>
-              <NavbarAvatar
-                avatarWrapper="badge-container"
-                avatarClassName="avatar text-avatar-xsm-round"
-                imgDisplay="hide"
-                src={auth.user.dp !== "" ? auth.user.dp.toUpperCase() : ""}
-              />
-              {showProfileMenu && (
-                <div className="profile-hover-menu card-shadow-two">
-                  <Link to="/user">
-                    <h2>Profile</h2>
-                  </Link>
-                  <h2 onClick={logoutClickHandler}>Logout</h2>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      </nav>
-    </>
+            {showProfileMenu && (
+              <div className="profile-hover-menu card-shadow-two">
+                <Link to="/user">
+                  <h2>Profile</h2>
+                </Link>
+                <h2 onClick={logoutClickHandler}>Logout</h2>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </nav>
   );
 };

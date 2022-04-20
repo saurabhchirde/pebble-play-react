@@ -1,10 +1,6 @@
 import { createContext, useContext } from "react";
 import axios from "axios";
-import { useVideo } from "../Video/VideoContext";
-import { useModal } from "../Modal/ModalContext";
-import { useAuth } from "../Auth/AuthContext";
-import { useAnimation } from "../index";
-import { useAlert } from "../Alerts/AlertContext";
+import { useVideo, useModal, useAuth, useAnimation, useAlert } from "Context";
 
 const AxiosContext = createContext(null);
 

@@ -21,6 +21,21 @@ export const Playlists = () => {
 
   const playlistAvailable = playlists?.length > 0 ? true : false;
 
+  const mapPlaylist = playlistAvailable ? (
+    <div className="playlists-section">
+      {playlists?.map((list) => (
+        <div className="playlists-item" key={list._id}>
+          <PlaylistCard list={list} />
+          <p className="p-lg mg-point6-tb">{list.description}</p>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div className="flex-col-center">
+      <h2 className="playlists-page-sub-title">No playlist available</h2>
+    </div>
+  );
+
   return (
     <div className="playlists-body">
       {token ? (
@@ -34,22 +49,7 @@ export const Playlists = () => {
               onClick={onCreatePlaylistClickHandler}
             />
           </h1>
-          {playlistAvailable ? (
-            <div className="playlists-section">
-              {playlists?.map((list) => (
-                <div className="playlists-item" key={list._id}>
-                  <PlaylistCard list={list} />
-                  <p className="p-lg mg-point6-tb">{list.description}</p>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="flex-col-center">
-              <h2 className="playlists-page-sub-title">
-                No playlist available
-              </h2>
-            </div>
-          )}
+          {mapPlaylist}
         </>
       ) : (
         <NotLogged message="Login to see your playlist" />
