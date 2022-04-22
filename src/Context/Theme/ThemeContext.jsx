@@ -4,12 +4,12 @@ const ThemeContext = createContext(null);
 
 const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(
-    localStorage.getItem("pebbleplay-theme") ?? "dark"
+    localStorage.getItem("data-pebbleplay-theme") ?? "dark"
   );
 
   useEffect(() => {
-    document.documentElement.setAttribute("pebbleplay-theme", theme);
-    localStorage.setItem("pebbleplay-theme", theme);
+    document.documentElement.setAttribute("data-pebbleplay-theme", theme);
+    localStorage.setItem("data-pebbleplay-theme", theme);
   }, [theme]);
 
   const toggleTheme = () => {

@@ -9,7 +9,7 @@
   --card-overlay: rgba(27, 27, 27, 0.686);
 }
 
-html[pebbleplay-theme="light"] {
+html[data-pebbleplay-theme="light"] {
   --bg-color: #ffffff;
   --secondary-bg-color: #f0f0f0;
   --card-bg-color: #bebebe91;
@@ -19,7 +19,7 @@ html[pebbleplay-theme="light"] {
   --icon-color: rgb(118, 118, 118);
 }
 
-html[pebbleplay-theme="dark"] {
+html[data-pebbleplay-theme="dark"] {
   --bg-color: #141517;
   --secondary-bg-color: #18191a;
   --card-bg-color: #1a1b1c;
