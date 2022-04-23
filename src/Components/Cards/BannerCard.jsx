@@ -42,17 +42,17 @@ export const BannerCard = () => {
 
   return (
     <>
-      <Link to={`/videos/${videoId}`}>
-        <div className="card-horizontal-info banner-card">
+      <div className="card-horizontal-info banner-card">
+        <Link to={`/videos/${videoId}`}>
           <img
             loading="lazy"
             src={image}
             alt="banner"
             className="banner-change-time"
-          />
-          <h1>{title}</h1>
-        </div>{" "}
-      </Link>
+          />{" "}
+        </Link>
+        <h1>{title}</h1>
+      </div>{" "}
       <div className="banner-change-btn">
         <IconButton
           onClick={onPreviousBannerClickHandler}

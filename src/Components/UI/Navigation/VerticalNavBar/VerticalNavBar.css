@@ -8,7 +8,8 @@
   height: 100%;
   padding: 0 0 1rem 0.3rem;
   z-index: 2;
-  background-color: var(--secondary-bg-color);
+  background-color: var(--bg-color);
+  box-shadow: 3px 15px 10px var(--card-hover-bg-color);
 }
 
 .nav-bar-mobile {
@@ -22,7 +23,7 @@
     top: 0;
     width: 18rem;
     height: 100%;
-    background-color: var(--secondary-bg-color);
+    background-color: var(--bg-color);
     justify-content: flex-start;
   }
 
