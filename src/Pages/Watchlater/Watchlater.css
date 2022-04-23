@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   padding: 1.5rem 1rem 0rem 2rem;
+  margin-left: 4rem;
 }
 
 .watchlater-video-section {
@@ -34,5 +35,6 @@
 @media screen and (max-width: 580px) {
   .watchlater-body {
     padding: 1.5rem 0.5rem 2rem;
+    margin-left: 0;
   }
 }

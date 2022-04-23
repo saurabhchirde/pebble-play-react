@@ -1,8 +1,12 @@
+import { useAuth } from "Context";
 import { Link, useLocation } from "react-router-dom";
 import "./MenuItems.css";
 
 export const MenuItems = () => {
   const { pathname } = useLocation();
+  const {
+    auth: { login },
+  } = useAuth();
 
   const activeHome = pathname === "/" ? "active-nav " : "";
   const activeExplore = pathname.includes("videos") ? "active-nav " : "";
@@ -17,39 +21,43 @@ export const MenuItems = () => {
       <Link to="/">
         <div className={activeHome}>
           <i className="fas fa-home"></i>
-          <h2>Home</h2>
+          <h2 className="vertical-menu-title">Home</h2>
         </div>
       </Link>
       <Link to="videos">
         <div className={activeExplore}>
           <i className="fas fa-globe"></i>
-          <h2>Explore</h2>
+          <h2 className="vertical-menu-title">Explore</h2>
         </div>
       </Link>
-      <Link to="liked">
-        <div className={activeLiked}>
-          <i className="far fa-heart"></i>
-          <h2>Liked Videos</h2>
-        </div>
-      </Link>
-      <Link to="playlists">
-        <div className={activePlaylist}>
-          <i className="fas fa-list"></i>
-          <h2>Playlists</h2>
-        </div>
-      </Link>
-      <Link to="watchlater">
-        <div className={activeWatchlater}>
-          <i className="far fa-clock"></i>
-          <h2>Watchlater</h2>
-        </div>
-      </Link>
-      <Link to="history">
-        <div className={activeHistory}>
-          <i className="fas fa-history"></i>
-          <h2>History</h2>
-        </div>
-      </Link>
+      {login && (
+        <>
+          <Link to="liked">
+            <div className={activeLiked}>
+              <i className="far fa-heart"></i>
+              <h2 className="vertical-menu-title">Liked</h2>
+            </div>
+          </Link>
+          <Link to="playlists">
+            <div className={activePlaylist}>
+              <i className="fas fa-list"></i>
+              <h2 className="vertical-menu-title">Playlists</h2>
+            </div>
+          </Link>
+          <Link to="watchlater">
+            <div className={activeWatchlater}>
+              <i className="far fa-clock"></i>
+              <h2 className="vertical-menu-title">Watchlater</h2>
+            </div>
+          </Link>
+          <Link to="history">
+            <div className={activeHistory}>
+              <i className="fas fa-history"></i>
+              <h2 className="vertical-menu-title">History</h2>
+            </div>
+          </Link>
+        </>
+      )}
     </div>
   );
 };

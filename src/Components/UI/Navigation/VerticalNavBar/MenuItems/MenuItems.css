@@ -7,3 +7,75 @@
 .active-nav i {
   color: var(--primary-color);
 }
+
+.vertical-nav-menu:hover .vertical-menu-title {
+  display: flex;
+}
+
+.vertical-menu-title {
+  display: none;
+}
+
+.vertical-nav-menu {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+.vertical-nav-menu {
+  margin-right: 10px;
+}
+
+.vertical-nav-menu h1 {
+  font-size: 0.9rem;
+  padding: 5px 8px;
+  margin-bottom: 5px;
+  color: var(--title-color);
+  font-weight: 500;
+}
+
+.vertical-nav-menu a > div {
+  display: flex;
+  align-items: center;
+  padding: 5px 8px;
+  margin: 5px 0;
+  border-radius: 4px;
+  color: var(--title-color);
+}
+
+.vertical-nav-menu a > div:hover {
+  border-radius: 4px;
+  outline: 1px solid var(--primary-color);
+  transition: 0.3s ease-in;
+}
+
+.vertical-nav-menu i {
+  padding: 10px;
+}
+
+.vertical-nav-menu h2 {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0 10px;
+}
+
+@media screen and (max-width: 580px) {
+  .vertical-nav-menu-close {
+    margin-top: 1.3rem;
+    margin-left: 75%;
+    padding: 6px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .vertical-nav-menu-close i {
+    color: var(--title-color);
+  }
+
+  .vertical-menu-title {
+    display: flex;
+  }
+}

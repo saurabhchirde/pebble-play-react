@@ -1,9 +1,10 @@
 .landing-body {
-  width: 80%;
+  width: 95%;
   display: flex;
   flex-direction: column;
   padding: 1rem 0 1rem;
   margin: auto;
+  margin-left: 5rem;
 }
 
 .landing-body > div {
@@ -48,13 +49,30 @@
   margin-top: 2rem;
 }
 
+.video-title {
+  text-align: center;
+}
+
 .landing-must-watch-videos {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
 .landing-must-watch-videos > div {
   margin-left: 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .video-title {
+    text-align: left;
+  }
+
+  .landing-must-watch-videos {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -91,11 +109,16 @@
   .landing-must-watch-videos {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin: auto;
   }
 }
 
 @media screen and (max-width: 580px) {
+  .landing-body {
+    margin: auto;
+  }
+
   .landing-must-watch-videos {
     flex-direction: column;
   }

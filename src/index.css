@@ -17,6 +17,7 @@ html[data-pebbleplay-theme="light"] {
   --title-color: #252525;
   --sub-title-color: #303030;
   --icon-color: rgb(118, 118, 118);
+  --theme-toggler: rgb(41, 41, 41);
 }
 
 html[data-pebbleplay-theme="dark"] {
@@ -24,9 +25,10 @@ html[data-pebbleplay-theme="dark"] {
   --secondary-bg-color: #18191a;
   --card-bg-color: #1a1b1c;
   --card-hover-bg-color: rgba(40, 40, 40, 0.666);
-  --title-color: #b5b5b5;
+  --title-color: #ebebeb;
   --sub-title-color: #9b9b9b;
   --icon-color: rgb(146, 146, 146);
+  --theme-toggler: rgb(220, 220, 220);
 }
 
 body {

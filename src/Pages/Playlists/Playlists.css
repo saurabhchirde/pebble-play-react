@@ -4,6 +4,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   padding: 1.5rem 1rem 0rem 2rem;
+  margin-left: 4rem;
 }
 
 .playlists-section {
@@ -57,5 +58,6 @@
 @media screen and (max-width: 580px) {
   .playlists-body {
     padding: 1.5rem 0.5rem 2rem;
+    margin-left: 0;
   }
 }
