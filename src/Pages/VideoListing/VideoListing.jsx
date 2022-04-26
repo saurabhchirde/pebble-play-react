@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { VideoCard, FloatingButton } from "Components";
 import { useFilter, useVideo } from "Context";
@@ -11,6 +11,7 @@ export const VideoListing = () => {
   } = useVideo();
   const { filterState, filterDispatch } = useFilter();
   const { byCategory, bySearch, byLatest } = filterState;
+  const navigate = useNavigate();
   const { search } = useLocation();
   const urlParam = new URLSearchParams(search);
   const searchQuery = urlParam.get("query");
@@ -21,6 +22,7 @@ export const VideoListing = () => {
 
   const onAllClickHandler = () => {
     filterDispatch({ type: "ALL_CATEGORY" });
+    navigate("/videos", { replace: true });
   };
 
   const onLatestClickHandler = () => {

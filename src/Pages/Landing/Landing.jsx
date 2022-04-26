@@ -1,11 +1,13 @@
 import { VideoCard, BannerCard, CategoryCard } from "Components";
-import { useVideo } from "Context";
+import { useFilter, useVideo } from "Context";
+import { useEffect } from "react";
 import "./Landing.css";
 
 export const Landing = () => {
   const {
     videoState: { videos, categories },
   } = useVideo();
+  const { filterDispatch } = useFilter();
 
   const mapVideos = videos.map((video) => {
     return video.mustWatch && <VideoCard key={video._id} videoDetail={video} />;
@@ -14,6 +16,10 @@ export const Landing = () => {
   const mapCategories = categories.map((category) => (
     <CategoryCard key={category._id} category={category} />
   ));
+
+  useEffect(() => {
+    filterDispatch({ type: "ALL_CATEGORY" });
+  }, []);
 
   return (
     <div className="landing-body">

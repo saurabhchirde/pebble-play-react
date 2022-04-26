@@ -4,10 +4,10 @@ const filterReducer = (filterState, action) => {
       return { ...filterState, byCategory: action.payload };
 
     case "SEARCH_VIDEO":
-      return { byCategory: "all", bySearch: action.payload };
+      return { ...filterState, bySearch: action.payload };
 
     case "LATEST_VIDEOS":
-      return { ...filterState, bySearch: "", byLatest: action.payload };
+      return { ...filterState, byLatest: action.payload };
 
     case "REMOVE_LATEST_VIDEOS":
       return { ...filterState, byLatest: "" };
