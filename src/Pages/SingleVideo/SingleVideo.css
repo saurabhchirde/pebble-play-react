@@ -4,6 +4,7 @@
   padding: 1rem;
   display: flex;
   flex-wrap: nowrap;
+  margin-left: 4rem;
 }
 
 .video-player-container {
@@ -118,6 +119,10 @@
 }
 
 @media screen and (max-width: 580px) {
+  .video-page-body {
+    margin-left: 0;
+  }
+
   .video-player-container div {
     width: auto;
     height: auto;
