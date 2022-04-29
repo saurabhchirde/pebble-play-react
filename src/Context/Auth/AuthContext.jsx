@@ -1,9 +1,6 @@
 import { createContext, useContext, useReducer, useState } from "react";
 
-import {
-  useSessionStorageGet,
-  useSessionStorageSet,
-} from "Hooks/useSessionStorage";
+import { useLocalStorageGet, useLocalStorageSet } from "Hooks/useLocalStorage";
 
 const initialAuthState = {
   login: false,
@@ -55,12 +52,12 @@ const AuthContext = createContext(initialAuthState);
 const AuthProvider = ({ children }) => {
   const [auth, authDispatch] = useReducer(
     authReducer,
-    useSessionStorageGet("authState") ?? initialAuthState
+    useLocalStorageGet("authState") ?? initialAuthState
   );
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [loginInput, setLoginInput] = useState({ email: "", password: "" });
 
-  useSessionStorageSet("authState", auth);
+  useLocalStorageSet("authState", auth);
   return (
     <AuthContext.Provider
       value={{
