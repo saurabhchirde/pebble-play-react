@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { VideoCard, FloatingButton } from "Components";
+import { VideoCard, FloatingButton, Footer } from "Components";
 import { useFilter, useVideo } from "Context";
 import { finalFilteredData } from "Utils/finalFilteredData";
 import "./VideoListing.css";
@@ -108,6 +108,7 @@ export const VideoListing = () => {
       </form>
       {mapAllVideos}
       <FloatingButton href="#" icon="fas fa-arrow-up" />
+      <Footer />
     </div>
   );
 };

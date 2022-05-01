@@ -30,3 +30,4 @@ export { SearchBar } from "./UI/Navigation";
 export { NavbarAvatar } from "./UI/Navigation";
 export { NavbarLoginButton } from "./UI/Navigation";
 export { Playlist } from "./SinglePlaylist/Playlist";
+export { Footer } from "./UI/Footer/Footer";

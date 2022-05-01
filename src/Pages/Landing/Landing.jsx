@@ -1,4 +1,4 @@
-import { VideoCard, BannerCard, CategoryCard } from "Components";
+import { VideoCard, BannerCard, CategoryCard, Footer } from "Components";
 import { useFilter, useVideo } from "Context";
 import { useEffect } from "react";
 import "./Landing.css";
@@ -25,7 +25,7 @@ export const Landing = () => {
     <div className="landing-body">
       {videos.length > 0 && (
         <>
-          <div>
+          <div className="landing-header-section">
             <div className="landing-banner-section">
               <BannerCard />
             </div>
@@ -37,6 +37,7 @@ export const Landing = () => {
           </div>
         </>
       )}
+      <Footer />
     </div>
   );
 };
