@@ -9,7 +9,10 @@ export const Footer = () => {
         </a>
       </h3>
       <h3 className="github-icon">
-        <a href="https://github.com/saurabhchirde/pebble-quiz" target="_blank">
+        <a
+          href="https://github.com/saurabhchirde/pebble-play-react"
+          target="_blank"
+        >
           Github
         </a>
       </h3>
