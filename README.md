@@ -10,7 +10,7 @@
 
 ### Link
 
-[Pebble Play](https://pebbleplay.netlify.app/)
+[Pebble Play](https://play.pebbleui.com/)
 
 </br>
 
