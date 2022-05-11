@@ -3,6 +3,7 @@ import logoIcon from "Data/Logo/logoIcon.svg";
 import { useAuth, useFilter, useModal } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./MobileNavigationBar.css";
+import { ThemeToggler } from "..";
 
 export const MobileNavigationBar = () => {
   const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
@@ -86,6 +87,7 @@ export const MobileNavigationBar = () => {
             )}
           </div>
         )}
+        <ThemeToggler />
       </div>
     </nav>
   );

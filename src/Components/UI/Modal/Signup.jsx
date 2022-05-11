@@ -82,7 +82,12 @@ export const Signup = () => {
 
   return (
     <>
-      <div className="modal-backdrop"></div>
+      <div
+        className="modal-backdrop"
+        onClick={() => {
+          setShowSignup(false);
+        }}
+      ></div>
       <div className="signup-modal-one">
         <h1>Sign Up</h1>
         <p>Please provide your details.</p>

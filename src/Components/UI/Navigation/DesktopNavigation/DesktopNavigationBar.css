@@ -3,6 +3,10 @@
   box-shadow: none;
 }
 
+.transparent-bg {
+  background-color: transparent;
+}
+
 .profile-hover-menu {
   background-color: var(--primary-color);
   width: 8.7rem;

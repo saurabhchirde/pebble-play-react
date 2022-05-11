@@ -8,6 +8,7 @@ export const Footer = () => {
           Saurabh Chirde
         </a>
       </h3>
+      <h3>|</h3>
       <h3 className="github-icon">
         <a
           href="https://github.com/saurabhchirde/pebble-play-react"

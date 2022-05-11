@@ -199,19 +199,6 @@
   color: var(--icon-color);
 }
 
-@media screen and (max-width: 1024px) {
-  .category-card {
-    border-radius: 20px;
-    width: 6.5rem;
-    height: 6rem;
-  }
-
-  .category-card i,
-  .category-card h1 {
-    font-size: 1rem;
-  }
-}
-
 @media screen and (max-width: 768px) {
   .video-card-vertical {
     width: 14rem;

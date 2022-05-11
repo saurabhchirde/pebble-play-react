@@ -9,6 +9,7 @@ export const videos = [
     etag: "oFBVzncz4DEBn_cnhJJD4eLwJjY",
     _id: "fhEuPDa-Xxc",
     mustWatch: true,
+    top: true,
     category: "editing",
     snippet: {
       publishedAt: "2022-02-05T16:12:12Z",
@@ -1464,6 +1465,7 @@ export const videos = [
     etag: "ifS6Oboho-dBq_ZQEYPRbZ0ySr0",
     _id: "N2bhaD9tiWI",
     mustWatch: true,
+    top: true,
     category: "photography",
     snippet: {
       publishedAt: "2019-12-20T15:14:22Z",
@@ -1529,6 +1531,7 @@ export const videos = [
     etag: "VwLcrkN55LmsWuyhE82cK70rSmc",
     _id: "CK1MHIoxR0k",
     mustWatch: true,
+    top: true,
     category: "photography",
     snippet: {
       publishedAt: "2019-08-30T06:44:50Z",
@@ -2053,6 +2056,7 @@ export const videos = [
     etag: "FZDYqwaaIzZAvQhRnfAXg5GX6rg",
     _id: "PW8tr4j1ZWE",
     mustWatch: false,
+    top: true,
     category: "photography",
     snippet: {
       publishedAt: "2018-08-27T16:33:08Z",
@@ -3238,6 +3242,7 @@ export const videos = [
     etag: "HZGovXWtu4mdqalm8QeB7uyOh5M",
     _id: "ktm6Dkkj-uk",
     mustWatch: false,
+    top: true,
     category: "photography",
     snippet: {
       publishedAt: "2019-01-17T12:27:45Z",

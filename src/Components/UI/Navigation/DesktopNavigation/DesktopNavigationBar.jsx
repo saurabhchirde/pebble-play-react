@@ -4,6 +4,7 @@ import { SearchBar, NavbarLoginButton, NavbarAvatar } from "Components";
 import { useFilter, useAuth, useTheme, useAlert } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./DesktopNavigationBar.css";
+import { ThemeToggler } from "..";
 
 export const DesktopNavigationBar = () => {
   const { filterDispatch, searchInput, setSearchInput } = useFilter();
@@ -87,6 +88,7 @@ export const DesktopNavigationBar = () => {
             )}
           </div>
         )}
+        <ThemeToggler />
       </div>
     </nav>
   );
