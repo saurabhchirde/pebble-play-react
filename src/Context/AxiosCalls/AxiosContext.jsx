@@ -105,7 +105,6 @@ const AxiosCallProvider = ({ children }) => {
       }
     } catch (error) {
       showLoader();
-      console.log(error);
     }
   };
 

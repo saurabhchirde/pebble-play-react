@@ -59,7 +59,6 @@ export const Login = () => {
   };
 
   const onTestButtonClickFormHandler = () => {
-    console.log(testLoginConfig);
     userLogin(testLoginConfig);
   };
 

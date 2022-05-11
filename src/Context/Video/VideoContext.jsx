@@ -68,7 +68,6 @@ const VideoProvider = ({ children }) => {
           payload: respCategories.data.categories,
         });
       } catch (error) {
-        console.error(error.message);
         showLoader();
       }
     };
