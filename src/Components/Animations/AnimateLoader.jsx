@@ -9,9 +9,6 @@ export const AnimateLoader = () => {
       container: document.querySelector("#loader"),
       animationData: loader,
     });
-    return () => {
-      // to unmount useEffect
-    };
   }, []);
 
   return (

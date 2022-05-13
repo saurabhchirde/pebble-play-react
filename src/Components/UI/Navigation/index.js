@@ -5,4 +5,4 @@ export { MobileVerticalNavBar } from "./VerticalNavBar/MobileVerticalNavBar";
 export { SearchBar } from "./SearchBar/SearchBar";
 export { NavbarAvatar } from "./Avatar/NavbarAvatar";
 export { NavbarLoginButton } from "./NavbarLoginButton/NavbarLoginButton";
-export { ThemeToggler } from "./VerticalNavBar/ThemeToggler/ThemeToggler";
+export { ThemeToggler } from "../ThemeToggler/ThemeToggler";
