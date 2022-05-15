@@ -1,5 +1,5 @@
-import { VideoCard, Button, NotLogged } from "Components";
-import { useAlert, useAuth, useAxiosCalls, useVideo } from "Context";
+import { VideoCard, Button, NotLogged, AlertToast } from "Components";
+import { useAuth, useAxiosCalls, useVideo } from "Context";
 import "./History.css";
 
 export const History = () => {
@@ -11,8 +11,6 @@ export const History = () => {
     auth: { token },
   } = useAuth();
 
-  const { alertDispatch } = useAlert();
-
   const { removeAllFromHistoryOnServer } = useAxiosCalls();
 
   const historyConfig = {
@@ -22,14 +20,7 @@ export const History = () => {
 
   const onRemoveAllHandler = () => {
     if (history.length < 1) {
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: "No videos in History",
-          alertType: "alert-info",
-          alertIcon: "fas fa-info alert-icon",
-        },
-      });
+      AlertToast("info", "No videos in History");
     } else {
       removeAllFromHistoryOnServer(historyConfig);
     }

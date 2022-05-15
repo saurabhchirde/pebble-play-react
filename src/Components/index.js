@@ -1,4 +1,3 @@
-export { Alert } from "./Alert/Alert";
 export { AnimateCamera } from "./Animations/AnimateCamera";
 export { AnimateLoader } from "./Animations/AnimateLoader";
 export { BannerCard } from "./Cards/BannerCard";
@@ -31,3 +30,4 @@ export { NavbarAvatar } from "./UI/Navigation";
 export { NavbarLoginButton } from "./UI/Navigation";
 export { Playlist } from "./SinglePlaylist/Playlist";
 export { Footer } from "./UI/Footer/Footer";
+export { AlertToast } from "./Alert/AlertToast";

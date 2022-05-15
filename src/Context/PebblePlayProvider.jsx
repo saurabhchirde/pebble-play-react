@@ -3,7 +3,6 @@ import {
   AnimationProvider,
   AxiosCallProvider,
   FilterProvider,
-  AlertProvider,
   AuthProvider,
   ModalProvider,
   ScrollToTop,
@@ -16,19 +15,17 @@ const PebblePlayProvider = ({ children }) => {
     <BrowserRouter>
       <ThemeProvider>
         <ScrollToTop>
-          <AlertProvider>
-            <AnimationProvider>
-              <AuthProvider>
-                <ModalProvider>
-                  <FilterProvider>
-                    <VideoProvider>
-                      <AxiosCallProvider>{children}</AxiosCallProvider>
-                    </VideoProvider>
-                  </FilterProvider>
-                </ModalProvider>
-              </AuthProvider>
-            </AnimationProvider>
-          </AlertProvider>
+          <AnimationProvider>
+            <AuthProvider>
+              <ModalProvider>
+                <FilterProvider>
+                  <VideoProvider>
+                    <AxiosCallProvider>{children}</AxiosCallProvider>
+                  </VideoProvider>
+                </FilterProvider>
+              </ModalProvider>
+            </AuthProvider>
+          </AnimationProvider>
         </ScrollToTop>
       </ThemeProvider>
     </BrowserRouter>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAlert, useAuth, useAxiosCalls, useModal, useVideo } from "Context";
-import { Button, IconButton, LabelIconButton } from "Components";
+import { AlertToast, Button, IconButton, LabelIconButton } from "Components";
 import "./PlaylistModal.css";
 
 const initialPlaylist = {
@@ -21,7 +21,6 @@ export const PlaylistModal = () => {
     addInSelectedPlaylistOnServer,
     deleteVideoFromPlaylistOnServer,
   } = useAxiosCalls();
-  const { alertDispatch } = useAlert();
   const { setShowPlaylistModal } = useModal();
   const [showCreate, setShowCreate] = useState(false);
   const [newPlaylist, setNewPlaylist] = useState(initialPlaylist);
@@ -51,14 +50,7 @@ export const PlaylistModal = () => {
 
   const onCreatePlaylistClickHandler = () => {
     if (newPlaylist.title.trim() === "") {
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: "Playlist name cannot be blank",
-          alertType: "alert-info",
-          alertIcon: "fas fa-info alert-icon",
-        },
-      });
+      AlertToast("info", "Playlist name cannot be blank");
       setNewPlaylist(initialPlaylist);
     } else {
       addNewPlayListOnServer(playlistConfig);

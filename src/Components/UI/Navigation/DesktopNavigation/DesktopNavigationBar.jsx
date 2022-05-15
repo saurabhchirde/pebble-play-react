@@ -1,7 +1,12 @@
 import logoLight from "Data/Logo/logo-light.svg";
 import logoDark from "Data/Logo/logo-dark.svg";
-import { SearchBar, NavbarLoginButton, NavbarAvatar } from "Components";
-import { useFilter, useAuth, useTheme, useAlert } from "Context";
+import {
+  SearchBar,
+  NavbarLoginButton,
+  NavbarAvatar,
+  AlertToast,
+} from "Components";
+import { useFilter, useAuth, useTheme } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./DesktopNavigationBar.css";
 import { ThemeToggler } from "..";
@@ -10,8 +15,6 @@ export const DesktopNavigationBar = () => {
   const { filterDispatch, searchInput, setSearchInput } = useFilter();
   const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
   const { theme } = useTheme();
-  const { alertDispatch } = useAlert();
-
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -28,14 +31,7 @@ export const DesktopNavigationBar = () => {
 
   const logoutClickHandler = () => {
     authDispatch({ type: "logout" });
-    alertDispatch({
-      type: "ALERT",
-      payload: {
-        alertText: "Logged out Successfully",
-        alertType: "alert-success",
-        alertIcon: "fas fa-check-circle alert-icon",
-      },
-    });
+    AlertToast("success", "Logged out Successfully");
     if (location.pathname.includes("account" || "settings")) {
       navigate("/videos");
     }

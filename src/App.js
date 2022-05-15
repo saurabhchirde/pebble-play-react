@@ -24,23 +24,20 @@ import {
   Signup,
   AlertModal,
   AnimateLoader,
-  Alert,
   PlaylistModal,
   AnimateCamera,
 } from "./Components";
-import { useAlert, useAnimation, useModal } from "./Context";
+import { useAnimation, useModal } from "./Context";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const { showLogin, showSignup, showAlert, showNavMenu, showPlaylistModal } =
     useModal();
   const { loader, loaderCamera } = useAnimation();
-  const {
-    alertState: { showAlertBar },
-  } = useAlert();
 
   return (
     <div className="App">
-      {showAlertBar && <Alert />}
+      <ToastContainer />
       {loader && <AnimateLoader />}
       {loaderCamera && <AnimateCamera />}
       {showLogin && <Login />}

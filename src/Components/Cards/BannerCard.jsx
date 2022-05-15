@@ -1,4 +1,5 @@
 import { useState } from "react";
+import poster from "Data/poster.webp";
 import "./BannerCard.css";
 
 export const BannerCard = () => {
@@ -7,7 +8,7 @@ export const BannerCard = () => {
   return (
     <div className="card-horizontal-info banner-card">
       <div className="video-container">
-        <video autoPlay="1" loop="1" muted={mute}>
+        <video autoPlay="1" loop="1" muted={mute} poster={poster}>
           <source
             src="https://play-video.netlify.app/video/play.pebbleui/canon.mp4"
             type="video/mp4"

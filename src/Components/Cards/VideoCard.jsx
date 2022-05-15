@@ -192,7 +192,7 @@ export const VideoCard = ({ videoDetail }) => {
             <i
               onClick={onPlaylistVideoDeleteClickHandler}
               className="fas fa-trash-alt trash-icon"
-            ></i>{" "}
+            ></i>
             <p className="tool-tip-playlist">Delete from Playlist</p>
           </div>
         )}

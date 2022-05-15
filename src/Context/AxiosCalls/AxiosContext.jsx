@@ -1,14 +1,13 @@
 import { createContext, useContext } from "react";
 import axios from "axios";
 import { useVideo, useModal, useAuth, useAnimation, useAlert } from "Context";
+import { AlertToast } from "Components";
 
 const AxiosContext = createContext(null);
 
 const AxiosCallProvider = ({ children }) => {
   const { videoDispatch } = useVideo();
-  const { setAlertText, setShowAlert, setShowLogin, setShowSignupAlert } =
-    useModal();
-  const { alertDispatch } = useAlert();
+  const { setAlertText, setShowLogin, setShowSignupAlert } = useModal();
   const { authDispatch, setLoginInput } = useAuth();
   const { showLoader } = useAnimation();
 
@@ -29,38 +28,23 @@ const AxiosCallProvider = ({ children }) => {
           type: "login",
           payload: response.data,
         });
-        alertDispatch({
-          type: "ALERT",
-          payload: {
-            alertText: "Successfully Logged In",
-            alertType: "alert-success",
-            alertIcon: "fas fa-check-circle alert-icon",
-          },
-        });
+        AlertToast("success", "Successfully Logged In");
         //set initial data
         videoDispatch({
           type: "AUTH_DATA_INITIALIZE",
           payload: response.data.foundUser,
         });
-        setShowAlert(true);
+        // setShowAlert(true);
         setLoginInput({ email: "", password: "" });
         setShowLogin(false);
       }
 
       if (response.status === 201) {
-        setAlertText("Invalid Password, Try Again");
+        AlertToast("error", "Invalid Password, Try Again");
         showLoader();
-        setShowAlert(true);
       }
     } catch (error) {
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: error.response.data.errors,
-          alertType: "alert-error",
-          alertIcon: "fas  fa-exclamation-circle alert-icon",
-        },
-      });
+      AlertToast("error", error.response.data.errors);
       showLoader();
     }
   };
@@ -77,14 +61,7 @@ const AxiosCallProvider = ({ children }) => {
       }
       showLoader();
     } catch (error) {
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: error.response.data.errors,
-          alertType: "alert-error",
-          alertIcon: "fas  fa-exclamation-circle alert-icon",
-        },
-      });
+      AlertToast("error", error.response.data.errors);
       showLoader();
     }
   };
@@ -104,6 +81,7 @@ const AxiosCallProvider = ({ children }) => {
         });
       }
     } catch (error) {
+      AlertToast("error", error.response.data.errors);
       showLoader();
     }
   };
@@ -116,24 +94,10 @@ const AxiosCallProvider = ({ children }) => {
       showLoader();
       const response = await axios.post(url, body, headers);
       videoDispatch({ type: "LIKE_VIDEO", payload: response.data.likes });
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: "Liked",
-          alertType: "alert-success",
-          alertIcon: "fas fa-check-circle alert-icon",
-        },
-      });
+      AlertToast("success", "Video Liked");
       showLoader();
     } catch (error) {
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: error.response.data.errors,
-          alertType: "alert-error",
-          alertIcon: "fas  fa-exclamation-circle alert-icon",
-        },
-      });
+      AlertToast("error", error.response.data.errors);
       showLoader();
     }
   };
@@ -150,24 +114,10 @@ const AxiosCallProvider = ({ children }) => {
       showLoader();
       const response = await axios.delete(`${url}/${video._id}`, headers);
       videoDispatch({ type: "UN_LIKE_VIDEO", payload: response.data.likes });
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: "Like Removed",
-          alertType: "alert-info",
-          alertIcon: "fas fa-info alert-icon",
-        },
-      });
+      AlertToast("info", "Like Removed");
       showLoader();
     } catch (error) {
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: error.response.data.errors,
-          alertType: "alert-error",
-          alertIcon: "fas  fa-exclamation-circle alert-icon",
-        },
-      });
+      AlertToast("error", error.response.data.errors);
       showLoader();
     }
   };
@@ -182,24 +132,10 @@ const AxiosCallProvider = ({ children }) => {
         type: "ADD_TO_WATCH_LATER",
         payload: response.data.watchlater,
       });
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: "Added to watchlater",
-          alertType: "alert-success",
-          alertIcon: "fas fa-check-circle alert-icon",
-        },
-      });
+      AlertToast("success", "Added to watchlater");
       showLoader();
     } catch (error) {
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: error.response.data.errors,
-          alertType: "alert-error",
-          alertIcon: "fas  fa-exclamation-circle alert-icon",
-        },
-      });
+      AlertToast("error", error.response.data.errors);
       showLoader();
     }
   };
@@ -219,24 +155,10 @@ const AxiosCallProvider = ({ children }) => {
         type: "REMOVE_FROM_WATCH_LATER",
         payload: response.data.watchlater,
       });
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: "Removed from watchlater",
-          alertType: "alert-info",
-          alertIcon: "fas fa-info alert-icon",
-        },
-      });
+      AlertToast("info", "Removed from watchlater");
       showLoader();
     } catch (error) {
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: error.response.data.errors,
-          alertType: "alert-error",
-          alertIcon: "fas  fa-exclamation-circle alert-icon",
-        },
-      });
+      AlertToast("error", error.response.data.errors);
       showLoader();
     }
   };
@@ -252,25 +174,10 @@ const AxiosCallProvider = ({ children }) => {
         type: "ADD_NEW_PLAYLIST",
         payload: response.data.playlists,
       });
-
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: "New Playlist Added",
-          alertType: "alert-success",
-          alertIcon: "fas fa-check-circle alert-icon",
-        },
-      });
+      AlertToast("info", "New Playlist Added");
       showLoader();
     } catch (error) {
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: error.response.data.errors,
-          alertType: "alert-error",
-          alertIcon: "fas  fa-exclamation-circle alert-icon",
-        },
-      });
+      AlertToast("error", error.response.data.errors);
       showLoader();
     }
   };
@@ -286,24 +193,10 @@ const AxiosCallProvider = ({ children }) => {
         type: "REMOVE_PLAYLIST",
         payload: response.data.playlists,
       });
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: "Playlist Deleted",
-          alertType: "alert-info",
-          alertIcon: "fas fa-info alert-icon",
-        },
-      });
+      AlertToast("info", "Playlist Deleted");
       showLoader();
     } catch (error) {
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: error.response.data.errors,
-          alertType: "alert-error",
-          alertIcon: "fas  fa-exclamation-circle alert-icon",
-        },
-      });
+      AlertToast("error", error.response.data.errors);
       showLoader();
     }
   };
@@ -320,14 +213,7 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: error.response.data.errors,
-          alertType: "alert-error",
-          alertIcon: "fas  fa-exclamation-circle alert-icon",
-        },
-      });
+      AlertToast("error", error.response.data.errors);
       showLoader();
     }
   };
@@ -347,24 +233,10 @@ const AxiosCallProvider = ({ children }) => {
         type: "UPDATE_PLAYLIST",
         payload: response.data.playlist,
       });
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: "Added in Playlist",
-          alertType: "alert-success",
-          alertIcon: "fas fa-check-circle alert-icon",
-        },
-      });
+      AlertToast("success", "Added in Playlist");
       showLoader();
     } catch (error) {
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: error.response.data.errors,
-          alertType: "alert-info",
-          alertIcon: "fas fa-info alert-icon",
-        },
-      });
+      AlertToast("error", error.response.data.errors);
       showLoader();
     }
   };
@@ -383,24 +255,10 @@ const AxiosCallProvider = ({ children }) => {
         type: "DELETE_VIDEO_FROM_PLAYLIST",
         payload: response.data.playlist,
       });
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: "Deleted from Playlist",
-          alertType: "alert-info",
-          alertIcon: "fas fa-info alert-icon",
-        },
-      });
+      AlertToast("info", "Deleted from Playlist");
       showLoader();
     } catch (error) {
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: error.response.data.errors,
-          alertType: "alert-error",
-          alertIcon: "fas  fa-exclamation-circle alert-icon",
-        },
-      });
+      AlertToast("error", error.response.data.errors);
       showLoader();
     }
   };
@@ -416,24 +274,10 @@ const AxiosCallProvider = ({ children }) => {
         type: "ADD_IN_HISTORY",
         payload: response.data.history,
       });
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: "Added in History",
-          alertType: "alert-info",
-          alertIcon: "fas fa-info alert-icon",
-        },
-      });
+      AlertToast("info", "Added in History");
       showLoader();
     } catch (error) {
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: error.response.data.errors,
-          alertType: "alert-error",
-          alertIcon: "fas  fa-exclamation-circle alert-icon",
-        },
-      });
+      AlertToast("error", error.response.data.errors);
       showLoader();
     }
   };
@@ -450,23 +294,9 @@ const AxiosCallProvider = ({ children }) => {
         type: "REMOVE_FROM_HISTORY",
         payload: response.data.history,
       });
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: "Removed from History",
-          alertType: "alert-info",
-          alertIcon: "fas fa-info alert-icon",
-        },
-      });
+      AlertToast("info", "Removed from History");
     } catch (error) {
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: error.response.data.errors,
-          alertType: "alert-error",
-          alertIcon: "fas  fa-exclamation-circle alert-icon",
-        },
-      });
+      AlertToast("error", error.response.data.errors);
       showLoader();
     }
   };
@@ -483,23 +313,9 @@ const AxiosCallProvider = ({ children }) => {
         type: "REMOVE_ALL_FROM_HISTORY",
         payload: response.data.history,
       });
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: "Cleared All History",
-          alertType: "alert-info",
-          alertIcon: "fas fa-info alert-icon",
-        },
-      });
+      AlertToast("info", "Cleared All History");
     } catch (error) {
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: error.response.data.errors,
-          alertType: "alert-error",
-          alertIcon: "fas  fa-exclamation-circle alert-icon",
-        },
-      });
+      AlertToast("error", error.response.data.errors);
       showLoader();
     }
   };
@@ -517,14 +333,7 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      alertDispatch({
-        type: "ALERT",
-        payload: {
-          alertText: error.response.data.errors,
-          alertType: "alert-error",
-          alertIcon: "fas  fa-exclamation-circle alert-icon",
-        },
-      });
+      AlertToast("error", error.response.data.errors);
       showLoader();
     }
   };
