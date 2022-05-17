@@ -1,15 +1,20 @@
 import { createContext, useContext } from "react";
 import axios from "axios";
-import { useVideo, useModal, useAuth, useAnimation, useAlert } from "Context";
+import { useVideo, useModal, useAuth, useAnimation } from "Context";
 import { AlertToast } from "Components";
+import { useDispatch } from "react-redux";
+import { authActions } from "Store";
 
 const AxiosContext = createContext(null);
 
 const AxiosCallProvider = ({ children }) => {
   const { videoDispatch } = useVideo();
   const { setAlertText, setShowLogin, setShowSignupAlert } = useModal();
-  const { authDispatch, setLoginInput } = useAuth();
+  const { setLoginInput } = useAuth();
   const { showLoader } = useAnimation();
+
+  // redux
+  const dispatch = useDispatch();
 
   // login
   const userLogin = async (loginConfig) => {
@@ -23,11 +28,9 @@ const AxiosCallProvider = ({ children }) => {
           `Welcome back ${response.data.foundUser.firstName} ${response.data.foundUser.lastName}`
         );
         showLoader();
-        //save login credentials
-        authDispatch({
-          type: "login",
-          payload: response.data,
-        });
+        // redux
+        dispatch(authActions.login(response.data));
+
         AlertToast("success", "Successfully Logged In");
         //set initial data
         videoDispatch({

@@ -29,11 +29,20 @@ import {
 } from "./Components";
 import { useAnimation, useModal } from "./Context";
 import { ToastContainer } from "react-toastify";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function App() {
   const { showLogin, showSignup, showAlert, showNavMenu, showPlaylistModal } =
     useModal();
   const { loader, loaderCamera } = useAnimation();
+
+  // redux
+  const { auth } = useSelector((authState) => authState);
+
+  useEffect(() => {
+    localStorage.setItem("authState", JSON.stringify(auth));
+  }, [auth]);
 
   return (
     <div className="App">

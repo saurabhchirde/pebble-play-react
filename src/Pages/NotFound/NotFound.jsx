@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import { ButtonSimple } from "Components";
-import { useAuth } from "Context";
 import "./NotFound.css";
+import { useSelector } from "react-redux";
 
 export const NotFound = () => {
-  const { auth } = useAuth();
-
-  const login = auth.login;
+  // redux
+  const {
+    auth: { login },
+  } = useSelector((authState) => authState);
 
   return (
     <div className="page-not-found">

@@ -1,10 +1,12 @@
-import { useAuth } from "Context";
-import { Button, NavbarLoginButton, NotLogged } from "Components";
+import { NavbarLoginButton, NotLogged } from "Components";
 import "./User.css";
+import { useSelector } from "react-redux";
 export const User = () => {
+  // redux
   const {
-    auth: { user, token },
-  } = useAuth();
+    auth: { token, user },
+  } = useSelector((authState) => authState);
+
   const { firstName, lastName, email, dp } = user;
 
   return (

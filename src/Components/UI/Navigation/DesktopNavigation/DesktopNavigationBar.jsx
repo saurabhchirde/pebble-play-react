@@ -10,13 +10,19 @@ import { useFilter, useAuth, useTheme } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./DesktopNavigationBar.css";
 import { ThemeToggler } from "..";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "Store";
 
 export const DesktopNavigationBar = () => {
   const { filterDispatch, searchInput, setSearchInput } = useFilter();
-  const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
+  const { showProfileMenu, setShowProfileMenu } = useAuth();
   const { theme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
+
+  // redux
+  const { auth } = useSelector((authState) => authState);
+  const dispatch = useDispatch();
 
   const onSearchSubmitHandler = (e) => {
     e.preventDefault();
@@ -30,7 +36,7 @@ export const DesktopNavigationBar = () => {
   };
 
   const logoutClickHandler = () => {
-    authDispatch({ type: "logout" });
+    dispatch(authActions.logout());
     AlertToast("success", "Logged out Successfully");
     if (location.pathname.includes("account" || "settings")) {
       navigate("/videos");

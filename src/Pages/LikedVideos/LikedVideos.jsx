@@ -1,14 +1,17 @@
-import { useAuth, useVideo } from "Context";
+import { useVideo } from "Context";
 import { VideoCard, NotLogged } from "Components";
 import "./LikedVideos.css";
+import { useSelector } from "react-redux";
 
 export const LikedVideos = () => {
   const {
     videoState: { likes },
   } = useVideo();
+
+  // redux
   const {
     auth: { token },
-  } = useAuth();
+  } = useSelector((authState) => authState);
 
   const mapLikedVideos =
     likes.length > 0 ? (

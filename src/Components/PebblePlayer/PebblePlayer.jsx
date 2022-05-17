@@ -1,10 +1,12 @@
 import ReactPlayer from "react-player/lazy";
-import { useAuth, useAxiosCalls, useVideo } from "Context";
+import { useAxiosCalls, useVideo } from "Context";
+import { useSelector } from "react-redux";
 
 export const PebblePlayer = ({ videoId, videoDetails, played, setPlayed }) => {
   const {
     auth: { token },
-  } = useAuth();
+  } = useSelector((authState) => authState);
+
   const {
     videoState: { history },
   } = useVideo();

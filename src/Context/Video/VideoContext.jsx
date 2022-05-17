@@ -6,10 +6,10 @@ import {
   useState,
 } from "react";
 import { videoReducer } from "./videoReducer";
-import { useAuth } from "../Auth/AuthContext";
 import axios from "axios";
 import { useModal } from "../Modal/ModalContext";
 import { useAnimation } from "Context";
+import { useSelector, useDispatch } from "react-redux";
 
 const initialVideoState = {
   videos: [],
@@ -47,10 +47,12 @@ const VideoProvider = ({ children }) => {
     initialVideoState
   );
   const [newVideo, setNewVideo] = useState(initialVideoDetail);
-  const { auth, authDispatch } = useAuth();
   const { setAlertText, setShowAlert } = useModal();
   const [tempVideo, setTempVideo] = useState({});
   const { showLoader } = useAnimation();
+
+  // redux
+  const { auth } = useSelector((authState) => authState);
 
   useEffect(() => {
     const getVideos = async () => {
@@ -100,11 +102,11 @@ const VideoProvider = ({ children }) => {
             type: "GET_PLAYLIST_FROM_SERVER",
             payload: respPlaylist.data.playlists,
           });
-          authDispatch({
+          videoDispatch({
             type: "GET_HISTORY_FROM_SERVER",
             payload: respHistory.data.history,
           });
-          authDispatch({
+          videoDispatch({
             type: "GET_LIKES_FROM_SERVER",
             payload: respLikes.data.likes,
           });
@@ -117,14 +119,7 @@ const VideoProvider = ({ children }) => {
     } else {
       videoDispatch({ type: "EMPTY_ALL_LISTS" });
     }
-  }, [
-    auth.login,
-    auth.token,
-    authDispatch,
-    videoDispatch,
-    setAlertText,
-    setShowAlert,
-  ]);
+  }, [auth.login, auth.token, videoDispatch, setAlertText, setShowAlert]);
 
   return (
     <VideoContext.Provider

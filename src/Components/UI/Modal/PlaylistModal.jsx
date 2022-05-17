@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useAlert, useAuth, useAxiosCalls, useModal, useVideo } from "Context";
+import { useAxiosCalls, useModal, useVideo } from "Context";
 import { AlertToast, Button, IconButton, LabelIconButton } from "Components";
 import "./PlaylistModal.css";
+import { useSelector } from "react-redux";
 
 const initialPlaylist = {
   title: "",
@@ -14,8 +15,10 @@ export const PlaylistModal = () => {
     tempVideo,
     setTempVideo,
   } = useVideo();
-  const { auth } = useAuth();
+
+  const { auth } = useSelector((authState) => authState);
   const { token } = auth;
+
   const {
     addNewPlayListOnServer,
     addInSelectedPlaylistOnServer,

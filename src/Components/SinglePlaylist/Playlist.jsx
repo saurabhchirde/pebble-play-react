@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { VideoCard } from "Components";
-import { useAuth, useAxiosCalls, useVideo } from "Context";
+import { useAxiosCalls, useVideo } from "Context";
 import "./Playlist.css";
+import { useSelector } from "react-redux";
 
 export const Playlist = () => {
   const {
@@ -13,7 +14,7 @@ export const Playlist = () => {
 
   const {
     auth: { token },
-  } = useAuth();
+  } = useSelector((authState) => authState);
 
   const { playlistId } = useParams();
   const navigate = useNavigate();

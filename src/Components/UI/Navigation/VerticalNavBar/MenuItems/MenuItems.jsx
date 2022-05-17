@@ -1,12 +1,13 @@
-import { useAuth } from "Context";
+import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import "./MenuItems.css";
 
 export const MenuItems = () => {
   const { pathname } = useLocation();
+
   const {
     auth: { login },
-  } = useAuth();
+  } = useSelector((authState) => authState);
 
   const activeHome = pathname === "/" ? "active-nav " : "";
   const activeExplore = pathname.includes("videos") ? "active-nav " : "";

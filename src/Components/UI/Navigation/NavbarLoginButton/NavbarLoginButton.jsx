@@ -1,12 +1,17 @@
 import { Button } from "Components";
-import { useAuth, useModal } from "Context";
+import { useModal } from "Context";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "Store";
 
 export const NavbarLoginButton = (props) => {
-  const { auth, authDispatch } = useAuth();
   const { setShowLogin, setShowSignup, setAlertText, setShowAlert } =
     useModal();
   const navigate = useNavigate();
+
+  // redux
+  const { auth } = useSelector((authState) => authState);
+  const dispatch = useDispatch();
 
   const onNavbarLoginClickHandler = () => {
     if (!auth.login) {
@@ -15,7 +20,7 @@ export const NavbarLoginButton = (props) => {
     } else {
       setAlertText(`Logged out successfully`);
       setShowAlert(true);
-      authDispatch({ type: "logout" });
+      dispatch(authActions.logout());
       navigate("/videos");
       setShowLogin(false);
       setShowSignup(false);

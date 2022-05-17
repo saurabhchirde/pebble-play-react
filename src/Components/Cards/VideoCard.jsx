@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { useAuth, useAxiosCalls, useModal, useVideo } from "Context";
+import { useAxiosCalls, useModal, useVideo } from "Context";
 import { formatTimeDuration } from "Utils/formatTimeDuration";
 import { Button, IconButton } from "Components";
 import axios from "axios";
 import "./VideoCard.css";
+import { useSelector } from "react-redux";
 
 export const VideoCard = ({ videoDetail }) => {
   const {
@@ -13,8 +14,7 @@ export const VideoCard = ({ videoDetail }) => {
     statistics: { viewCount },
   } = videoDetail;
 
-  const { auth } = useAuth();
-  const { token } = auth;
+  const { auth } = useSelector((authState) => authState);
 
   const {
     likeVideoOnServer,
@@ -52,31 +52,31 @@ export const VideoCard = ({ videoDetail }) => {
   const watchlaterConfig = {
     url: "/api/user/watchlater",
     body: { video: { ...videoDetail } },
-    headers: { headers: { authorization: token } },
+    headers: { headers: { authorization: auth.token } },
   };
 
   const likeConfig = {
     url: "/api/user/likes",
     body: { video: { ...videoDetail } },
-    headers: { headers: { authorization: token } },
+    headers: { headers: { authorization: auth.token } },
   };
 
   const historyConfig = {
     url: "/api/user/history",
-    headers: { headers: { authorization: token } },
+    headers: { headers: { authorization: auth.token } },
     history: videoDetail,
   };
 
   const deleteVideoConfig = {
     url: "/api/user/playlists",
-    headers: { headers: { authorization: token } },
+    headers: { headers: { authorization: auth.token } },
     videoId: videoDetail._id,
     playlistId: playlistId,
   };
 
   // like
   const addToLikeVideoHandler = () => {
-    if (token) {
+    if (auth.token) {
       likeVideoOnServer(likeConfig);
       setLikeButton("fas fa-thumbs-up");
     } else {
@@ -99,7 +99,7 @@ export const VideoCard = ({ videoDetail }) => {
 
   // watchlater
   const addToWatchlaterClickHandler = () => {
-    if (token) {
+    if (auth.token) {
       addToWatchlaterOnServer(watchlaterConfig);
       setWatchlaterButton("fas fa-clock icon-inactive");
     } else {
@@ -122,7 +122,7 @@ export const VideoCard = ({ videoDetail }) => {
 
   // playlist
   const addToPlaylistClickHandler = () => {
-    if (token) {
+    if (auth.token) {
       setTempVideo(videoDetail);
       setShowPlaylistModal(true);
     } else {

@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { PebblePlayer, VideoCard } from "Components";
-import { useAuth, useAxiosCalls, useModal, useVideo } from "Context";
+import { useAxiosCalls, useModal, useVideo } from "Context";
 import "./SingleVideo.css";
+import { useSelector } from "react-redux";
 
 export const SingleVideo = () => {
   const { videoId } = useParams();
@@ -13,9 +14,12 @@ export const SingleVideo = () => {
     addToWatchlaterOnServer,
     removeFromWatchlaterOnServer,
   } = useAxiosCalls();
+
+  // redux
   const {
     auth: { token },
-  } = useAuth();
+  } = useSelector((authState) => authState);
+
   const { setShowLogin, setShowPlaylistModal } = useModal();
   const {
     videoState: { videos, singleVideo, watchlater, likes },

@@ -4,13 +4,19 @@ import { useAuth, useFilter, useModal } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./MobileNavigationBar.css";
 import { ThemeToggler } from "..";
+import { useSelector, useDispatch } from "react-redux";
+import { authActions } from "Store";
 
 export const MobileNavigationBar = () => {
-  const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
+  const { showProfileMenu, setShowProfileMenu } = useAuth();
   const { filterDispatch, searchInput, setSearchInput } = useFilter();
   const location = useLocation();
   const navigate = useNavigate();
   const { setAlertText, setShowAlert, setShowNavMenu } = useModal();
+
+  // redux
+  const dispatch = useDispatch();
+  const { auth } = useSelector((authState) => authState);
 
   const onSearchSubmitHandler = (e) => {
     e.preventDefault();
@@ -24,7 +30,7 @@ export const MobileNavigationBar = () => {
   };
 
   const logoutClickHandler = () => {
-    authDispatch({ type: "logout" });
+    dispatch(authActions.logout());
     setAlertText("Logged out successfully");
     setShowAlert(true);
     if (location.pathname.includes("playlist" || "account" || "settings")) {
