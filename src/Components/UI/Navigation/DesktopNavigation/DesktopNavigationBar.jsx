@@ -6,33 +6,34 @@ import {
   NavbarAvatar,
   AlertToast,
 } from "Components";
-import { useFilter, useAuth, useTheme } from "Context";
+import { useTheme } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./DesktopNavigationBar.css";
 import { ThemeToggler } from "..";
 import { useDispatch, useSelector } from "react-redux";
-import { authActions } from "Store";
+import { authActions, filterActions, userActions } from "Store";
 
 export const DesktopNavigationBar = () => {
-  const { filterDispatch, searchInput, setSearchInput } = useFilter();
-  const { showProfileMenu, setShowProfileMenu } = useAuth();
   const { theme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
 
   // redux
   const { auth } = useSelector((authState) => authState);
+  const {
+    userInput: { showProfileMenu, searchInput },
+  } = useSelector((userState) => userState);
   const dispatch = useDispatch();
 
   const onSearchSubmitHandler = (e) => {
     e.preventDefault();
-    filterDispatch({ type: "SEARCH_VIDEO", payload: searchInput });
+    dispatch(filterActions.searchVideo(searchInput));
     navigate(`/videos/search?query=${searchInput}`);
-    setSearchInput("");
+    dispatch(userActions.searchInput(""));
   };
 
   const onSearchInputHandler = (e) => {
-    setSearchInput(e.target.value);
+    dispatch(userActions.searchInput(e.target.value));
   };
 
   const logoutClickHandler = () => {
@@ -44,7 +45,7 @@ export const DesktopNavigationBar = () => {
   };
 
   const toggleProfileMenu = () => {
-    setShowProfileMenu((show) => !show);
+    dispatch(userActions.profileMenu(!showProfileMenu));
   };
 
   return (

@@ -1,13 +1,16 @@
-import { useFilter } from "Context";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { filterActions } from "Store";
 import "./CategoryCard.css";
 
 export const CategoryCard = ({ category }) => {
-  const { filterDispatch } = useFilter();
   const navigate = useNavigate();
 
+  // redux
+  const dispatch = useDispatch();
+
   const onCategoryClickHandler = () => {
-    filterDispatch({ type: "FILTER_CATEGORY", payload: category.category });
+    dispatch(filterActions.filterByCategory(category.category));
     navigate("/videos");
   };
 

@@ -1,12 +1,13 @@
-import { useAuth } from "Context";
+import { useDispatch } from "react-redux";
+import { userActions } from "Store";
 import "./BodyWrapper.css";
 
 export const BodyWrapper = ({ children }) => {
-  const { setShowProfileMenu } = useAuth();
+  const dispatch = useDispatch();
   return (
     <div
       onClick={() => {
-        setShowProfileMenu(false);
+        dispatch(userActions.profileMenu(false));
       }}
       className="bodyWrapper"
     >

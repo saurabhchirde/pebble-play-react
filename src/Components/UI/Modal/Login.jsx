@@ -1,14 +1,19 @@
-import { useAuth, useAxiosCalls, useModal } from "Context";
-import { IconButton } from "Components";
+import { useAxiosCalls, useModal } from "Context";
+import { AlertToast, IconButton } from "Components";
 import { useState } from "react";
 import "./Login.css";
 import { LoginInputForm } from "./LoginInputForm/LoginInputForm";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "Store";
 
 export const Login = () => {
-  const { loginInput, setLoginInput } = useAuth();
+  // redux
+  const {
+    userInput: { loginInput },
+  } = useSelector((userState) => userState);
+  const dispatch = useDispatch();
 
-  const { setShowLogin, setShowSignup, setAlertText, setShowAlert } =
-    useModal();
+  const { setShowLogin, setShowSignup } = useModal();
   const { userLogin } = useAxiosCalls();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -30,14 +35,12 @@ export const Login = () => {
 
   const onLoginClickFormHandler = () => {
     if (loginInput.email.trim() === "" || loginInput.password.trim() === "") {
-      setAlertText("Input cannot be blank, try again");
-      setShowAlert(true);
+      AlertToast("error", "Email or Password cannot be blank, try again");
     } else {
       if (loginInput.email.match(emailValidate)) {
         userLogin(loginConfig);
       } else {
-        setAlertText("Entered email is wrong, please try again");
-        setShowAlert(true);
+        AlertToast("error", "Entered email is wrong, please try again");
       }
     }
   };
@@ -50,12 +53,8 @@ export const Login = () => {
   const onModalInputHandler = (e) => {
     const value = e.target.value;
     const name = e.target.name;
-    setLoginInput((preData) => {
-      return {
-        ...preData,
-        [name]: value,
-      };
-    });
+
+    dispatch(userActions.loginInput({ ...loginInput, [name]: value }));
   };
 
   const onTestButtonClickFormHandler = () => {

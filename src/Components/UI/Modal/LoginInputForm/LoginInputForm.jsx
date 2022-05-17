@@ -43,11 +43,10 @@ export const LoginInputForm = ({
         type="submit"
         label="Sign In"
         btnClassName="btn primary-btn-md"
-        onClick={onLoginClickFormHandler}
+        onClick={onLoginSubmitHandler}
       />
       <Button
         btnWrapper="signin-btn"
-        type="submit"
         label="Test User"
         btnClassName="btn primary-outline-btn-md"
         onClick={onTestButtonClickFormHandler}

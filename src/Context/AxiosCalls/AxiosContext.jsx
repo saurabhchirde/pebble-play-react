@@ -1,16 +1,15 @@
 import { createContext, useContext } from "react";
 import axios from "axios";
-import { useVideo, useModal, useAuth, useAnimation } from "Context";
+import { useVideo, useModal, useAnimation } from "Context";
 import { AlertToast } from "Components";
 import { useDispatch } from "react-redux";
-import { authActions } from "Store";
+import { authActions, userActions } from "Store";
 
 const AxiosContext = createContext(null);
 
 const AxiosCallProvider = ({ children }) => {
   const { videoDispatch } = useVideo();
   const { setAlertText, setShowLogin, setShowSignupAlert } = useModal();
-  const { setLoginInput } = useAuth();
   const { showLoader } = useAnimation();
 
   // redux
@@ -27,6 +26,7 @@ const AxiosCallProvider = ({ children }) => {
         setAlertText(
           `Welcome back ${response.data.foundUser.firstName} ${response.data.foundUser.lastName}`
         );
+
         showLoader();
         // redux
         dispatch(authActions.login(response.data));
@@ -37,13 +37,14 @@ const AxiosCallProvider = ({ children }) => {
           type: "AUTH_DATA_INITIALIZE",
           payload: response.data.foundUser,
         });
-        // setShowAlert(true);
-        setLoginInput({ email: "", password: "" });
+
+        dispatch(userActions.loginInput({ email: "", password: "" }));
         setShowLogin(false);
       }
 
       if (response.status === 201) {
         AlertToast("error", "Invalid Password, Try Again");
+        // console.log("wrong password");
         showLoader();
       }
     } catch (error) {
@@ -76,8 +77,8 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.get(`${url}/${videoId}`);
+      showLoader();
       if (response.status === 200) {
-        showLoader();
         videoDispatch({
           type: "GET_SINGLE_VIDEO",
           payload: response.data.video,

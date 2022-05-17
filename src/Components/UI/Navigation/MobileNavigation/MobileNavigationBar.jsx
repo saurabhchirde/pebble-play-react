@@ -1,15 +1,13 @@
 import { NavbarLoginButton, SearchBar, NavbarAvatar } from "Components";
 import logoIcon from "Data/Logo/logoIcon.svg";
-import { useAuth, useFilter, useModal } from "Context";
+import { useModal } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./MobileNavigationBar.css";
 import { ThemeToggler } from "..";
 import { useSelector, useDispatch } from "react-redux";
-import { authActions } from "Store";
+import { authActions, filterActions, userActions } from "Store";
 
 export const MobileNavigationBar = () => {
-  const { showProfileMenu, setShowProfileMenu } = useAuth();
-  const { filterDispatch, searchInput, setSearchInput } = useFilter();
   const location = useLocation();
   const navigate = useNavigate();
   const { setAlertText, setShowAlert, setShowNavMenu } = useModal();
@@ -17,16 +15,19 @@ export const MobileNavigationBar = () => {
   // redux
   const dispatch = useDispatch();
   const { auth } = useSelector((authState) => authState);
+  const {
+    userInput: { showProfileMenu, searchInput },
+  } = useSelector((userState) => userState);
 
   const onSearchSubmitHandler = (e) => {
     e.preventDefault();
-    filterDispatch({ type: "bySearch", payload: searchInput });
+    dispatch(filterActions.searchVideo(searchInput));
     navigate(`/videos/search?query=${searchInput}`);
-    setSearchInput("");
+    dispatch(userActions.searchInput(""));
   };
 
   const onSearchInputHandler = (e) => {
-    setSearchInput(e.target.value);
+    dispatch(userActions.searchInput(e.target.value));
   };
 
   const logoutClickHandler = () => {
@@ -39,7 +40,7 @@ export const MobileNavigationBar = () => {
   };
 
   const toggleProfileMenu = () => {
-    setShowProfileMenu((show) => !show);
+    dispatch(userActions.profileMenu(!showProfileMenu));
   };
 
   const toggleAccountNavMenu = () => {

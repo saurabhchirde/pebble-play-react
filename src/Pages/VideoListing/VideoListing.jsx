@@ -4,12 +4,18 @@ import { VideoCard, FloatingButton, Footer } from "Components";
 import { useFilter, useVideo } from "Context";
 import { finalFilteredData } from "Utils/finalFilteredData";
 import "./VideoListing.css";
+import { useDispatch, useSelector } from "react-redux";
+import { filterActions } from "Store";
 
 export const VideoListing = () => {
   const {
     videoState: { videos, categories },
   } = useVideo();
-  const { filterState, filterDispatch } = useFilter();
+
+  // redux
+  const { filterState } = useSelector((filterState) => filterState);
+  const dispatch = useDispatch();
+
   const { byCategory, bySearch, byLatest } = filterState;
   const navigate = useNavigate();
   const { search } = useLocation();
@@ -17,19 +23,19 @@ export const VideoListing = () => {
   const searchQuery = urlParam.get("query");
 
   const onCategoryClickHandler = (category) => {
-    filterDispatch({ type: "FILTER_CATEGORY", payload: category });
+    dispatch(filterActions.filterByCategory(category));
   };
 
   const onAllClickHandler = () => {
-    filterDispatch({ type: "ALL_CATEGORY" });
+    dispatch(filterActions.allCategory());
     navigate("/videos", { replace: true });
   };
 
   const onLatestClickHandler = () => {
     if (byLatest) {
-      filterDispatch({ type: "REMOVE_LATEST_VIDEOS" });
+      dispatch(filterActions.removeLatestVideo());
     } else {
-      filterDispatch({ type: "LATEST_VIDEOS", payload: "latest" });
+      dispatch(filterActions.latestVideo("latest"));
     }
   };
 
@@ -80,13 +86,13 @@ export const VideoListing = () => {
 
   useEffect(() => {
     if (searchQuery) {
-      filterDispatch({ type: "SEARCH_VIDEO", payload: searchQuery });
+      dispatch(filterActions.searchVideo(searchQuery));
     } else if (byCategory) {
-      filterDispatch({ type: "FILTER_CATEGORY", payload: byCategory });
+      dispatch(filterActions.filterByCategory(byCategory));
     } else {
-      filterDispatch({ type: "ALL_CATEGORY" });
+      dispatch(filterActions.allCategory());
     }
-  }, [searchQuery, byCategory, filterDispatch]);
+  }, [searchQuery, byCategory]);
 
   return (
     <div className="video-listing-body">

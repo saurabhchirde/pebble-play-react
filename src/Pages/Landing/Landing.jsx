@@ -1,13 +1,15 @@
 import { VideoCard, BannerCard, CategoryCard, Footer } from "Components";
-import { useFilter, useVideo } from "Context";
+import { useVideo } from "Context";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { filterActions } from "Store";
 import "./Landing.css";
 
 export const Landing = () => {
   const {
     videoState: { videos, categories },
   } = useVideo();
-  const { filterDispatch } = useFilter();
+  const dispatch = useDispatch();
 
   const mapVideos = videos.map((video) => {
     return video.top && <VideoCard key={video._id} videoDetail={video} />;
@@ -18,7 +20,7 @@ export const Landing = () => {
   ));
 
   useEffect(() => {
-    filterDispatch({ type: "ALL_CATEGORY" });
+    dispatch(filterActions.allCategory());
   }, []);
 
   return (

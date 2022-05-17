@@ -2,8 +2,6 @@ import { BrowserRouter } from "react-router-dom";
 import {
   AnimationProvider,
   AxiosCallProvider,
-  FilterProvider,
-  AuthProvider,
   ModalProvider,
   ScrollToTop,
   ThemeProvider,
@@ -16,15 +14,11 @@ const PebblePlayProvider = ({ children }) => {
       <ThemeProvider>
         <ScrollToTop>
           <AnimationProvider>
-            <AuthProvider>
-              <ModalProvider>
-                <FilterProvider>
-                  <VideoProvider>
-                    <AxiosCallProvider>{children}</AxiosCallProvider>
-                  </VideoProvider>
-                </FilterProvider>
-              </ModalProvider>
-            </AuthProvider>
+            <ModalProvider>
+              <VideoProvider>
+                <AxiosCallProvider>{children}</AxiosCallProvider>
+              </VideoProvider>
+            </ModalProvider>
           </AnimationProvider>
         </ScrollToTop>
       </ThemeProvider>

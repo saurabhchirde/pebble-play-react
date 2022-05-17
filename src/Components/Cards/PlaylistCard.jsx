@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useAuth, useAxiosCalls } from "Context";
+import { useAxiosCalls } from "Context";
 import "./PlaylistCard.css";
 import { useSelector } from "react-redux";
 
