@@ -20,16 +20,16 @@ export const VideoListing = () => {
   const urlParam = new URLSearchParams(search);
   const searchQuery = urlParam.get("query");
 
-  const onCategoryClickHandler = (category) => {
+  const categoryClickHandler = (category) => {
     dispatch(filterActions.filterByCategory(category));
   };
 
-  const onAllClickHandler = () => {
+  const allClickHandler = () => {
     dispatch(filterActions.allCategory());
     navigate("/videos", { replace: true });
   };
 
-  const onLatestClickHandler = () => {
+  const latestClickHandler = () => {
     if (byLatest) {
       dispatch(filterActions.removeLatestVideo());
     } else {
@@ -63,7 +63,7 @@ export const VideoListing = () => {
             : "category-label"
         }
         onClick={() => {
-          onCategoryClickHandler(category?.category);
+          categoryClickHandler(category?.category);
         }}
         value={category?.category}
       >
@@ -96,14 +96,11 @@ export const VideoListing = () => {
     <div className="video-listing-body">
       <div>
         <form className="category-section">
-          <div onClick={onAllClickHandler} className={allCategoryClassName}>
+          <div onClick={allClickHandler} className={allCategoryClassName}>
             All
           </div>
           {mapAllCategories}
-          <div
-            onClick={onLatestClickHandler}
-            className={latestCategoryClassName}
-          >
+          <div onClick={latestClickHandler} className={latestCategoryClassName}>
             Latest first
           </div>
           {videosAvailable && (

@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "Store/store";
 
 export const Login = () => {
-
   const {
     userInput: { loginInput },
   } = useSelector((userState) => userState);
@@ -33,7 +32,7 @@ export const Login = () => {
   const emailValidate =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  const onLoginClickFormHandler = () => {
+  const loginClickFormHandler = () => {
     if (loginInput.email.trim() === "" || loginInput.password.trim() === "") {
       AlertToast("error", "Email or Password cannot be blank, try again");
     } else {
@@ -45,19 +44,19 @@ export const Login = () => {
     }
   };
 
-  const onLoginSubmitHandler = (e) => {
+  const loginSubmitHandler = (e) => {
     e.preventDefault();
-    onLoginClickFormHandler();
+    loginClickFormHandler();
   };
 
-  const onModalInputHandler = (e) => {
+  const modalInputHandler = (e) => {
     const value = e.target.value;
     const name = e.target.name;
 
     dispatch(userActions.loginInput({ ...loginInput, [name]: value }));
   };
 
-  const onTestButtonClickFormHandler = () => {
+  const testButtonClickFormHandler = () => {
     userLogin(testLoginConfig);
   };
 
@@ -81,13 +80,13 @@ export const Login = () => {
           }}
         />
         <LoginInputForm
-          onLoginSubmitHandler={onLoginSubmitHandler}
-          onModalInputHandler={onModalInputHandler}
+          loginSubmitHandler={loginSubmitHandler}
+          modalInputHandler={modalInputHandler}
           loginInput={loginInput}
           showPassword={showPassword}
           setShowPassword={setShowPassword}
-          onLoginClickFormHandler={onLoginClickFormHandler}
-          onTestButtonClickFormHandler={onTestButtonClickFormHandler}
+          loginClickFormHandler={loginClickFormHandler}
+          testButtonClickFormHandler={testButtonClickFormHandler}
         />
       </div>
     </>

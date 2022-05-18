@@ -34,11 +34,11 @@ export const PlaylistModal = () => {
     headers: { headers: { authorization: token } },
   };
 
-  const onNewPlaylistClickHandler = () => {
+  const newPlaylistClickHandler = () => {
     setShowCreate(true);
   };
 
-  const onPlaylistNameInputHandler = (e) => {
+  const playlistNameInputHandler = (e) => {
     const value = e.target.value;
     const name = e.target.name;
 
@@ -47,11 +47,11 @@ export const PlaylistModal = () => {
     });
   };
 
-  const onPlaylistSubmitHandler = (e) => {
+  const playlistSubmitHandler = (e) => {
     e.preventDefault();
   };
 
-  const onCreatePlaylistClickHandler = () => {
+  const createPlaylistClickHandler = () => {
     if (newPlaylist.title.trim() === "") {
       AlertToast("info", "Playlist name cannot be blank");
       setNewPlaylist(initialPlaylist);
@@ -61,7 +61,7 @@ export const PlaylistModal = () => {
     }
   };
 
-  const onPlaylistSelectHandler = (playlist, e) => {
+  const playlistSelectHandler = (playlist, e) => {
     if (e.target.checked) {
       const addInPlaylistConfig = {
         url: "/api/user/playlists",
@@ -101,7 +101,7 @@ export const PlaylistModal = () => {
         name="check"
         checked={playlist?.videos.some((item) => item._id === tempVideo._id)}
         onChange={(e) => {
-          onPlaylistSelectHandler(playlist, e);
+          playlistSelectHandler(playlist, e);
         }}
       />
       {playlist.title}
@@ -125,7 +125,7 @@ export const PlaylistModal = () => {
         )}
         {showCreate && (
           <form
-            onSubmit={onPlaylistSubmitHandler}
+            onSubmit={playlistSubmitHandler}
             className="create-new-playlist-section"
           >
             <div className="no-outline-text-input">
@@ -136,7 +136,7 @@ export const PlaylistModal = () => {
                 autoFocus
                 value={newPlaylist.title}
                 placeholder="Enter playlist name"
-                onChange={onPlaylistNameInputHandler}
+                onChange={playlistNameInputHandler}
               />
             </div>
             <textarea
@@ -145,14 +145,14 @@ export const PlaylistModal = () => {
               maxLength="50"
               value={newPlaylist.description}
               placeholder="Description (optional)"
-              onChange={onPlaylistNameInputHandler}
+              onChange={playlistNameInputHandler}
             />
             <div className="create-new-playlist-bottom-section">
               <Button
                 type="submit"
                 label="Create"
                 btnClassName="btn primary-text-btn-lg"
-                onClick={onCreatePlaylistClickHandler}
+                onClick={createPlaylistClickHandler}
               />
             </div>
           </form>
@@ -161,7 +161,7 @@ export const PlaylistModal = () => {
           <LabelIconButton
             label="Create Playlist"
             btnClassName="btn label-icon-outline-btn-md"
-            onClick={onNewPlaylistClickHandler}
+            onClick={newPlaylistClickHandler}
           />
         )}
       </div>

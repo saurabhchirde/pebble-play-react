@@ -8,14 +8,14 @@ export const CategoryCard = ({ category }) => {
 
   const dispatch = useDispatch();
 
-  const onCategoryClickHandler = () => {
+  const categoryClickHandler = () => {
     dispatch(filterActions.filterByCategory(category.category));
     navigate("/videos");
   };
 
   return (
     <div
-      onClick={onCategoryClickHandler}
+      onClick={categoryClickHandler}
       className="card-square-overlay category-card"
     >
       <div className="category-text-section">

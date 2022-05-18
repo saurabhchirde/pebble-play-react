@@ -24,14 +24,14 @@ export const DesktopNavigationBar = () => {
   } = useSelector((userState) => userState);
   const dispatch = useDispatch();
 
-  const onSearchSubmitHandler = (e) => {
+  const searchSubmitHandler = (e) => {
     e.preventDefault();
     dispatch(filterActions.searchVideo(searchInput));
     navigate(`/videos/search?query=${searchInput}`);
     dispatch(userActions.searchInput(""));
   };
 
-  const onSearchInputHandler = (e) => {
+  const searchInputHandler = (e) => {
     dispatch(userActions.searchInput(e.target.value));
   };
 
@@ -61,8 +61,8 @@ export const DesktopNavigationBar = () => {
         micIcon="hide"
         searchIcon="fas fa-search"
         placeholder="Search"
-        onChange={onSearchInputHandler}
-        onSubmit={onSearchSubmitHandler}
+        onChange={searchInputHandler}
+        onSubmit={searchSubmitHandler}
         value={searchInput}
       />
       <div className="nav-bar-btns">

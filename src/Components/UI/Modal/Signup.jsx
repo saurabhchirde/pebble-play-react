@@ -27,7 +27,7 @@ export const Signup = () => {
 
   const passwordValidate = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
 
-  const onSignupFormSubmitHandler = (e) => {
+  const signupFormSubmitHandler = (e) => {
     e.preventDefault();
     if (
       user.password.match(passwordValidate) &&
@@ -50,7 +50,7 @@ export const Signup = () => {
     }
   };
 
-  const onInputChangeHandler = (e) => {
+  const inputChangeHandler = (e) => {
     const name = e.target.name;
     const value = e.target.value;
 
@@ -62,19 +62,17 @@ export const Signup = () => {
     });
   };
 
-  const onConfirmPasswordHandler = (e) => {
+  const confirmPasswordHandler = (e) => {
     setConfirmPassword(e.target.value);
   };
 
-  const onCloseClick = () => {
+  const closeClickHandler = () => {
     modalDispatch({ type: "showLogin", payload: false });
-
     modalDispatch({ type: "showSignup", payload: false });
   };
 
   const onLoginClick = () => {
     modalDispatch({ type: "showLogin", payload: true });
-
     modalDispatch({ type: "showSignup", payload: false });
   };
 
@@ -92,14 +90,14 @@ export const Signup = () => {
         <IconButton
           btnClassName="btn icon-btn-sm close-modal-btn"
           icon="fas fa-times"
-          onClick={onCloseClick}
+          onClick={closeClickHandler}
         />
         <SignupInputForm
-          onSignupFormSubmitHandler={onSignupFormSubmitHandler}
-          onInputChangeHandler={onInputChangeHandler}
+          signupFormSubmitHandler={signupFormSubmitHandler}
+          inputChangeHandler={inputChangeHandler}
           user={user}
           confirmPassword={confirmPassword}
-          onConfirmPasswordHandler={onConfirmPasswordHandler}
+          confirmPasswordHandler={confirmPasswordHandler}
           onLoginClick={onLoginClick}
         />
       </div>

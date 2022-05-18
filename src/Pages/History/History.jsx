@@ -18,7 +18,7 @@ export const History = () => {
     headers: { headers: { authorization: token } },
   };
 
-  const onRemoveAllHandler = () => {
+  const removeAllHandler = () => {
     if (history.length < 1) {
       AlertToast("info", "No videos in History");
     } else {
@@ -46,7 +46,7 @@ export const History = () => {
               Watched History <i className="fas fa-history mg-point6-lt"></i>
             </h1>
             <Button
-              onClick={onRemoveAllHandler}
+              onClick={removeAllHandler}
               btnClassName="btn primary-outline-btn-md"
               label="Remove all"
             />

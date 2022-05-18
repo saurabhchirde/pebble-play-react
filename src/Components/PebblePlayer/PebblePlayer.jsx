@@ -20,7 +20,7 @@ export const PebblePlayer = ({ videoId, videoDetails, played, setPlayed }) => {
 
   const url = "https://www.youtube.com/watch?v=";
 
-  const onPlayClickHandler = () => {
+  const playClickHandler = () => {
     if (!played) {
       setPlayed(true);
       if (token) {
@@ -39,7 +39,7 @@ export const PebblePlayer = ({ videoId, videoDetails, played, setPlayed }) => {
       width="100%"
       height="70vh"
       controls
-      onPlay={onPlayClickHandler}
+      onPlay={playClickHandler}
       className=""
     />
   );

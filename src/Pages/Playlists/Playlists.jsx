@@ -4,7 +4,6 @@ import "./Playlists.css";
 import { useSelector } from "react-redux";
 
 export const Playlists = () => {
- 
   const {
     videoState: { playlists },
   } = useSelector((videoState) => videoState);
@@ -15,7 +14,7 @@ export const Playlists = () => {
 
   const { modalDispatch } = useModal();
 
-  const onCreatePlaylistClickHandler = () => {
+  const createPlaylistClickHandler = () => {
     if (token) {
       modalDispatch({ type: "showPlaylistModal", payload: true });
     } else {
@@ -50,7 +49,7 @@ export const Playlists = () => {
               label="Create Playlist"
               btnClassName="btn label-icon-outline-btn-md"
               icon="fas fa-plus"
-              onClick={onCreatePlaylistClickHandler}
+              onClick={createPlaylistClickHandler}
             />
           </h1>
           {mapPlaylist}

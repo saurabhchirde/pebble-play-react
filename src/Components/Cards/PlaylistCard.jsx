@@ -19,7 +19,7 @@ export const PlaylistCard = ({ list }) => {
     playlistId: list._id,
   };
 
-  const onPlaylistDeleteClickHandler = () => {
+  const playlistDeleteClickHandler = () => {
     removePlayListFromServer(playlistConfig);
   };
 
@@ -35,7 +35,7 @@ export const PlaylistCard = ({ list }) => {
     >
       {trash && (
         <i
-          onClick={onPlaylistDeleteClickHandler}
+          onClick={playlistDeleteClickHandler}
           className="fas fa-trash-alt"
         ></i>
       )}

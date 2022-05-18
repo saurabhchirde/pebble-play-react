@@ -11,7 +11,7 @@ export const NavbarLoginButton = (props) => {
   const { auth } = useSelector((authState) => authState);
   const dispatch = useDispatch();
 
-  const onNavbarLoginClickHandler = () => {
+  const navbarLoginClickHandler = () => {
     if (!auth.login) {
       modalDispatch({ type: "showLogin", payload: true });
       modalDispatch({ type: "showSignup", payload: false });
@@ -29,7 +29,7 @@ export const NavbarLoginButton = (props) => {
       btnWrapper="signin"
       label={props.label}
       btnClassName={props.btnClassName}
-      onClick={onNavbarLoginClickHandler}
+      onClick={navbarLoginClickHandler}
     />
   );
 };

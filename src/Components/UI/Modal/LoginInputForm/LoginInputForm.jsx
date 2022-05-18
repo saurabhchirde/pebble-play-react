@@ -1,16 +1,16 @@
 import { InputTypeOne, InputTypePassword, Button } from "Components";
 import { useModal } from "Context";
 export const LoginInputForm = ({
-  onLoginSubmitHandler,
-  onModalInputHandler,
+  loginSubmitHandler,
+  modalInputHandler,
   loginInput,
   showPassword,
   setShowPassword,
-  onTestButtonClickFormHandler,
+  testButtonClickFormHandler,
 }) => {
   const { modalDispatch } = useModal();
   return (
-    <form onSubmit={onLoginSubmitHandler}>
+    <form onSubmit={loginSubmitHandler}>
       <InputTypeOne
         type="email"
         name="email"
@@ -19,7 +19,7 @@ export const LoginInputForm = ({
         iconWrapper="input-icon"
         icon="far fa-envelope"
         inputWrapper="outline-email-input"
-        onChange={onModalInputHandler}
+        onChange={modalInputHandler}
         value={loginInput.email}
       />
       <InputTypePassword
@@ -31,7 +31,7 @@ export const LoginInputForm = ({
         icon="fas fa-key"
         eyeIcon={showPassword ? "fas fa-eye-slash" : "fas fa-eye"}
         inputWrapper="outline-password-input password-input-field"
-        onChange={onModalInputHandler}
+        onChange={modalInputHandler}
         onEyeClick={() => {
           setShowPassword((preData) => !preData);
         }}
@@ -42,13 +42,13 @@ export const LoginInputForm = ({
         type="submit"
         label="Sign In"
         btnClassName="btn primary-btn-md"
-        onClick={onLoginSubmitHandler}
+        onClick={loginSubmitHandler}
       />
       <Button
         btnWrapper="signin-btn"
         label="Test User"
         btnClassName="btn primary-outline-btn-md"
-        onClick={onTestButtonClickFormHandler}
+        onClick={testButtonClickFormHandler}
       />
       <p>
         Forgot your password? <span>Reset Password</span>
