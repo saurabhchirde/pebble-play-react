@@ -6,7 +6,6 @@
 
 <img src="https://user-images.githubusercontent.com/92800463/168158474-f331a877-53ea-4f36-aad7-49b007a5c819.svg" width="500px" height="auto" alt="logo" />
 
-
 ## Demo
 
 ### Link
@@ -34,7 +33,7 @@
 
 ## Tech Stack
 
-**Client:** React, React Router, Context API, [Pebble UI](https://pebbleui.com/)
+**Client:** React, React Router, Redux, Context API, [Pebble UI](https://pebbleui.com/)
 
 **Server:** Mockbee (Mock Backend)
 
