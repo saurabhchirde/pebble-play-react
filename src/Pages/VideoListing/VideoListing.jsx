@@ -1,35 +1,39 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { VideoCard, FloatingButton, Footer } from "Components";
-import { useFilter, useVideo } from "Context";
 import { finalFilteredData } from "Utils/finalFilteredData";
 import "./VideoListing.css";
+import { useDispatch, useSelector } from "react-redux";
+import { filterActions } from "Store/store";
 
 export const VideoListing = () => {
   const {
     videoState: { videos, categories },
-  } = useVideo();
-  const { filterState, filterDispatch } = useFilter();
+  } = useSelector((videoState) => videoState);
+
+  const { filterState } = useSelector((filterState) => filterState);
+  const dispatch = useDispatch();
+
   const { byCategory, bySearch, byLatest } = filterState;
   const navigate = useNavigate();
   const { search } = useLocation();
   const urlParam = new URLSearchParams(search);
   const searchQuery = urlParam.get("query");
 
-  const onCategoryClickHandler = (category) => {
-    filterDispatch({ type: "FILTER_CATEGORY", payload: category });
+  const categoryClickHandler = (category) => {
+    dispatch(filterActions.filterByCategory(category));
   };
 
-  const onAllClickHandler = () => {
-    filterDispatch({ type: "ALL_CATEGORY" });
+  const allClickHandler = () => {
+    dispatch(filterActions.allCategory());
     navigate("/videos", { replace: true });
   };
 
-  const onLatestClickHandler = () => {
+  const latestClickHandler = () => {
     if (byLatest) {
-      filterDispatch({ type: "REMOVE_LATEST_VIDEOS" });
+      dispatch(filterActions.removeLatestVideo());
     } else {
-      filterDispatch({ type: "LATEST_VIDEOS", payload: "latest" });
+      dispatch(filterActions.latestVideo("latest"));
     }
   };
 
@@ -38,8 +42,8 @@ export const VideoListing = () => {
 
   const mapAllVideos = videosAvailable ? (
     <div className="all-videos-section">
-      {finalFilteredData(videos, filterState).map((video) => (
-        <VideoCard key={video._id} videoDetail={video} />
+      {finalFilteredData(videos, filterState)?.map((video) => (
+        <VideoCard key={video?._id} videoDetail={video} />
       ))}
     </div>
   ) : (
@@ -49,21 +53,21 @@ export const VideoListing = () => {
     </p>
   );
 
-  const mapAllCategories = categories.map((category) => {
+  const mapAllCategories = categories?.map((category) => {
     return (
       <li
-        key={category._id}
+        key={category?._id}
         className={
-          filterState.byCategory === category.category
+          filterState?.byCategory === category?.category
             ? "category-label active-label"
             : "category-label"
         }
         onClick={() => {
-          onCategoryClickHandler(category.category);
+          categoryClickHandler(category?.category);
         }}
-        value={category.category}
+        value={category?.category}
       >
-        {category.categoryName}
+        {category?.categoryName}
       </li>
     );
   });
@@ -80,33 +84,34 @@ export const VideoListing = () => {
 
   useEffect(() => {
     if (searchQuery) {
-      filterDispatch({ type: "SEARCH_VIDEO", payload: searchQuery });
+      dispatch(filterActions.searchVideo(searchQuery));
     } else if (byCategory) {
-      filterDispatch({ type: "FILTER_CATEGORY", payload: byCategory });
+      dispatch(filterActions.filterByCategory(byCategory));
     } else {
-      filterDispatch({ type: "ALL_CATEGORY" });
+      dispatch(filterActions.allCategory());
     }
-  }, [searchQuery, byCategory, filterDispatch]);
+  }, [searchQuery, byCategory]);
 
   return (
     <div className="video-listing-body">
-      <div className="discover-section"></div>
-      <form className="category-section">
-        <div onClick={onAllClickHandler} className={allCategoryClassName}>
-          All
-        </div>
-        {mapAllCategories}
-        <div onClick={onLatestClickHandler} className={latestCategoryClassName}>
-          Latest first
-        </div>
-        {videosAvailable && (
-          <p className="result-message">
-            Showing {byLatest ? byLatest : ""}{" "}
-            {bySearch ? bySearch : byCategory} videos
-          </p>
-        )}
-      </form>
-      {mapAllVideos}
+      <div>
+        <form className="category-section">
+          <div onClick={allClickHandler} className={allCategoryClassName}>
+            All
+          </div>
+          {mapAllCategories}
+          <div onClick={latestClickHandler} className={latestCategoryClassName}>
+            Latest first
+          </div>
+          {videosAvailable && (
+            <p className="result-message">
+              Showing {byLatest ? byLatest : ""}{" "}
+              {bySearch ? bySearch : byCategory} videos
+            </p>
+          )}
+        </form>
+        {mapAllVideos}
+      </div>
       <FloatingButton href="#" icon="fas fa-arrow-up" />
       <Footer />
     </div>

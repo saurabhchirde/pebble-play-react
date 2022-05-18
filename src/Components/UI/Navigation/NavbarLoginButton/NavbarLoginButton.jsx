@@ -1,24 +1,26 @@
 import { Button } from "Components";
-import { useAuth, useModal } from "Context";
+import { useModal } from "Context";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "Store/store";
 
 export const NavbarLoginButton = (props) => {
-  const { auth, authDispatch } = useAuth();
-  const { setShowLogin, setShowSignup, setAlertText, setShowAlert } =
-    useModal();
+  const { modalDispatch } = useModal();
   const navigate = useNavigate();
 
-  const onNavbarLoginClickHandler = () => {
+  const { auth } = useSelector((authState) => authState);
+  const dispatch = useDispatch();
+
+  const navbarLoginClickHandler = () => {
     if (!auth.login) {
-      setShowLogin(true);
-      setShowSignup(false);
+      modalDispatch({ type: "showLogin", payload: true });
+      modalDispatch({ type: "showSignup", payload: false });
     } else {
-      setAlertText(`Logged out successfully`);
-      setShowAlert(true);
-      authDispatch({ type: "logout" });
+      modalDispatch({ type: "showAlert", payload: true });
+      dispatch(authActions.logout());
       navigate("/videos");
-      setShowLogin(false);
-      setShowSignup(false);
+      modalDispatch({ type: "showLogin", payload: false });
+      modalDispatch({ type: "showSignup", payload: false });
     }
   };
 
@@ -27,7 +29,7 @@ export const NavbarLoginButton = (props) => {
       btnWrapper="signin"
       label={props.label}
       btnClassName={props.btnClassName}
-      onClick={onNavbarLoginClickHandler}
+      onClick={navbarLoginClickHandler}
     />
   );
 };

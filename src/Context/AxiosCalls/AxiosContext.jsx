@@ -1,42 +1,54 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 import axios from "axios";
-import { useVideo, useModal, useAuth, useAnimation, useAlert } from "Context";
-import { AlertToast } from "Components";
+import { useModal, useAnimation } from "Context";
+import {
+  AlertModal,
+  AlertToast,
+  Login,
+  PlaylistModal,
+  Signup,
+  SignupAlertModal,
+} from "Components";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions, userActions, videoActions } from "Store/store";
 
 const AxiosContext = createContext(null);
 
 const AxiosCallProvider = ({ children }) => {
-  const { videoDispatch } = useVideo();
-  const { setAlertText, setShowLogin, setShowSignupAlert } = useModal();
-  const { authDispatch, setLoginInput } = useAuth();
+  const {
+    modalState: {
+      showLogin,
+      showSignup,
+      showSignupAlert,
+      showAlert,
+      showPlaylistModal,
+    },
+    modalDispatch,
+  } = useModal();
   const { showLoader } = useAnimation();
+
+  const {
+    auth: { token },
+  } = useSelector((authState) => authState);
+  const dispatch = useDispatch();
 
   // login
   const userLogin = async (loginConfig) => {
     const { url, data } = loginConfig;
-
     try {
       showLoader();
       const response = await axios.post(url, data);
       if (response.status === 200) {
-        setAlertText(
+        AlertToast(
+          "success",
           `Welcome back ${response.data.foundUser.firstName} ${response.data.foundUser.lastName}`
         );
         showLoader();
-        //save login credentials
-        authDispatch({
-          type: "login",
-          payload: response.data,
-        });
-        AlertToast("success", "Successfully Logged In");
-        //set initial data
-        videoDispatch({
-          type: "AUTH_DATA_INITIALIZE",
-          payload: response.data.foundUser,
-        });
-        // setShowAlert(true);
-        setLoginInput({ email: "", password: "" });
-        setShowLogin(false);
+        dispatch(authActions.login(response.data));
+        dispatch(videoActions.authDataInitialize(response.data.foundUser));
+
+        dispatch(userActions.loginInput({ email: "", password: "" }));
+        modalDispatch({ type: "showLogin", payload: false });
       }
 
       if (response.status === 201) {
@@ -44,7 +56,7 @@ const AxiosCallProvider = ({ children }) => {
         showLoader();
       }
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
+      AlertToast("error", error.response.data.errors[0]);
       showLoader();
     }
   };
@@ -56,12 +68,16 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.post(url, data);
-      if (response.status === 201) {
-        setShowSignupAlert(true);
+      if (response.status === 200) {
+        modalDispatch({
+          type: "alertText",
+          payload: "Account created Successfully, please login in to continue",
+        });
+        modalDispatch({ type: "showSignupAlert", payload: true });
       }
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
+      AlertToast("error", error.response.data.errors[0]);
       showLoader();
     }
   };
@@ -73,15 +89,12 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.get(`${url}/${videoId}`);
+      showLoader();
       if (response.status === 200) {
-        showLoader();
-        videoDispatch({
-          type: "GET_SINGLE_VIDEO",
-          payload: response.data.video,
-        });
+        dispatch(videoActions.getSingleVideo(response.data.video));
       }
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
+      AlertToast("error", error.response.data.errors[0]);
       showLoader();
     }
   };
@@ -93,11 +106,11 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.post(url, body, headers);
-      videoDispatch({ type: "LIKE_VIDEO", payload: response.data.likes });
+      dispatch(videoActions.likeVideo(response.data.likes));
       AlertToast("success", "Video Liked");
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
+      AlertToast("error", error.response.data.errors[0]);
       showLoader();
     }
   };
@@ -113,11 +126,12 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.delete(`${url}/${video._id}`, headers);
-      videoDispatch({ type: "UN_LIKE_VIDEO", payload: response.data.likes });
+
+      dispatch(videoActions.unLikeVideo(response.data.likes));
       AlertToast("info", "Like Removed");
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
+      AlertToast("error", error.response.data.errors[0]);
       showLoader();
     }
   };
@@ -128,14 +142,12 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.post(url, body, headers);
-      videoDispatch({
-        type: "ADD_TO_WATCH_LATER",
-        payload: response.data.watchlater,
-      });
+
+      dispatch(videoActions.addToWatchlater(response.data.watchlater));
       AlertToast("success", "Added to watchlater");
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
+      AlertToast("error", error.response.data.errors[0]);
       showLoader();
     }
   };
@@ -151,14 +163,12 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.delete(`${url}/${video._id}`, headers);
-      videoDispatch({
-        type: "REMOVE_FROM_WATCH_LATER",
-        payload: response.data.watchlater,
-      });
+
+      dispatch(videoActions.removeFromWatchlater(response.data.watchlater));
       AlertToast("info", "Removed from watchlater");
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
+      AlertToast("error", error.response.data.errors[0]);
       showLoader();
     }
   };
@@ -170,14 +180,12 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.post(url, body, headers);
-      videoDispatch({
-        type: "ADD_NEW_PLAYLIST",
-        payload: response.data.playlists,
-      });
+
+      dispatch(videoActions.addNewPlaylist(response.data.playlists));
       AlertToast("info", "New Playlist Added");
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
+      AlertToast("error", error.response.data.errors[0]);
       showLoader();
     }
   };
@@ -189,14 +197,11 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.delete(`${url}/${playlistId}`, headers);
-      videoDispatch({
-        type: "REMOVE_PLAYLIST",
-        payload: response.data.playlists,
-      });
+      dispatch(videoActions.removePlaylist(response.data.playlists));
       AlertToast("info", "Playlist Deleted");
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
+      AlertToast("error", error.response.data.errors[0]);
       showLoader();
     }
   };
@@ -207,13 +212,10 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.get(`${url}/${playlistId}`, headers);
-      videoDispatch({
-        type: "GET_PARTICULAR_PLAYLIST",
-        payload: response.data.playlist,
-      });
+      dispatch(videoActions.getParticularPlaylist(response.data.playlist));
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
+      AlertToast("error", error.response.data.errors[0]);
       showLoader();
     }
   };
@@ -229,14 +231,11 @@ const AxiosCallProvider = ({ children }) => {
         body,
         headers
       );
-      videoDispatch({
-        type: "UPDATE_PLAYLIST",
-        payload: response.data.playlist,
-      });
+      dispatch(videoActions.updatePlaylist(response.data.playlist));
       AlertToast("success", "Added in Playlist");
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
+      AlertToast("error", error.response.data.errors[0]);
       showLoader();
     }
   };
@@ -251,14 +250,11 @@ const AxiosCallProvider = ({ children }) => {
         `${url}/${playlistId}/${videoId}`,
         headers
       );
-      videoDispatch({
-        type: "DELETE_VIDEO_FROM_PLAYLIST",
-        payload: response.data.playlist,
-      });
+      dispatch(videoActions.deleteFromPlaylist(response.data.playlist));
       AlertToast("info", "Deleted from Playlist");
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
+      AlertToast("error", error.response.data.errors[0]);
       showLoader();
     }
   };
@@ -270,14 +266,11 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.post(url, body, headers);
-      videoDispatch({
-        type: "ADD_IN_HISTORY",
-        payload: response.data.history,
-      });
+      dispatch(videoActions.addInHistory(response.data.history));
       AlertToast("info", "Added in History");
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
+      AlertToast("error", error.response.data.errors[0]);
       showLoader();
     }
   };
@@ -290,13 +283,10 @@ const AxiosCallProvider = ({ children }) => {
       showLoader();
       const response = await axios.delete(`${url}/${history._id}`, headers);
       showLoader();
-      videoDispatch({
-        type: "REMOVE_FROM_HISTORY",
-        payload: response.data.history,
-      });
+      dispatch(videoActions.removeFromHistory(response.data.history));
       AlertToast("info", "Removed from History");
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
+      AlertToast("error", error.response.data.errors[0]);
       showLoader();
     }
   };
@@ -309,13 +299,10 @@ const AxiosCallProvider = ({ children }) => {
       showLoader();
       const response = await axios.delete(url, headers);
       showLoader();
-      videoDispatch({
-        type: "REMOVE_ALL_FROM_HISTORY",
-        payload: response.data.history,
-      });
+      dispatch(videoActions.removeAllFromHistory(response.data.history));
       AlertToast("info", "Cleared All History");
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
+      AlertToast("error", error.response.data.errors[0]);
       showLoader();
     }
   };
@@ -327,16 +314,75 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.get(`${url}/${category._id}`, headers);
-      videoDispatch({
-        type: "SELECT_CATEGORY",
-        payload: response.data.category,
-      });
+      dispatch(videoActions.selectCategory(response.data.category));
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
+      AlertToast("error", error.response.data.errors[0]);
       showLoader();
     }
   };
+
+  // get videos and categories
+  useEffect(() => {
+    const getVideos = async () => {
+      try {
+        showLoader();
+        const respVideos = await axios.get("/api/videos");
+        showLoader();
+
+        dispatch(videoActions.loadAllVideos(respVideos.data.videos));
+
+        const respCategories = await axios.get("/api/categories");
+        dispatch(
+          videoActions.loadAllCategories(respCategories.data.categories)
+        );
+      } catch (error) {
+        showLoader();
+        AlertToast("error", error.response.data.errors[0]);
+      }
+    };
+    getVideos();
+  }, []);
+
+  // fetch user data
+  useEffect(() => {
+    if (token) {
+      const fetchData = async () => {
+        try {
+          showLoader();
+          const respWatchlater = await axios.get("/api/user/watchlater", {
+            headers: { authorization: token },
+          });
+          dispatch(
+            videoActions.getWatchlaterFromServer(respWatchlater.data.watchlater)
+          );
+
+          const respPlaylist = await axios.get("/api/user/playlists", {
+            headers: { authorization: token },
+          });
+          dispatch(
+            videoActions.getPlaylistFromServer(respPlaylist.data.playlists)
+          );
+
+          const respHistory = await axios.get("/api/user/history", {
+            headers: { authorization: token },
+          });
+          dispatch(videoActions.getHistoryFromServer(respHistory.data.history));
+
+          const respLikes = await axios.get("/api/user/likes", {
+            headers: { authorization: token },
+          });
+          dispatch(videoActions.getLikesFromServer(respLikes.data.likes));
+
+          showLoader();
+        } catch (error) {
+          showLoader();
+          AlertToast("error", error.response.data.errors[0]);
+        }
+      };
+      fetchData();
+    }
+  }, [token]);
 
   return (
     <AxiosContext.Provider
@@ -359,6 +405,11 @@ const AxiosCallProvider = ({ children }) => {
         selectCategoryOnServer,
       }}
     >
+      {showLogin && <Login />}
+      {showSignup && <Signup />}
+      {showSignupAlert && <SignupAlertModal />}
+      {showAlert && <AlertModal />}
+      {showPlaylistModal && <PlaylistModal />}
       {children}
     </AxiosContext.Provider>
   );

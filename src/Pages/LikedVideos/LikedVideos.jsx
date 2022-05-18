@@ -1,20 +1,20 @@
-import { useAuth, useVideo } from "Context";
 import { VideoCard, NotLogged } from "Components";
 import "./LikedVideos.css";
+import { useSelector } from "react-redux";
 
 export const LikedVideos = () => {
   const {
     videoState: { likes },
-  } = useVideo();
+  } = useSelector((videoState) => videoState);
   const {
     auth: { token },
-  } = useAuth();
+  } = useSelector((authState) => authState);
 
   const mapLikedVideos =
-    likes.length > 0 ? (
+    likes?.length > 0 ? (
       <div className="liked-videos-video-section flex-row">
-        {likes.map((video) => (
-          <VideoCard key={video._id} videoDetail={video} />
+        {likes?.map((video) => (
+          <VideoCard key={video?._id} videoDetail={video} />
         ))}
       </div>
     ) : (

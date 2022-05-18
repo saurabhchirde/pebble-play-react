@@ -3,15 +3,15 @@ import "./SignupAlertModal.css";
 import { Button } from "Components";
 
 export const SignupAlertModal = () => {
-  const { setShowLogin, setShowSignupAlert } = useModal();
+  const { modalDispatch } = useModal();
 
   const loginClickHandler = () => {
-    setShowLogin(true);
-    setShowSignupAlert(false);
+    modalDispatch({ type: "showLogin", payload: true });
+    modalDispatch({ type: "showSignup", payload: false });
   };
 
   const closeClickHandler = () => {
-    setShowSignupAlert(false);
+    modalDispatch({ type: "showSignup", payload: false });
   };
 
   return (

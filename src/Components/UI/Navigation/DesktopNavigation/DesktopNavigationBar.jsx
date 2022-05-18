@@ -6,31 +6,37 @@ import {
   NavbarAvatar,
   AlertToast,
 } from "Components";
-import { useFilter, useAuth, useTheme } from "Context";
+import { useTheme } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./DesktopNavigationBar.css";
 import { ThemeToggler } from "..";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions, filterActions, userActions } from "Store/store";
 
 export const DesktopNavigationBar = () => {
-  const { filterDispatch, searchInput, setSearchInput } = useFilter();
-  const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
   const { theme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
 
-  const onSearchSubmitHandler = (e) => {
+  const { auth } = useSelector((authState) => authState);
+  const {
+    userInput: { showProfileMenu, searchInput },
+  } = useSelector((userState) => userState);
+  const dispatch = useDispatch();
+
+  const searchSubmitHandler = (e) => {
     e.preventDefault();
-    filterDispatch({ type: "SEARCH_VIDEO", payload: searchInput });
+    dispatch(filterActions.searchVideo(searchInput));
     navigate(`/videos/search?query=${searchInput}`);
-    setSearchInput("");
+    dispatch(userActions.searchInput(""));
   };
 
-  const onSearchInputHandler = (e) => {
-    setSearchInput(e.target.value);
+  const searchInputHandler = (e) => {
+    dispatch(userActions.searchInput(e.target.value));
   };
 
   const logoutClickHandler = () => {
-    authDispatch({ type: "logout" });
+    dispatch(authActions.logout());
     AlertToast("success", "Logged out Successfully");
     if (location.pathname.includes("account" || "settings")) {
       navigate("/videos");
@@ -38,7 +44,7 @@ export const DesktopNavigationBar = () => {
   };
 
   const toggleProfileMenu = () => {
-    setShowProfileMenu((show) => !show);
+    dispatch(userActions.profileMenu(!showProfileMenu));
   };
 
   return (
@@ -55,8 +61,8 @@ export const DesktopNavigationBar = () => {
         micIcon="hide"
         searchIcon="fas fa-search"
         placeholder="Search"
-        onChange={onSearchInputHandler}
-        onSubmit={onSearchSubmitHandler}
+        onChange={searchInputHandler}
+        onSubmit={searchSubmitHandler}
         value={searchInput}
       />
       <div className="nav-bar-btns">

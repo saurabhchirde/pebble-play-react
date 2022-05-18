@@ -1,15 +1,15 @@
 import { InputTypeOne, Button } from "Components";
 
 export const SignupInputForm = ({
-  onSignupFormSubmitHandler,
-  onInputChangeHandler,
+  signupFormSubmitHandler,
+  inputChangeHandler,
   user,
   confirmPassword,
-  onConfirmPasswordHandler,
-  onLoginClick,
+  confirmPasswordHandler,
+  loginClickHandler,
 }) => {
   return (
-    <form onSubmit={onSignupFormSubmitHandler}>
+    <form onSubmit={signupFormSubmitHandler}>
       <InputTypeOne
         label="First Name"
         type="text"
@@ -17,7 +17,7 @@ export const SignupInputForm = ({
         autoComplete="on"
         placeholder="Enter your first name"
         inputWrapper="outline-text-input"
-        onChange={onInputChangeHandler}
+        onChange={inputChangeHandler}
         value={user.firstName}
       />
       <InputTypeOne
@@ -27,7 +27,7 @@ export const SignupInputForm = ({
         autoComplete="on"
         placeholder="Enter your last name"
         inputWrapper="outline-text-input"
-        onChange={onInputChangeHandler}
+        onChange={inputChangeHandler}
         value={user.lastName}
       />
       <InputTypeOne
@@ -38,7 +38,7 @@ export const SignupInputForm = ({
         autoComplete="email"
         placeholder="Enter your email *"
         inputWrapper="outline-email-input"
-        onChange={onInputChangeHandler}
+        onChange={inputChangeHandler}
         value={user.email}
       />
       <InputTypeOne
@@ -49,7 +49,7 @@ export const SignupInputForm = ({
         autoComplete="current-password"
         placeholder="Enter your password"
         inputWrapper="outline-password-input"
-        onChange={onInputChangeHandler}
+        onChange={inputChangeHandler}
         value={user.password}
       />
       <InputTypeOne
@@ -59,7 +59,7 @@ export const SignupInputForm = ({
         required="required"
         placeholder="Confirm password"
         inputWrapper="outline-password-input"
-        onChange={onConfirmPasswordHandler}
+        onChange={confirmPasswordHandler}
         value={confirmPassword}
       />
       <p>
@@ -72,7 +72,7 @@ export const SignupInputForm = ({
         btnClassName="btn primary-btn-md"
         label=" Sign Up"
       />
-      <div className="existing-account-btn" onClick={onLoginClick}>
+      <div className="existing-account-btn" onClick={loginClickHandler}>
         <h2>
           already have an account
           <span>Login</span>

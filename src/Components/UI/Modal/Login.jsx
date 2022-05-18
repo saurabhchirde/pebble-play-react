@@ -1,14 +1,18 @@
-import { useAuth, useAxiosCalls, useModal } from "Context";
-import { IconButton } from "Components";
+import { useAxiosCalls, useModal } from "Context";
+import { AlertToast, IconButton } from "Components";
 import { useState } from "react";
 import "./Login.css";
 import { LoginInputForm } from "./LoginInputForm/LoginInputForm";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "Store/store";
 
 export const Login = () => {
-  const { loginInput, setLoginInput } = useAuth();
+  const {
+    userInput: { loginInput },
+  } = useSelector((userState) => userState);
+  const dispatch = useDispatch();
 
-  const { setShowLogin, setShowSignup, setAlertText, setShowAlert } =
-    useModal();
+  const { modalDispatch } = useModal();
   const { userLogin } = useAxiosCalls();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -28,37 +32,31 @@ export const Login = () => {
   const emailValidate =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  const onLoginClickFormHandler = () => {
+  const loginClickFormHandler = () => {
     if (loginInput.email.trim() === "" || loginInput.password.trim() === "") {
-      setAlertText("Input cannot be blank, try again");
-      setShowAlert(true);
+      AlertToast("error", "Email or Password cannot be blank, try again");
     } else {
       if (loginInput.email.match(emailValidate)) {
         userLogin(loginConfig);
       } else {
-        setAlertText("Entered email is wrong, please try again");
-        setShowAlert(true);
+        AlertToast("error", "Entered email is wrong, please try again");
       }
     }
   };
 
-  const onLoginSubmitHandler = (e) => {
+  const loginSubmitHandler = (e) => {
     e.preventDefault();
-    onLoginClickFormHandler();
+    loginClickFormHandler();
   };
 
-  const onModalInputHandler = (e) => {
+  const modalInputHandler = (e) => {
     const value = e.target.value;
     const name = e.target.name;
-    setLoginInput((preData) => {
-      return {
-        ...preData,
-        [name]: value,
-      };
-    });
+
+    dispatch(userActions.loginInput({ ...loginInput, [name]: value }));
   };
 
-  const onTestButtonClickFormHandler = () => {
+  const testButtonClickFormHandler = () => {
     userLogin(testLoginConfig);
   };
 
@@ -67,7 +65,7 @@ export const Login = () => {
       <div
         className="modal-backdrop"
         onClick={() => {
-          setShowLogin(false);
+          modalDispatch({ type: "showLogin", payload: false });
         }}
       ></div>
       <div className="signin-modal">
@@ -77,20 +75,18 @@ export const Login = () => {
           btnClassName="btn icon-btn-sm close-modal-btn"
           icon="fas fa-times"
           onClick={() => {
-            setShowLogin(false);
-            setShowSignup(false);
+            modalDispatch({ type: "showLogin", payload: false });
+            modalDispatch({ type: "showSignup", payload: false });
           }}
         />
         <LoginInputForm
-          onLoginSubmitHandler={onLoginSubmitHandler}
-          onModalInputHandler={onModalInputHandler}
+          loginSubmitHandler={loginSubmitHandler}
+          modalInputHandler={modalInputHandler}
           loginInput={loginInput}
           showPassword={showPassword}
           setShowPassword={setShowPassword}
-          onLoginClickFormHandler={onLoginClickFormHandler}
-          onTestButtonClickFormHandler={onTestButtonClickFormHandler}
-          setShowLogin={setShowLogin}
-          setShowSignup={setShowSignup}
+          loginClickFormHandler={loginClickFormHandler}
+          testButtonClickFormHandler={testButtonClickFormHandler}
         />
       </div>
     </>

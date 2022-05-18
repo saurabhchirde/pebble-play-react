@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { useAuth, useAxiosCalls, useModal, useVideo } from "Context";
+import { useAxiosCalls, useModal } from "Context";
 import { formatTimeDuration } from "Utils/formatTimeDuration";
 import { Button, IconButton } from "Components";
 import axios from "axios";
 import "./VideoCard.css";
+import { useDispatch, useSelector } from "react-redux";
+import { videoActions } from "Store/store";
 
 export const VideoCard = ({ videoDetail }) => {
   const {
@@ -13,8 +15,11 @@ export const VideoCard = ({ videoDetail }) => {
     statistics: { viewCount },
   } = videoDetail;
 
-  const { auth } = useAuth();
-  const { token } = auth;
+  const { auth } = useSelector((authState) => authState);
+  const dispatch = useDispatch();
+  const {
+    videoState: { watchlater, likes, singlePlaylist },
+  } = useSelector((videoState) => videoState);
 
   const {
     likeVideoOnServer,
@@ -25,13 +30,7 @@ export const VideoCard = ({ videoDetail }) => {
     deleteVideoFromPlaylistOnServer,
   } = useAxiosCalls();
 
-  const { setShowLogin, setShowPlaylistModal } = useModal();
-
-  const {
-    videoState: { watchlater, likes, singlePlaylist },
-    setTempVideo,
-    videoDispatch,
-  } = useVideo();
+  const { modalDispatch } = useModal();
 
   const [trash, showTrash] = useState(true);
   const { playlistId } = useParams();
@@ -52,35 +51,35 @@ export const VideoCard = ({ videoDetail }) => {
   const watchlaterConfig = {
     url: "/api/user/watchlater",
     body: { video: { ...videoDetail } },
-    headers: { headers: { authorization: token } },
+    headers: { headers: { authorization: auth.token } },
   };
 
   const likeConfig = {
     url: "/api/user/likes",
     body: { video: { ...videoDetail } },
-    headers: { headers: { authorization: token } },
+    headers: { headers: { authorization: auth.token } },
   };
 
   const historyConfig = {
     url: "/api/user/history",
-    headers: { headers: { authorization: token } },
+    headers: { headers: { authorization: auth.token } },
     history: videoDetail,
   };
 
   const deleteVideoConfig = {
     url: "/api/user/playlists",
-    headers: { headers: { authorization: token } },
+    headers: { headers: { authorization: auth.token } },
     videoId: videoDetail._id,
     playlistId: playlistId,
   };
 
   // like
   const addToLikeVideoHandler = () => {
-    if (token) {
+    if (auth.token) {
       likeVideoOnServer(likeConfig);
       setLikeButton("fas fa-thumbs-up");
     } else {
-      setShowLogin(true);
+      modalDispatch({ type: "showLogin", payload: true });
     }
   };
 
@@ -99,11 +98,11 @@ export const VideoCard = ({ videoDetail }) => {
 
   // watchlater
   const addToWatchlaterClickHandler = () => {
-    if (token) {
+    if (auth.token) {
       addToWatchlaterOnServer(watchlaterConfig);
       setWatchlaterButton("fas fa-clock icon-inactive");
     } else {
-      setShowLogin(true);
+      modalDispatch({ type: "showLogin", payload: true });
     }
   };
 
@@ -122,11 +121,11 @@ export const VideoCard = ({ videoDetail }) => {
 
   // playlist
   const addToPlaylistClickHandler = () => {
-    if (token) {
-      setTempVideo(videoDetail);
-      setShowPlaylistModal(true);
+    if (auth.token) {
+      dispatch(videoActions.tempCacheVideo(videoDetail));
+      modalDispatch({ type: "showPlaylistModal", payload: true });
     } else {
-      setShowLogin(true);
+      modalDispatch({ type: "showLogin", payload: true });
     }
   };
 
@@ -145,13 +144,13 @@ export const VideoCard = ({ videoDetail }) => {
     : "card-vertical video-card-vertical";
 
   useEffect(() => {
-    if (watchlater.findIndex((el) => el._id === videoDetail._id) !== -1) {
+    if (watchlater?.findIndex((el) => el?._id === videoDetail?._id) !== -1) {
       setWatchlaterButton("fas fa-clock");
     } else {
       setWatchlaterButton("far fa-clock icon-inactive");
     }
 
-    if (likes.findIndex((el) => el._id === videoDetail._id) !== -1) {
+    if (likes?.findIndex((el) => el?._id === videoDetail?._id) !== -1) {
       setLikeButton("fas fa-thumbs-up");
     } else {
       setLikeButton("far fa-thumbs-up icon-inactive");
@@ -159,19 +158,15 @@ export const VideoCard = ({ videoDetail }) => {
   }, [likes, watchlater, videoDetail._id, setWatchlaterButton, setLikeButton]);
 
   useEffect(() => {
-    const fetchPlatlists = async () => {
+    const fetchPlaylists = async () => {
       const respPlaylist = await axios.get("/api/user/playlists", {
         headers: { authorization: auth.token },
       });
-
-      videoDispatch({
-        type: "GET_PLAYLIST_FROM_SERVER",
-        payload: respPlaylist.data.playlists,
-      });
+      dispatch(videoActions.getPlaylistFromServer(respPlaylist.data.playlists));
     };
 
-    fetchPlatlists();
-  }, [singlePlaylist, auth.token, videoDispatch]);
+    fetchPlaylists();
+  }, [singlePlaylist, auth.token, dispatch]);
 
   return (
     <div

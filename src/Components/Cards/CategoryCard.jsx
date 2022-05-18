@@ -1,19 +1,21 @@
-import { useFilter } from "Context";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { filterActions } from "Store/store";
 import "./CategoryCard.css";
 
 export const CategoryCard = ({ category }) => {
-  const { filterDispatch } = useFilter();
   const navigate = useNavigate();
 
-  const onCategoryClickHandler = () => {
-    filterDispatch({ type: "FILTER_CATEGORY", payload: category.category });
+  const dispatch = useDispatch();
+
+  const categoryClickHandler = () => {
+    dispatch(filterActions.filterByCategory(category.category));
     navigate("/videos");
   };
 
   return (
     <div
-      onClick={onCategoryClickHandler}
+      onClick={categoryClickHandler}
       className="card-square-overlay category-card"
     >
       <div className="category-text-section">

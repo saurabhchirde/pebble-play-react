@@ -1,15 +1,15 @@
 import { VideoCard, Button, NotLogged, AlertToast } from "Components";
-import { useAuth, useAxiosCalls, useVideo } from "Context";
+import { useAxiosCalls } from "Context";
+import { useSelector } from "react-redux";
 import "./History.css";
 
 export const History = () => {
   const {
-    videoState: { history },
-  } = useVideo();
-
-  const {
     auth: { token },
-  } = useAuth();
+  } = useSelector((authState) => authState);
+  const {
+    videoState: { history },
+  } = useSelector((videoState) => videoState);
 
   const { removeAllFromHistoryOnServer } = useAxiosCalls();
 
@@ -18,7 +18,7 @@ export const History = () => {
     headers: { headers: { authorization: token } },
   };
 
-  const onRemoveAllHandler = () => {
+  const removeAllHandler = () => {
     if (history.length < 1) {
       AlertToast("info", "No videos in History");
     } else {
@@ -27,10 +27,10 @@ export const History = () => {
   };
 
   const mapHistory =
-    history.length > 0 ? (
+    history?.length > 0 ? (
       <div className="history-video-section flex-row">
-        {history.map((video) => (
-          <VideoCard key={video._id} videoDetail={video} />
+        {history?.map((video) => (
+          <VideoCard key={video?._id} videoDetail={video} />
         ))}
       </div>
     ) : (
@@ -46,7 +46,7 @@ export const History = () => {
               Watched History <i className="fas fa-history mg-point6-lt"></i>
             </h1>
             <Button
-              onClick={onRemoveAllHandler}
+              onClick={removeAllHandler}
               btnClassName="btn primary-outline-btn-md"
               label="Remove all"
             />

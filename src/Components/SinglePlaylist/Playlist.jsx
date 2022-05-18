@@ -1,19 +1,20 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { VideoCard } from "Components";
-import { useAuth, useAxiosCalls, useVideo } from "Context";
+import { useAxiosCalls } from "Context";
 import "./Playlist.css";
+import { useSelector } from "react-redux";
 
 export const Playlist = () => {
   const {
     videoState: { playlists, singlePlaylist },
-  } = useVideo();
+  } = useSelector((videoState) => videoState);
 
   const { getPlayListFromServer } = useAxiosCalls();
 
   const {
     auth: { token },
-  } = useAuth();
+  } = useSelector((authState) => authState);
 
   const { playlistId } = useParams();
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ export const Playlist = () => {
   const showPlaylist = (
     <div className="playlist-video-section flex-row">
       {singlePlaylist?.videos?.map((video) => (
-        <VideoCard key={video._id} videoDetail={video} />
+        <VideoCard key={video?._id} videoDetail={video} />
       ))}
     </div>
   );

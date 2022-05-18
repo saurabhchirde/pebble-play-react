@@ -1,21 +1,24 @@
-import { useAuth, useModal, useVideo } from "Context";
+import { useModal } from "Context";
 import { NotLogged, LabelIconButton, PlaylistCard } from "Components";
 import "./Playlists.css";
+import { useSelector } from "react-redux";
 
 export const Playlists = () => {
   const {
     videoState: { playlists },
-  } = useVideo();
+  } = useSelector((videoState) => videoState);
+
   const {
     auth: { token },
-  } = useAuth();
-  const { setShowLogin, setShowPlaylistModal } = useModal();
+  } = useSelector((authState) => authState);
 
-  const onCreatePlaylistClickHandler = () => {
+  const { modalDispatch } = useModal();
+
+  const createPlaylistClickHandler = () => {
     if (token) {
-      setShowPlaylistModal(true);
+      modalDispatch({ type: "showPlaylistModal", payload: true });
     } else {
-      setShowLogin(true);
+      modalDispatch({ type: "showLogin", payload: true });
     }
   };
 
@@ -24,9 +27,9 @@ export const Playlists = () => {
   const mapPlaylist = playlistAvailable ? (
     <div className="playlists-section">
       {playlists?.map((list) => (
-        <div className="playlists-item" key={list._id}>
+        <div className="playlists-item" key={list?._id}>
           <PlaylistCard list={list} />
-          <p className="p-lg mg-point6-tb">{list.description}</p>
+          <p className="p-lg mg-point6-tb">{list?.description}</p>
         </div>
       ))}
     </div>
@@ -46,7 +49,7 @@ export const Playlists = () => {
               label="Create Playlist"
               btnClassName="btn label-icon-outline-btn-md"
               icon="fas fa-plus"
-              onClick={onCreatePlaylistClickHandler}
+              onClick={createPlaylistClickHandler}
             />
           </h1>
           {mapPlaylist}

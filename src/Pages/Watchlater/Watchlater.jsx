@@ -1,20 +1,21 @@
 import { VideoCard, NotLogged } from "Components";
-import { useAuth, useVideo } from "Context";
+import { useSelector } from "react-redux";
 import "./Watchlater.css";
 
 export const Watchlater = () => {
   const {
     videoState: { watchlater },
-  } = useVideo();
+  } = useSelector((videoState) => videoState);
+
   const {
     auth: { token },
-  } = useAuth();
+  } = useSelector((authState) => authState);
 
   const mapWatchlater =
-    watchlater.length > 0 ? (
+    watchlater?.length > 0 ? (
       <div className="watchlater-video-section flex-row">
-        {watchlater.map((video) => (
-          <VideoCard key={video._id} videoDetail={video} />
+        {watchlater?.map((video) => (
+          <VideoCard key={video?._id} videoDetail={video} />
         ))}
       </div>
     ) : (

@@ -1,43 +1,56 @@
-import { NavbarLoginButton, SearchBar, NavbarAvatar } from "Components";
+import {
+  NavbarLoginButton,
+  SearchBar,
+  NavbarAvatar,
+  AlertToast,
+} from "Components";
 import logoIcon from "Data/Logo/logoIcon.svg";
-import { useAuth, useFilter, useModal } from "Context";
+import { useModal } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./MobileNavigationBar.css";
 import { ThemeToggler } from "..";
+import { useSelector, useDispatch } from "react-redux";
+import { authActions, filterActions, userActions } from "Store/store";
 
 export const MobileNavigationBar = () => {
-  const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
-  const { filterDispatch, searchInput, setSearchInput } = useFilter();
   const location = useLocation();
   const navigate = useNavigate();
-  const { setAlertText, setShowAlert, setShowNavMenu } = useModal();
+  const {
+    modalDispatch,
+    modalState: { showNavMenu },
+  } = useModal();
 
-  const onSearchSubmitHandler = (e) => {
+  const dispatch = useDispatch();
+  const { auth } = useSelector((authState) => authState);
+  const {
+    userInput: { showProfileMenu, searchInput },
+  } = useSelector((userState) => userState);
+
+  const searchSubmitHandler = (e) => {
     e.preventDefault();
-    filterDispatch({ type: "bySearch", payload: searchInput });
+    dispatch(filterActions.searchVideo(searchInput));
     navigate(`/videos/search?query=${searchInput}`);
-    setSearchInput("");
+    dispatch(userActions.searchInput(""));
   };
 
-  const onSearchInputHandler = (e) => {
-    setSearchInput(e.target.value);
+  const searchInputHandler = (e) => {
+    dispatch(userActions.searchInput(e.target.value));
   };
 
   const logoutClickHandler = () => {
-    authDispatch({ type: "logout" });
-    setAlertText("Logged out successfully");
-    setShowAlert(true);
+    dispatch(authActions.logout());
+    AlertToast("success", "Logged out Successfully");
     if (location.pathname.includes("playlist" || "account" || "settings")) {
       navigate("/videos");
     }
   };
 
   const toggleProfileMenu = () => {
-    setShowProfileMenu((show) => !show);
+    dispatch(userActions.profileMenu(!showProfileMenu));
   };
 
   const toggleAccountNavMenu = () => {
-    setShowNavMenu((show) => !show);
+    modalDispatch({ type: "showNavMenu", payload: !showNavMenu });
   };
 
   return (
@@ -55,8 +68,8 @@ export const MobileNavigationBar = () => {
         micIcon="hide"
         searchIcon="fas fa-search"
         placeholder="Search"
-        onChange={onSearchInputHandler}
-        onSubmit={onSearchSubmitHandler}
+        onChange={searchInputHandler}
+        onSubmit={searchSubmitHandler}
         value={searchInput}
       />
       <div className="nav-bar-btns">

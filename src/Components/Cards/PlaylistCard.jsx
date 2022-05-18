@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useAuth, useAxiosCalls } from "Context";
+import { useAxiosCalls } from "Context";
 import "./PlaylistCard.css";
+import { useSelector } from "react-redux";
 
 export const PlaylistCard = ({ list }) => {
   const { removePlayListFromServer } = useAxiosCalls();
+
   const {
     auth: { token },
-  } = useAuth();
+  } = useSelector((authState) => authState);
 
   const [trash, showTrash] = useState(true);
 
@@ -17,7 +19,7 @@ export const PlaylistCard = ({ list }) => {
     playlistId: list._id,
   };
 
-  const onPlaylistDeleteClickHandler = () => {
+  const playlistDeleteClickHandler = () => {
     removePlayListFromServer(playlistConfig);
   };
 
@@ -33,7 +35,7 @@ export const PlaylistCard = ({ list }) => {
     >
       {trash && (
         <i
-          onClick={onPlaylistDeleteClickHandler}
+          onClick={playlistDeleteClickHandler}
           className="fas fa-trash-alt"
         ></i>
       )}

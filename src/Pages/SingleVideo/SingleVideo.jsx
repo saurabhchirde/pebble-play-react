@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { PebblePlayer, VideoCard } from "Components";
-import { useAuth, useAxiosCalls, useModal, useVideo } from "Context";
+import { useAxiosCalls, useModal } from "Context";
 import "./SingleVideo.css";
+import { useDispatch, useSelector } from "react-redux";
+import { videoActions } from "Store/store";
 
 export const SingleVideo = () => {
   const { videoId } = useParams();
@@ -13,14 +15,16 @@ export const SingleVideo = () => {
     addToWatchlaterOnServer,
     removeFromWatchlaterOnServer,
   } = useAxiosCalls();
+
   const {
     auth: { token },
-  } = useAuth();
-  const { setShowLogin, setShowPlaylistModal } = useModal();
+  } = useSelector((authState) => authState);
+  const dispatch = useDispatch();
   const {
     videoState: { videos, singleVideo, watchlater, likes },
-    setTempVideo,
-  } = useVideo();
+  } = useSelector((videoState) => videoState);
+
+  const { modalDispatch } = useModal();
   const [played, setPlayed] = useState(false);
   const { snippet, statistics } = singleVideo;
   const [watchlaterButton, setWatchlaterButton] = useState(
@@ -52,7 +56,7 @@ export const SingleVideo = () => {
       likeVideoOnServer(likeConfig);
       setLikeButton("fas fa-thumbs-up");
     } else {
-      setShowLogin(true);
+      modalDispatch({ type: "showLogin", payload: true });
     }
   };
 
@@ -74,7 +78,7 @@ export const SingleVideo = () => {
       addToWatchlaterOnServer(watchlaterConfig);
       setWatchlaterButton("fas fa-clock icon-inactive");
     } else {
-      setShowLogin(true);
+      modalDispatch({ type: "showLogin", payload: true });
     }
   };
 
@@ -94,21 +98,21 @@ export const SingleVideo = () => {
   // playlist
   const addToPlaylistClickHandler = () => {
     if (token) {
-      setTempVideo(singleVideo);
-      setShowPlaylistModal(true);
+      dispatch(videoActions.tempCacheVideo(singleVideo));
+      modalDispatch({ type: "showPlaylistModal", payload: true });
     } else {
-      setShowLogin(true);
+      modalDispatch({ type: "showLogin", payload: true });
     }
   };
 
   useEffect(() => {
-    if (watchlater.findIndex((el) => el._id === singleVideo._id) !== -1) {
+    if (watchlater?.findIndex((el) => el?._id === singleVideo?._id) !== -1) {
       setWatchlaterButton("fas fa-clock");
     } else {
       setWatchlaterButton("far fa-clock icon-inactive");
     }
 
-    if (likes.findIndex((el) => el._id === singleVideo._id) !== -1) {
+    if (likes?.findIndex((el) => el?._id === singleVideo?._id) !== -1) {
       setLikeButton("fas fa-thumbs-up");
     } else {
       setLikeButton("far fa-thumbs-up icon-inactive");
@@ -116,14 +120,16 @@ export const SingleVideo = () => {
   }, [likes, watchlater, singleVideo._id, setWatchlaterButton, setLikeButton]);
 
   const likedStatus =
-    likes.findIndex((el) => el._id === singleVideo._id) !== -1;
+    likes?.findIndex((el) => el?._id === singleVideo?._id) !== -1;
 
   const likeCount = likedStatus
     ? Number(singleVideo.statistics?.likeCount) + 1
     : Number(singleVideo.statistics?.likeCount);
 
-  const mapMustWatched = videos.map((video) => {
-    return video.mustWatch && <VideoCard key={video._id} videoDetail={video} />;
+  const mapMustWatched = videos?.map((video) => {
+    return (
+      video?.mustWatch && <VideoCard key={video?._id} videoDetail={video} />
+    );
   });
 
   useEffect(() => {
@@ -176,7 +182,7 @@ export const SingleVideo = () => {
               <h2 className="title-lg-wt-5 mg-1-bot">
                 Author - {snippet?.channelTitle}
               </h2>
-              <p className="p-lg">{snippet?.localized.description}</p>
+              <p className="p-lg">{snippet?.localized?.description}</p>
             </div>
           </div>
         </div>

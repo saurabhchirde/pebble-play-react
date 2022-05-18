@@ -1,13 +1,15 @@
 import ReactPlayer from "react-player/lazy";
-import { useAuth, useAxiosCalls, useVideo } from "Context";
+import { useAxiosCalls } from "Context";
+import { useSelector } from "react-redux";
 
 export const PebblePlayer = ({ videoId, videoDetails, played, setPlayed }) => {
   const {
     auth: { token },
-  } = useAuth();
+  } = useSelector((authState) => authState);
+
   const {
     videoState: { history },
-  } = useVideo();
+  } = useSelector((videoState) => videoState);
   const { addInHistoryListOnServer } = useAxiosCalls();
 
   const historyConfig = {
@@ -18,11 +20,11 @@ export const PebblePlayer = ({ videoId, videoDetails, played, setPlayed }) => {
 
   const url = "https://www.youtube.com/watch?v=";
 
-  const onPlayClickHandler = () => {
+  const playClickHandler = () => {
     if (!played) {
       setPlayed(true);
       if (token) {
-        if (history.findIndex((el) => el._id === videoDetails._id) !== -1) {
+        if (history?.findIndex((el) => el?._id === videoDetails?._id) !== -1) {
           return null;
         } else {
           addInHistoryListOnServer(historyConfig);
@@ -37,7 +39,7 @@ export const PebblePlayer = ({ videoId, videoDetails, played, setPlayed }) => {
       width="100%"
       height="70vh"
       controls
-      onPlay={onPlayClickHandler}
+      onPlay={playClickHandler}
       className=""
     />
   );
