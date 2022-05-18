@@ -11,14 +11,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./DesktopNavigationBar.css";
 import { ThemeToggler } from "..";
 import { useDispatch, useSelector } from "react-redux";
-import { authActions, filterActions, userActions } from "Store";
+import { authActions, filterActions, userActions } from "Store/store";
 
 export const DesktopNavigationBar = () => {
   const { theme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
 
-  // redux
   const { auth } = useSelector((authState) => authState);
   const {
     userInput: { showProfileMenu, searchInput },

@@ -24,7 +24,7 @@ export const PebblePlayer = ({ videoId, videoDetails, played, setPlayed }) => {
     if (!played) {
       setPlayed(true);
       if (token) {
-        if (history.findIndex((el) => el._id === videoDetails._id) !== -1) {
+        if (history?.findIndex((el) => el?._id === videoDetails?._id) !== -1) {
           return null;
         } else {
           addInHistoryListOnServer(historyConfig);

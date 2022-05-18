@@ -30,7 +30,6 @@ function App() {
   } = useModal();
   const { loader, loaderCamera } = useAnimation();
 
-  // redux
   const { auth } = useSelector((authState) => authState);
 
   useEffect(() => {

@@ -28,7 +28,7 @@ export const Playlist = () => {
   const showPlaylist = (
     <div className="playlist-video-section flex-row">
       {singlePlaylist?.videos?.map((video) => (
-        <VideoCard key={video._id} videoDetail={video} />
+        <VideoCard key={video?._id} videoDetail={video} />
       ))}
     </div>
   );

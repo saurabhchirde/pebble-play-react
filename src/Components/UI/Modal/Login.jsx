@@ -4,10 +4,10 @@ import { useState } from "react";
 import "./Login.css";
 import { LoginInputForm } from "./LoginInputForm/LoginInputForm";
 import { useDispatch, useSelector } from "react-redux";
-import { userActions } from "Store";
+import { userActions } from "Store/store";
 
 export const Login = () => {
-  // redux
+
   const {
     userInput: { loginInput },
   } = useSelector((userState) => userState);

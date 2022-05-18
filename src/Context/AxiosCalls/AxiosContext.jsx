@@ -10,7 +10,7 @@ import {
   SignupAlertModal,
 } from "Components";
 import { useDispatch, useSelector } from "react-redux";
-import { authActions, userActions, videoActions } from "Store";
+import { authActions, userActions, videoActions } from "Store/store";
 
 const AxiosContext = createContext(null);
 
@@ -27,7 +27,6 @@ const AxiosCallProvider = ({ children }) => {
   } = useModal();
   const { showLoader } = useAnimation();
 
-  // redux
   const {
     auth: { token },
   } = useSelector((authState) => authState);
@@ -40,19 +39,15 @@ const AxiosCallProvider = ({ children }) => {
       showLoader();
       const response = await axios.post(url, data);
       if (response.status === 200) {
-        modalDispatch({
-          type: "alertText",
-          payload: `Welcome back ${response.data.foundUser.firstName} ${response.data.foundUser.lastName}`,
-        });
-
+        AlertToast(
+          "success",
+          `Welcome back ${response.data.foundUser.firstName} ${response.data.foundUser.lastName}`
+        );
         showLoader();
         dispatch(authActions.login(response.data));
         dispatch(videoActions.authDataInitialize(response.data.foundUser));
 
-        AlertToast("success", "Successfully Logged In");
-        modalDispatch({ type: "showAlert", payload: true });
         dispatch(userActions.loginInput({ email: "", password: "" }));
-
         modalDispatch({ type: "showLogin", payload: false });
       }
 

@@ -5,7 +5,7 @@ import App from "./App";
 import { makeServer } from "./server";
 import { PebblePlayProvider } from "./Context/PebblePlayProvider";
 import { Provider } from "react-redux";
-import store from "Store/index";
+import store from "Store/store";
 
 // Call make Server
 makeServer();

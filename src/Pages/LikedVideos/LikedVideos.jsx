@@ -3,7 +3,6 @@ import "./LikedVideos.css";
 import { useSelector } from "react-redux";
 
 export const LikedVideos = () => {
-  // redux
   const {
     videoState: { likes },
   } = useSelector((videoState) => videoState);
@@ -12,10 +11,10 @@ export const LikedVideos = () => {
   } = useSelector((authState) => authState);
 
   const mapLikedVideos =
-    likes.length > 0 ? (
+    likes?.length > 0 ? (
       <div className="liked-videos-video-section flex-row">
-        {likes.map((video) => (
-          <VideoCard key={video._id} videoDetail={video} />
+        {likes?.map((video) => (
+          <VideoCard key={video?._id} videoDetail={video} />
         ))}
       </div>
     ) : (

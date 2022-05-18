@@ -4,7 +4,6 @@ import "./NotFound.css";
 import { useSelector } from "react-redux";
 
 export const NotFound = () => {
-  // redux
   const {
     auth: { login },
   } = useSelector((authState) => authState);

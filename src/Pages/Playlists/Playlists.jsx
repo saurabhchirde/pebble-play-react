@@ -4,7 +4,7 @@ import "./Playlists.css";
 import { useSelector } from "react-redux";
 
 export const Playlists = () => {
-  // redux
+ 
   const {
     videoState: { playlists },
   } = useSelector((videoState) => videoState);
@@ -28,9 +28,9 @@ export const Playlists = () => {
   const mapPlaylist = playlistAvailable ? (
     <div className="playlists-section">
       {playlists?.map((list) => (
-        <div className="playlists-item" key={list._id}>
+        <div className="playlists-item" key={list?._id}>
           <PlaylistCard list={list} />
-          <p className="p-lg mg-point6-tb">{list.description}</p>
+          <p className="p-lg mg-point6-tb">{list?.description}</p>
         </div>
       ))}
     </div>

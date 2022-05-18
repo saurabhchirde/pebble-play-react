@@ -3,7 +3,7 @@ import { useAxiosCalls, useModal } from "Context";
 import { AlertToast, Button, IconButton, LabelIconButton } from "Components";
 import "./PlaylistModal.css";
 import { useDispatch, useSelector } from "react-redux";
-import { videoActions } from "Store";
+import { videoActions } from "Store/store";
 
 const initialPlaylist = {
   title: "",

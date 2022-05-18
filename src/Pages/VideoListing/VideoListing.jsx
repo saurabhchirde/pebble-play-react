@@ -4,10 +4,9 @@ import { VideoCard, FloatingButton, Footer } from "Components";
 import { finalFilteredData } from "Utils/finalFilteredData";
 import "./VideoListing.css";
 import { useDispatch, useSelector } from "react-redux";
-import { filterActions } from "Store";
+import { filterActions } from "Store/store";
 
 export const VideoListing = () => {
-  // redux
   const {
     videoState: { videos, categories },
   } = useSelector((videoState) => videoState);
@@ -43,8 +42,8 @@ export const VideoListing = () => {
 
   const mapAllVideos = videosAvailable ? (
     <div className="all-videos-section">
-      {finalFilteredData(videos, filterState).map((video) => (
-        <VideoCard key={video._id} videoDetail={video} />
+      {finalFilteredData(videos, filterState)?.map((video) => (
+        <VideoCard key={video?._id} videoDetail={video} />
       ))}
     </div>
   ) : (
@@ -54,21 +53,21 @@ export const VideoListing = () => {
     </p>
   );
 
-  const mapAllCategories = categories.map((category) => {
+  const mapAllCategories = categories?.map((category) => {
     return (
       <li
-        key={category._id}
+        key={category?._id}
         className={
-          filterState.byCategory === category.category
+          filterState?.byCategory === category?.category
             ? "category-label active-label"
             : "category-label"
         }
         onClick={() => {
-          onCategoryClickHandler(category.category);
+          onCategoryClickHandler(category?.category);
         }}
-        value={category.category}
+        value={category?.category}
       >
-        {category.categoryName}
+        {category?.categoryName}
       </li>
     );
   });

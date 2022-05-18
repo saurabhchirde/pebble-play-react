@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { PebblePlayer, VideoCard } from "Components";
-import { useAxiosCalls, useModal, useVideo } from "Context";
+import { useAxiosCalls, useModal } from "Context";
 import "./SingleVideo.css";
 import { useDispatch, useSelector } from "react-redux";
-import { videoActions } from "Store";
+import { videoActions } from "Store/store";
 
 export const SingleVideo = () => {
   const { videoId } = useParams();
@@ -16,7 +16,6 @@ export const SingleVideo = () => {
     removeFromWatchlaterOnServer,
   } = useAxiosCalls();
 
-  // redux
   const {
     auth: { token },
   } = useSelector((authState) => authState);
@@ -107,13 +106,13 @@ export const SingleVideo = () => {
   };
 
   useEffect(() => {
-    if (watchlater.findIndex((el) => el._id === singleVideo._id) !== -1) {
+    if (watchlater?.findIndex((el) => el?._id === singleVideo?._id) !== -1) {
       setWatchlaterButton("fas fa-clock");
     } else {
       setWatchlaterButton("far fa-clock icon-inactive");
     }
 
-    if (likes.findIndex((el) => el._id === singleVideo._id) !== -1) {
+    if (likes?.findIndex((el) => el?._id === singleVideo?._id) !== -1) {
       setLikeButton("fas fa-thumbs-up");
     } else {
       setLikeButton("far fa-thumbs-up icon-inactive");
@@ -121,14 +120,16 @@ export const SingleVideo = () => {
   }, [likes, watchlater, singleVideo._id, setWatchlaterButton, setLikeButton]);
 
   const likedStatus =
-    likes.findIndex((el) => el._id === singleVideo._id) !== -1;
+    likes?.findIndex((el) => el?._id === singleVideo?._id) !== -1;
 
   const likeCount = likedStatus
     ? Number(singleVideo.statistics?.likeCount) + 1
     : Number(singleVideo.statistics?.likeCount);
 
-  const mapMustWatched = videos.map((video) => {
-    return video.mustWatch && <VideoCard key={video._id} videoDetail={video} />;
+  const mapMustWatched = videos?.map((video) => {
+    return (
+      video?.mustWatch && <VideoCard key={video?._id} videoDetail={video} />
+    );
   });
 
   useEffect(() => {
@@ -181,7 +182,7 @@ export const SingleVideo = () => {
               <h2 className="title-lg-wt-5 mg-1-bot">
                 Author - {snippet?.channelTitle}
               </h2>
-              <p className="p-lg">{snippet?.localized.description}</p>
+              <p className="p-lg">{snippet?.localized?.description}</p>
             </div>
           </div>
         </div>

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { useAxiosCalls, useModal, useVideo } from "Context";
+import { useAxiosCalls, useModal } from "Context";
 import { formatTimeDuration } from "Utils/formatTimeDuration";
 import { Button, IconButton } from "Components";
 import axios from "axios";
 import "./VideoCard.css";
 import { useDispatch, useSelector } from "react-redux";
-import { videoActions } from "Store";
+import { videoActions } from "Store/store";
 
 export const VideoCard = ({ videoDetail }) => {
   const {
@@ -15,7 +15,6 @@ export const VideoCard = ({ videoDetail }) => {
     statistics: { viewCount },
   } = videoDetail;
 
-  // redux
   const { auth } = useSelector((authState) => authState);
   const dispatch = useDispatch();
   const {
@@ -145,13 +144,13 @@ export const VideoCard = ({ videoDetail }) => {
     : "card-vertical video-card-vertical";
 
   useEffect(() => {
-    if (watchlater.findIndex((el) => el._id === videoDetail._id) !== -1) {
+    if (watchlater?.findIndex((el) => el?._id === videoDetail?._id) !== -1) {
       setWatchlaterButton("fas fa-clock");
     } else {
       setWatchlaterButton("far fa-clock icon-inactive");
     }
 
-    if (likes.findIndex((el) => el._id === videoDetail._id) !== -1) {
+    if (likes?.findIndex((el) => el?._id === videoDetail?._id) !== -1) {
       setLikeButton("fas fa-thumbs-up");
     } else {
       setLikeButton("far fa-thumbs-up icon-inactive");
@@ -167,7 +166,7 @@ export const VideoCard = ({ videoDetail }) => {
     };
 
     fetchPlaylists();
-  }, [singlePlaylist, auth.token]);
+  }, [singlePlaylist, auth.token, dispatch]);
 
   return (
     <div

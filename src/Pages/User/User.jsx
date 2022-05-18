@@ -2,7 +2,6 @@ import { NavbarLoginButton, NotLogged } from "Components";
 import "./User.css";
 import { useSelector } from "react-redux";
 export const User = () => {
-  // redux
   const {
     auth: { token, user },
   } = useSelector((authState) => authState);

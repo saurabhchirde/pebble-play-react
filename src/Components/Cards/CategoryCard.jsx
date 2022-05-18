@@ -1,12 +1,11 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { filterActions } from "Store";
+import { filterActions } from "Store/store";
 import "./CategoryCard.css";
 
 export const CategoryCard = ({ category }) => {
   const navigate = useNavigate();
 
-  // redux
   const dispatch = useDispatch();
 
   const onCategoryClickHandler = () => {

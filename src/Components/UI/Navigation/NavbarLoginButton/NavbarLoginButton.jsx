@@ -2,13 +2,12 @@ import { Button } from "Components";
 import { useModal } from "Context";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { authActions } from "Store";
+import { authActions } from "Store/store";
 
 export const NavbarLoginButton = (props) => {
   const { modalDispatch } = useModal();
   const navigate = useNavigate();
 
-  // redux
   const { auth } = useSelector((authState) => authState);
   const dispatch = useDispatch();
 

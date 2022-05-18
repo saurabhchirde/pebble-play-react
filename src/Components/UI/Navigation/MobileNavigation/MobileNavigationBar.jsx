@@ -10,7 +10,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./MobileNavigationBar.css";
 import { ThemeToggler } from "..";
 import { useSelector, useDispatch } from "react-redux";
-import { authActions, filterActions, userActions } from "Store";
+import { authActions, filterActions, userActions } from "Store/store";
 
 export const MobileNavigationBar = () => {
   const location = useLocation();
@@ -20,7 +20,6 @@ export const MobileNavigationBar = () => {
     modalState: { showNavMenu },
   } = useModal();
 
-  // redux
   const dispatch = useDispatch();
   const { auth } = useSelector((authState) => authState);
   const {

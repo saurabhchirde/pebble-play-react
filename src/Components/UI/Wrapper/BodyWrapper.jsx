@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { userActions } from "Store";
+import { userActions } from "Store/store";
 import "./BodyWrapper.css";
 
 export const BodyWrapper = ({ children }) => {

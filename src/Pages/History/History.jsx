@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import "./History.css";
 
 export const History = () => {
-  // redux
   const {
     auth: { token },
   } = useSelector((authState) => authState);
@@ -28,10 +27,10 @@ export const History = () => {
   };
 
   const mapHistory =
-    history.length > 0 ? (
+    history?.length > 0 ? (
       <div className="history-video-section flex-row">
-        {history.map((video) => (
-          <VideoCard key={video._id} videoDetail={video} />
+        {history?.map((video) => (
+          <VideoCard key={video?._id} videoDetail={video} />
         ))}
       </div>
     ) : (
