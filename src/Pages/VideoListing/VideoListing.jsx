@@ -1,18 +1,17 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { VideoCard, FloatingButton, Footer } from "Components";
-import { useFilter, useVideo } from "Context";
 import { finalFilteredData } from "Utils/finalFilteredData";
 import "./VideoListing.css";
 import { useDispatch, useSelector } from "react-redux";
 import { filterActions } from "Store";
 
 export const VideoListing = () => {
+  // redux
   const {
     videoState: { videos, categories },
-  } = useVideo();
+  } = useSelector((videoState) => videoState);
 
-  // redux
   const { filterState } = useSelector((filterState) => filterState);
   const dispatch = useDispatch();
 
@@ -96,23 +95,27 @@ export const VideoListing = () => {
 
   return (
     <div className="video-listing-body">
-      <div className="discover-section"></div>
-      <form className="category-section">
-        <div onClick={onAllClickHandler} className={allCategoryClassName}>
-          All
-        </div>
-        {mapAllCategories}
-        <div onClick={onLatestClickHandler} className={latestCategoryClassName}>
-          Latest first
-        </div>
-        {videosAvailable && (
-          <p className="result-message">
-            Showing {byLatest ? byLatest : ""}{" "}
-            {bySearch ? bySearch : byCategory} videos
-          </p>
-        )}
-      </form>
-      {mapAllVideos}
+      <div>
+        <form className="category-section">
+          <div onClick={onAllClickHandler} className={allCategoryClassName}>
+            All
+          </div>
+          {mapAllCategories}
+          <div
+            onClick={onLatestClickHandler}
+            className={latestCategoryClassName}
+          >
+            Latest first
+          </div>
+          {videosAvailable && (
+            <p className="result-message">
+              Showing {byLatest ? byLatest : ""}{" "}
+              {bySearch ? bySearch : byCategory} videos
+            </p>
+          )}
+        </form>
+        {mapAllVideos}
+      </div>
       <FloatingButton href="#" icon="fas fa-arrow-up" />
       <Footer />
     </div>

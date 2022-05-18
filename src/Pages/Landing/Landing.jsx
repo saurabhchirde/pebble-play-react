@@ -1,14 +1,14 @@
 import { VideoCard, BannerCard, CategoryCard, Footer } from "Components";
-import { useVideo } from "Context";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { filterActions } from "Store";
 import "./Landing.css";
 
 export const Landing = () => {
+  // redux
   const {
     videoState: { videos, categories },
-  } = useVideo();
+  } = useSelector((videoState) => videoState);
   const dispatch = useDispatch();
 
   const mapVideos = videos.map((video) => {

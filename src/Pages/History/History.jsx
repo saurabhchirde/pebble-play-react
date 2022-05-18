@@ -1,17 +1,16 @@
 import { VideoCard, Button, NotLogged, AlertToast } from "Components";
-import { useAxiosCalls, useVideo } from "Context";
+import { useAxiosCalls } from "Context";
 import { useSelector } from "react-redux";
 import "./History.css";
 
 export const History = () => {
-  const {
-    videoState: { history },
-  } = useVideo();
-
   // redux
   const {
     auth: { token },
   } = useSelector((authState) => authState);
+  const {
+    videoState: { history },
+  } = useSelector((videoState) => videoState);
 
   const { removeAllFromHistoryOnServer } = useAxiosCalls();
 

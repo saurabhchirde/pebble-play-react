@@ -5,7 +5,8 @@ import { formatTimeDuration } from "Utils/formatTimeDuration";
 import { Button, IconButton } from "Components";
 import axios from "axios";
 import "./VideoCard.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { videoActions } from "Store";
 
 export const VideoCard = ({ videoDetail }) => {
   const {
@@ -14,7 +15,12 @@ export const VideoCard = ({ videoDetail }) => {
     statistics: { viewCount },
   } = videoDetail;
 
+  // redux
   const { auth } = useSelector((authState) => authState);
+  const dispatch = useDispatch();
+  const {
+    videoState: { watchlater, likes, singlePlaylist },
+  } = useSelector((videoState) => videoState);
 
   const {
     likeVideoOnServer,
@@ -25,13 +31,7 @@ export const VideoCard = ({ videoDetail }) => {
     deleteVideoFromPlaylistOnServer,
   } = useAxiosCalls();
 
-  const { setShowLogin, setShowPlaylistModal } = useModal();
-
-  const {
-    videoState: { watchlater, likes, singlePlaylist },
-    setTempVideo,
-    videoDispatch,
-  } = useVideo();
+  const { modalDispatch } = useModal();
 
   const [trash, showTrash] = useState(true);
   const { playlistId } = useParams();
@@ -80,7 +80,7 @@ export const VideoCard = ({ videoDetail }) => {
       likeVideoOnServer(likeConfig);
       setLikeButton("fas fa-thumbs-up");
     } else {
-      setShowLogin(true);
+      modalDispatch({ type: "showLogin", payload: true });
     }
   };
 
@@ -103,7 +103,7 @@ export const VideoCard = ({ videoDetail }) => {
       addToWatchlaterOnServer(watchlaterConfig);
       setWatchlaterButton("fas fa-clock icon-inactive");
     } else {
-      setShowLogin(true);
+      modalDispatch({ type: "showLogin", payload: true });
     }
   };
 
@@ -123,10 +123,10 @@ export const VideoCard = ({ videoDetail }) => {
   // playlist
   const addToPlaylistClickHandler = () => {
     if (auth.token) {
-      setTempVideo(videoDetail);
-      setShowPlaylistModal(true);
+      dispatch(videoActions.tempCacheVideo(videoDetail));
+      modalDispatch({ type: "showPlaylistModal", payload: true });
     } else {
-      setShowLogin(true);
+      modalDispatch({ type: "showLogin", payload: true });
     }
   };
 
@@ -159,19 +159,15 @@ export const VideoCard = ({ videoDetail }) => {
   }, [likes, watchlater, videoDetail._id, setWatchlaterButton, setLikeButton]);
 
   useEffect(() => {
-    const fetchPlatlists = async () => {
+    const fetchPlaylists = async () => {
       const respPlaylist = await axios.get("/api/user/playlists", {
         headers: { authorization: auth.token },
       });
-
-      videoDispatch({
-        type: "GET_PLAYLIST_FROM_SERVER",
-        payload: respPlaylist.data.playlists,
-      });
+      dispatch(videoActions.getPlaylistFromServer(respPlaylist.data.playlists));
     };
 
-    fetchPlatlists();
-  }, [singlePlaylist, auth.token, videoDispatch]);
+    fetchPlaylists();
+  }, [singlePlaylist, auth.token]);
 
   return (
     <div

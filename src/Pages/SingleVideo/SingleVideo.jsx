@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { PebblePlayer, VideoCard } from "Components";
 import { useAxiosCalls, useModal, useVideo } from "Context";
 import "./SingleVideo.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { videoActions } from "Store";
 
 export const SingleVideo = () => {
   const { videoId } = useParams();
@@ -19,12 +20,12 @@ export const SingleVideo = () => {
   const {
     auth: { token },
   } = useSelector((authState) => authState);
-
-  const { setShowLogin, setShowPlaylistModal } = useModal();
+  const dispatch = useDispatch();
   const {
     videoState: { videos, singleVideo, watchlater, likes },
-    setTempVideo,
-  } = useVideo();
+  } = useSelector((videoState) => videoState);
+
+  const { modalDispatch } = useModal();
   const [played, setPlayed] = useState(false);
   const { snippet, statistics } = singleVideo;
   const [watchlaterButton, setWatchlaterButton] = useState(
@@ -56,7 +57,7 @@ export const SingleVideo = () => {
       likeVideoOnServer(likeConfig);
       setLikeButton("fas fa-thumbs-up");
     } else {
-      setShowLogin(true);
+      modalDispatch({ type: "showLogin", payload: true });
     }
   };
 
@@ -78,7 +79,7 @@ export const SingleVideo = () => {
       addToWatchlaterOnServer(watchlaterConfig);
       setWatchlaterButton("fas fa-clock icon-inactive");
     } else {
-      setShowLogin(true);
+      modalDispatch({ type: "showLogin", payload: true });
     }
   };
 
@@ -98,10 +99,10 @@ export const SingleVideo = () => {
   // playlist
   const addToPlaylistClickHandler = () => {
     if (token) {
-      setTempVideo(singleVideo);
-      setShowPlaylistModal(true);
+      dispatch(videoActions.tempCacheVideo(singleVideo));
+      modalDispatch({ type: "showPlaylistModal", payload: true });
     } else {
-      setShowLogin(true);
+      modalDispatch({ type: "showLogin", payload: true });
     }
   };
 

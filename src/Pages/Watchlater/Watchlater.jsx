@@ -1,14 +1,13 @@
 import { VideoCard, NotLogged } from "Components";
-import { useVideo } from "Context";
 import { useSelector } from "react-redux";
 import "./Watchlater.css";
 
 export const Watchlater = () => {
+  // redux
   const {
     videoState: { watchlater },
-  } = useVideo();
+  } = useSelector((videoState) => videoState);
 
-  // redux
   const {
     auth: { token },
   } = useSelector((authState) => authState);

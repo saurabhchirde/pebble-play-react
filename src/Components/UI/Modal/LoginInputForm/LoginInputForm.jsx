@@ -1,15 +1,14 @@
 import { InputTypeOne, InputTypePassword, Button } from "Components";
+import { useModal } from "Context";
 export const LoginInputForm = ({
   onLoginSubmitHandler,
   onModalInputHandler,
   loginInput,
   showPassword,
   setShowPassword,
-  onLoginClickFormHandler,
   onTestButtonClickFormHandler,
-  setShowLogin,
-  setShowSignup,
 }) => {
+  const { modalDispatch } = useModal();
   return (
     <form onSubmit={onLoginSubmitHandler}>
       <InputTypeOne
@@ -57,8 +56,8 @@ export const LoginInputForm = ({
       <button
         className="btn primary-text-btn-sm create-account-btn"
         onClick={() => {
-          setShowLogin(false);
-          setShowSignup(true);
+          modalDispatch({ type: "showLogin", payload: false });
+          modalDispatch({ type: "showSignup", payload: true });
         }}
       >
         <h2>

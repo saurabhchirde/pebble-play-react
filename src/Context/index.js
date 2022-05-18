@@ -1,4 +1,3 @@
-export { VideoProvider, useVideo } from "./Video/VideoContext";
 export { ModalProvider, useModal } from "./Modal/ModalContext";
 export { ScrollToTop } from "./ScrollToTop/ScrollToTop";
 export {

@@ -1,33 +1,29 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useReducer } from "react";
+import { modalReducer } from "./modalReducer";
 
 const ModalContext = createContext(null);
 
+const modalInitialState = {
+  showLogin: false,
+  showSignup: false,
+  showSignupAlert: false,
+  alertText: "",
+  showAlert: false,
+  showNavMenu: false,
+  showPlaylistModal: false,
+};
+
 const ModalProvider = ({ children }) => {
-  const [showLogin, setShowLogin] = useState(false);
-  const [showSignup, setShowSignup] = useState(false);
-  const [showSignupAlert, setShowSignupAlert] = useState(false);
-  const [alertText, setAlertText] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
-  const [showNavMenu, setShowNavMenu] = useState(false);
-  const [showPlaylistModal, setShowPlaylistModal] = useState(false);
+  const [modalState, modalDispatch] = useReducer(
+    modalReducer,
+    modalInitialState
+  );
 
   return (
     <ModalContext.Provider
       value={{
-        showLogin,
-        setShowLogin,
-        showSignup,
-        setShowSignup,
-        showSignupAlert,
-        setShowSignupAlert,
-        alertText,
-        setAlertText,
-        showAlert,
-        setShowAlert,
-        showNavMenu,
-        setShowNavMenu,
-        showPlaylistModal,
-        setShowPlaylistModal,
+        modalState,
+        modalDispatch,
       }}
     >
       {children}

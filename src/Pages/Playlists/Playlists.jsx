@@ -1,25 +1,25 @@
-import { useModal, useVideo } from "Context";
+import { useModal } from "Context";
 import { NotLogged, LabelIconButton, PlaylistCard } from "Components";
 import "./Playlists.css";
 import { useSelector } from "react-redux";
 
 export const Playlists = () => {
+  // redux
   const {
     videoState: { playlists },
-  } = useVideo();
+  } = useSelector((videoState) => videoState);
 
-  // redux
   const {
     auth: { token },
   } = useSelector((authState) => authState);
 
-  const { setShowLogin, setShowPlaylistModal } = useModal();
+  const { modalDispatch } = useModal();
 
   const onCreatePlaylistClickHandler = () => {
     if (token) {
-      setShowPlaylistModal(true);
+      modalDispatch({ type: "showPlaylistModal", payload: true });
     } else {
-      setShowLogin(true);
+      modalDispatch({ type: "showLogin", payload: true });
     }
   };
 

@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { VideoCard } from "Components";
-import { useAxiosCalls, useVideo } from "Context";
+import { useAxiosCalls } from "Context";
 import "./Playlist.css";
 import { useSelector } from "react-redux";
 
 export const Playlist = () => {
   const {
     videoState: { playlists, singlePlaylist },
-  } = useVideo();
+  } = useSelector((videoState) => videoState);
 
   const { getPlayListFromServer } = useAxiosCalls();
 

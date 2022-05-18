@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useAxiosCalls, useModal, useVideo } from "Context";
+import { useAxiosCalls, useModal } from "Context";
 import { AlertToast, Button, IconButton, LabelIconButton } from "Components";
 import "./PlaylistModal.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { videoActions } from "Store";
 
 const initialPlaylist = {
   title: "",
@@ -11,10 +12,9 @@ const initialPlaylist = {
 
 export const PlaylistModal = () => {
   const {
-    videoState: { playlists },
-    tempVideo,
-    setTempVideo,
-  } = useVideo();
+    videoState: { playlists, tempVideo },
+  } = useSelector((videoState) => videoState);
+  const dispatch = useDispatch();
 
   const { auth } = useSelector((authState) => authState);
   const { token } = auth;
@@ -24,7 +24,7 @@ export const PlaylistModal = () => {
     addInSelectedPlaylistOnServer,
     deleteVideoFromPlaylistOnServer,
   } = useAxiosCalls();
-  const { setShowPlaylistModal } = useModal();
+  const { modalDispatch } = useModal();
   const [showCreate, setShowCreate] = useState(false);
   const [newPlaylist, setNewPlaylist] = useState(initialPlaylist);
 
@@ -82,8 +82,8 @@ export const PlaylistModal = () => {
   };
 
   const closePlaylistModal = () => {
-    setShowPlaylistModal(false);
-    setTempVideo({});
+    modalDispatch({ type: "showPlaylistModal", payload: false });
+    dispatch(videoActions.tempCacheVideo({}));
   };
 
   const playlistAvailable = playlists.length > 0 ? true : false;

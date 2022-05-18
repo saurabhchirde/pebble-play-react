@@ -13,7 +13,7 @@ export const Login = () => {
   } = useSelector((userState) => userState);
   const dispatch = useDispatch();
 
-  const { setShowLogin, setShowSignup } = useModal();
+  const { modalDispatch } = useModal();
   const { userLogin } = useAxiosCalls();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -66,7 +66,7 @@ export const Login = () => {
       <div
         className="modal-backdrop"
         onClick={() => {
-          setShowLogin(false);
+          modalDispatch({ type: "showLogin", payload: false });
         }}
       ></div>
       <div className="signin-modal">
@@ -76,8 +76,8 @@ export const Login = () => {
           btnClassName="btn icon-btn-sm close-modal-btn"
           icon="fas fa-times"
           onClick={() => {
-            setShowLogin(false);
-            setShowSignup(false);
+            modalDispatch({ type: "showLogin", payload: false });
+            modalDispatch({ type: "showSignup", payload: false });
           }}
         />
         <LoginInputForm
@@ -88,8 +88,6 @@ export const Login = () => {
           setShowPassword={setShowPassword}
           onLoginClickFormHandler={onLoginClickFormHandler}
           onTestButtonClickFormHandler={onTestButtonClickFormHandler}
-          setShowLogin={setShowLogin}
-          setShowSignup={setShowSignup}
         />
       </div>
     </>

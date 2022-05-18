@@ -1,5 +1,5 @@
 import ReactPlayer from "react-player/lazy";
-import { useAxiosCalls, useVideo } from "Context";
+import { useAxiosCalls } from "Context";
 import { useSelector } from "react-redux";
 
 export const PebblePlayer = ({ videoId, videoDetails, played, setPlayed }) => {
@@ -9,7 +9,7 @@ export const PebblePlayer = ({ videoId, videoDetails, played, setPlayed }) => {
 
   const {
     videoState: { history },
-  } = useVideo();
+  } = useSelector((videoState) => videoState);
   const { addInHistoryListOnServer } = useAxiosCalls();
 
   const historyConfig = {

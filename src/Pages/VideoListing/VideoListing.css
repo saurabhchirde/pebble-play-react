@@ -1,16 +1,12 @@
 .video-listing-body {
   width: 100%;
+  min-height: 90vh;
   margin: 0 auto;
   padding: 2rem 1rem 0rem 2rem;
   margin-left: 4rem;
-}
-
-.discover-section {
   display: flex;
-}
-
-.discover-section > div {
-  margin: 0 5px;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .all-videos-section {

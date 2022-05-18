@@ -1,4 +1,9 @@
-import { NavbarLoginButton, SearchBar, NavbarAvatar } from "Components";
+import {
+  NavbarLoginButton,
+  SearchBar,
+  NavbarAvatar,
+  AlertToast,
+} from "Components";
 import logoIcon from "Data/Logo/logoIcon.svg";
 import { useModal } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -10,7 +15,10 @@ import { authActions, filterActions, userActions } from "Store";
 export const MobileNavigationBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { setAlertText, setShowAlert, setShowNavMenu } = useModal();
+  const {
+    modalDispatch,
+    modalState: { showNavMenu },
+  } = useModal();
 
   // redux
   const dispatch = useDispatch();
@@ -32,8 +40,7 @@ export const MobileNavigationBar = () => {
 
   const logoutClickHandler = () => {
     dispatch(authActions.logout());
-    setAlertText("Logged out successfully");
-    setShowAlert(true);
+    AlertToast("success", "Logged out Successfully");
     if (location.pathname.includes("playlist" || "account" || "settings")) {
       navigate("/videos");
     }
@@ -44,7 +51,7 @@ export const MobileNavigationBar = () => {
   };
 
   const toggleAccountNavMenu = () => {
-    setShowNavMenu((show) => !show);
+    modalDispatch({ type: "showNavMenu", payload: !showNavMenu });
   };
 
   return (

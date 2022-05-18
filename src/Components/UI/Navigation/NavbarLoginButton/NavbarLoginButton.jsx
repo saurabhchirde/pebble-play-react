@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "Store";
 
 export const NavbarLoginButton = (props) => {
-  const { setShowLogin, setShowSignup, setAlertText, setShowAlert } =
-    useModal();
+  const { modalDispatch } = useModal();
   const navigate = useNavigate();
 
   // redux
@@ -15,15 +14,14 @@ export const NavbarLoginButton = (props) => {
 
   const onNavbarLoginClickHandler = () => {
     if (!auth.login) {
-      setShowLogin(true);
-      setShowSignup(false);
+      modalDispatch({ type: "showLogin", payload: true });
+      modalDispatch({ type: "showSignup", payload: false });
     } else {
-      setAlertText(`Logged out successfully`);
-      setShowAlert(true);
+      modalDispatch({ type: "showAlert", payload: true });
       dispatch(authActions.logout());
       navigate("/videos");
-      setShowLogin(false);
-      setShowSignup(false);
+      modalDispatch({ type: "showLogin", payload: false });
+      modalDispatch({ type: "showSignup", payload: false });
     }
   };
 

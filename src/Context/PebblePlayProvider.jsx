@@ -5,7 +5,6 @@ import {
   ModalProvider,
   ScrollToTop,
   ThemeProvider,
-  VideoProvider,
 } from "./index";
 
 const PebblePlayProvider = ({ children }) => {
@@ -15,9 +14,7 @@ const PebblePlayProvider = ({ children }) => {
         <ScrollToTop>
           <AnimationProvider>
             <ModalProvider>
-              <VideoProvider>
-                <AxiosCallProvider>{children}</AxiosCallProvider>
-              </VideoProvider>
+              <AxiosCallProvider>{children}</AxiosCallProvider>
             </ModalProvider>
           </AnimationProvider>
         </ScrollToTop>

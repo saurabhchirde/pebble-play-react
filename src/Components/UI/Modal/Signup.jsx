@@ -1,4 +1,4 @@
-import { IconButton } from "Components";
+import { AlertToast, IconButton } from "Components";
 import "./Signup.css";
 import { useAxiosCalls, useModal } from "Context";
 import { useState } from "react";
@@ -12,8 +12,7 @@ const initialSignupState = {
 };
 
 export const Signup = () => {
-  const { setShowLogin, setShowSignup, setAlertText, setShowAlert } =
-    useModal();
+  const { modalDispatch } = useModal();
   const [user, setUser] = useState(initialSignupState);
   const { userSignup } = useAxiosCalls();
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -36,22 +35,19 @@ export const Signup = () => {
     ) {
       if (user.password === confirmPassword) {
         userSignup(signupConfig);
-        setShowSignup(false);
-        setAlertText(
-          "Account created Successfully, please login in to continue"
-        );
+        modalDispatch({ type: "showSignup", payload: false });
         setUser(initialSignupState);
         setConfirmPassword("");
       } else {
         setConfirmPassword("");
-        setAlertText("Password mismatched");
+        AlertToast("error", "Password mismatched");
       }
     } else {
-      setAlertText(
+      AlertToast(
+        "error",
         "Minimum 8 char, 1 Uppercase, 1 Lowercase, 1 number & 1 Special Character required"
       );
     }
-    setShowAlert(true);
   };
 
   const onInputChangeHandler = (e) => {
@@ -71,13 +67,15 @@ export const Signup = () => {
   };
 
   const onCloseClick = () => {
-    setShowLogin(false);
-    setShowSignup(false);
+    modalDispatch({ type: "showLogin", payload: false });
+
+    modalDispatch({ type: "showSignup", payload: false });
   };
 
   const onLoginClick = () => {
-    setShowLogin(true);
-    setShowSignup(false);
+    modalDispatch({ type: "showLogin", payload: true });
+
+    modalDispatch({ type: "showSignup", payload: false });
   };
 
   return (
@@ -85,7 +83,7 @@ export const Signup = () => {
       <div
         className="modal-backdrop"
         onClick={() => {
-          setShowSignup(false);
+          modalDispatch({ type: "showSignup", payload: false });
         }}
       ></div>
       <div className="signup-modal-one">

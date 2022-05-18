@@ -3,13 +3,13 @@ import "./VerticalNavBar.css";
 import { MenuItems } from "./MenuItems/MenuItems";
 
 export const MobileVerticalNavBar = () => {
-  const { setShowNavMenu } = useModal();
+  const { modalDispatch } = useModal();
 
   return (
     <>
       <div
         onClick={() => {
-          setShowNavMenu(false);
+          modalDispatch({ type: "showNavMenu", payload: false });
         }}
         className="modal-backdrop"
       ></div>
@@ -17,7 +17,7 @@ export const MobileVerticalNavBar = () => {
         <div
           className="vertical-nav-menu-close"
           onClick={() => {
-            setShowNavMenu(false);
+            modalDispatch({ type: "showNavMenu", payload: false });
           }}
         >
           <i className="fas fa-times"></i>
