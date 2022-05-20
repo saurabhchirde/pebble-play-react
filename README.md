@@ -42,9 +42,9 @@
 
 ## Tech Stack
 
-**Client:** React, React Router, Redux, Context API, [Pebble UI](https://pebbleui.com/)
+**Client side:** React, React Router, Redux, Context API, [Pebble UI](https://pebbleui.com/)
 
-**Server:** Mockbee (Mock Backend)
+**Server side:** Mockbee (Mock Backend)
 
 </br>
 
