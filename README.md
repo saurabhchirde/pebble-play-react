@@ -37,6 +37,7 @@
 - Create and Delete Playlist
 - Single Video View
 - User Account Page
+- Dark and Light Theme
 
 </br>
 
