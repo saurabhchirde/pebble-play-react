@@ -12,6 +12,13 @@
 
 [Pebble Play](https://play.pebbleui.com/)
 
+### Guest User Flow
+![guest user](https://user-images.githubusercontent.com/92800463/169607214-b6c2d69a-b3b7-49a8-b908-34e6bbc25fac.gif)
+
+### Registered User Flow
+![user account](https://user-images.githubusercontent.com/92800463/169607280-349366f5-ad64-473d-b811-959c3caf9abc.gif)
+
+
 </br>
 
 ## Features
@@ -23,7 +30,9 @@
 - Protected/Private Routes
 - Video Listing
 - Filter by Category
-- Watch Later
+- Search Videos
+- Liked Videos
+- Watch Laters
 - Watched History
 - Create and Delete Playlist
 - Single Video View
