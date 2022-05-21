@@ -1,8 +1,10 @@
 import { AlertToast, IconButton } from "Components";
 import "./Signup.css";
-import { useAxiosCalls, useModal } from "Context";
+import { useAxiosCalls, useTheme } from "Context";
 import { useState } from "react";
 import { SignupInputForm } from "./SignupInputForm/SignupInputForm";
+import { modalActions } from "Store/store";
+import { useDispatch } from "react-redux";
 
 const initialSignupState = {
   firstName: "",
@@ -12,10 +14,11 @@ const initialSignupState = {
 };
 
 export const Signup = () => {
-  const { modalDispatch } = useModal();
+  const { theme } = useTheme();
   const [user, setUser] = useState(initialSignupState);
   const { userSignup } = useAxiosCalls();
   const [confirmPassword, setConfirmPassword] = useState("");
+  const dispatch = useDispatch();
 
   const signupConfig = {
     url: "/api/auth/signup",
@@ -35,17 +38,18 @@ export const Signup = () => {
     ) {
       if (user.password === confirmPassword) {
         userSignup(signupConfig);
-        modalDispatch({ type: "showSignup", payload: false });
+        dispatch(modalActions.showSignup(false));
         setUser(initialSignupState);
         setConfirmPassword("");
       } else {
         setConfirmPassword("");
-        AlertToast("error", "Password mismatched");
+        AlertToast("error", "Password mismatched", theme);
       }
     } else {
       AlertToast(
         "error",
-        "Minimum 8 char, 1 Uppercase, 1 Lowercase, 1 number & 1 Special Character required"
+        "Minimum 8 char, 1 Uppercase, 1 Lowercase, 1 number & 1 Special Character required",
+        theme
       );
     }
   };
@@ -67,13 +71,13 @@ export const Signup = () => {
   };
 
   const closeClickHandler = () => {
-    modalDispatch({ type: "showLogin", payload: false });
-    modalDispatch({ type: "showSignup", payload: false });
+    dispatch(modalActions.showLogin(false));
+    dispatch(modalActions.showSignup(false));
   };
 
-  const onLoginClick = () => {
-    modalDispatch({ type: "showLogin", payload: true });
-    modalDispatch({ type: "showSignup", payload: false });
+  const loginClickHandler = () => {
+    dispatch(modalActions.showLogin(true));
+    dispatch(modalActions.showSignup(false));
   };
 
   return (
@@ -81,7 +85,7 @@ export const Signup = () => {
       <div
         className="modal-backdrop"
         onClick={() => {
-          modalDispatch({ type: "showSignup", payload: false });
+          dispatch(modalActions.showSignup(false));
         }}
       ></div>
       <div className="signup-modal-one">
@@ -98,7 +102,7 @@ export const Signup = () => {
           user={user}
           confirmPassword={confirmPassword}
           confirmPasswordHandler={confirmPasswordHandler}
-          onLoginClick={onLoginClick}
+          loginClickHandler={loginClickHandler}
         />
       </div>
     </>

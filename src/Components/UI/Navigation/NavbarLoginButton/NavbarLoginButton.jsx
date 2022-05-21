@@ -1,26 +1,26 @@
-import { Button } from "Components";
-import { useModal } from "Context";
+import { AlertToast, Button } from "Components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { authActions } from "Store/store";
+import { authActions, modalActions } from "Store/store";
+import { useTheme } from "Context";
 
 export const NavbarLoginButton = (props) => {
-  const { modalDispatch } = useModal();
   const navigate = useNavigate();
 
   const { auth } = useSelector((authState) => authState);
   const dispatch = useDispatch();
+  const { theme } = useTheme();
 
   const navbarLoginClickHandler = () => {
     if (!auth.login) {
-      modalDispatch({ type: "showLogin", payload: true });
-      modalDispatch({ type: "showSignup", payload: false });
+      dispatch(modalActions.showLogin(true));
+      dispatch(modalActions.showSignup(false));
     } else {
-      modalDispatch({ type: "showAlert", payload: true });
+      AlertToast("success", "Logged out Successfully", theme);
       dispatch(authActions.logout());
       navigate("/videos");
-      modalDispatch({ type: "showLogin", payload: false });
-      modalDispatch({ type: "showSignup", payload: false });
+      dispatch(modalActions.showLogin(false));
+      dispatch(modalActions.showSignup(false));
     }
   };
 

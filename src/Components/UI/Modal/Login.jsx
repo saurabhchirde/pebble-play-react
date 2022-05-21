@@ -1,10 +1,10 @@
-import { useAxiosCalls, useModal } from "Context";
+import { useAxiosCalls, useModal, useTheme } from "Context";
 import { AlertToast, IconButton } from "Components";
 import { useState } from "react";
 import "./Login.css";
 import { LoginInputForm } from "./LoginInputForm/LoginInputForm";
 import { useDispatch, useSelector } from "react-redux";
-import { userActions } from "Store/store";
+import { modalActions, userActions } from "Store/store";
 
 export const Login = () => {
   const {
@@ -12,9 +12,9 @@ export const Login = () => {
   } = useSelector((userState) => userState);
   const dispatch = useDispatch();
 
-  const { modalDispatch } = useModal();
   const { userLogin } = useAxiosCalls();
   const [showPassword, setShowPassword] = useState(false);
+  const { theme } = useTheme();
 
   const loginConfig = {
     url: "/api/auth/login",
@@ -34,12 +34,16 @@ export const Login = () => {
 
   const loginClickFormHandler = () => {
     if (loginInput.email.trim() === "" || loginInput.password.trim() === "") {
-      AlertToast("error", "Email or Password cannot be blank, try again");
+      AlertToast(
+        "error",
+        "Email or Password cannot be blank, try again",
+        theme
+      );
     } else {
       if (loginInput.email.match(emailValidate)) {
         userLogin(loginConfig);
       } else {
-        AlertToast("error", "Entered email is wrong, please try again");
+        AlertToast("error", "Entered email is wrong, please try again", theme);
       }
     }
   };
@@ -65,7 +69,7 @@ export const Login = () => {
       <div
         className="modal-backdrop"
         onClick={() => {
-          modalDispatch({ type: "showLogin", payload: false });
+          dispatch(modalActions.showLogin(false));
         }}
       ></div>
       <div className="signin-modal">
@@ -75,8 +79,8 @@ export const Login = () => {
           btnClassName="btn icon-btn-sm close-modal-btn"
           icon="fas fa-times"
           onClick={() => {
-            modalDispatch({ type: "showLogin", payload: false });
-            modalDispatch({ type: "showSignup", payload: false });
+            dispatch(modalActions.showLogin(false));
+            dispatch(modalActions.showSignup(false));
           }}
         />
         <LoginInputForm

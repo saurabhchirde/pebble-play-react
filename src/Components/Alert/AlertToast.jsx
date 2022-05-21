@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const AlertToast = (type = "", message) => {
+export const AlertToast = (type = "", message, theme) => {
   toast(message, {
     position: "top-right",
     autoClose: 3500,
@@ -11,5 +11,6 @@ export const AlertToast = (type = "", message) => {
     draggable: true,
     progress: undefined,
     type: type,
+    theme: theme,
   });
 };

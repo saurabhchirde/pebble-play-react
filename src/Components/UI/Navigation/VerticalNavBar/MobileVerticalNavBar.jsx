@@ -1,15 +1,16 @@
-import { useModal } from "Context";
 import "./VerticalNavBar.css";
 import { MenuItems } from "./MenuItems/MenuItems";
+import { modalActions } from "Store/store";
+import { useDispatch } from "react-redux";
 
 export const MobileVerticalNavBar = () => {
-  const { modalDispatch } = useModal();
+  const dispatch = useDispatch();
 
   return (
     <>
       <div
         onClick={() => {
-          modalDispatch({ type: "showNavMenu", payload: false });
+          dispatch(modalActions.showNavMenu(false));
         }}
         className="modal-backdrop"
       ></div>
@@ -17,7 +18,7 @@ export const MobileVerticalNavBar = () => {
         <div
           className="vertical-nav-menu-close"
           onClick={() => {
-            modalDispatch({ type: "showNavMenu", payload: false });
+            dispatch(modalActions.showNavMenu(false));
           }}
         >
           <i className="fas fa-times"></i>

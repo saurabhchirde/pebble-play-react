@@ -1,7 +1,7 @@
-import { useModal } from "Context";
 import { NotLogged, LabelIconButton, PlaylistCard } from "Components";
 import "./Playlists.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { modalActions } from "Store/store";
 
 export const Playlists = () => {
   const {
@@ -12,13 +12,13 @@ export const Playlists = () => {
     auth: { token },
   } = useSelector((authState) => authState);
 
-  const { modalDispatch } = useModal();
+  const dispatch = useDispatch();
 
   const createPlaylistClickHandler = () => {
     if (token) {
-      modalDispatch({ type: "showPlaylistModal", payload: true });
+      dispatch(modalActions.showPlaylistModal(true));
     } else {
-      modalDispatch({ type: "showLogin", payload: true });
+      dispatch(modalActions.showLogin(true));
     }
   };
 

@@ -37,7 +37,7 @@ export const DesktopNavigationBar = () => {
 
   const logoutClickHandler = () => {
     dispatch(authActions.logout());
-    AlertToast("success", "Logged out Successfully");
+    AlertToast("success", "Logged out Successfully", theme);
     if (location.pathname.includes("account" || "settings")) {
       navigate("/videos");
     }

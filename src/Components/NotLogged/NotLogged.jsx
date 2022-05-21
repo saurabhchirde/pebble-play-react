@@ -1,16 +1,17 @@
-import { useModal } from "Context";
 import { Button } from "Components";
 import "./NotLogged.css";
+import { modalActions } from "Store/store";
+import { useDispatch } from "react-redux";
 
 export const NotLogged = (props) => {
-  const { modalDispatch } = useModal();
+  const dispatch = useDispatch();
 
   return (
     <div className="not-logged">
       <p>{props.message}</p>
       <Button
         onClick={() => {
-          modalDispatch({ type: "showLogin", payload: true });
+          dispatch(modalActions.showLogin(true));
         }}
         label="Login"
         btnClassName="btn primary-outline-btn-md"

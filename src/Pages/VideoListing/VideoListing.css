@@ -3,7 +3,7 @@
   min-height: 90vh;
   margin: 0 auto;
   padding: 2rem 1rem 0rem 2rem;
-  margin-left: 4rem;
+  margin-left: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,7 +16,7 @@
 }
 
 .all-videos-section > div {
-  margin: 5px;
+  margin: 10px;
 }
 
 .category-section {
@@ -61,6 +61,12 @@
   font-size: 1.2rem;
   color: var(--title-color);
   margin: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .all-videos-section > div {
+    margin: 5px;
+  }
 }
 
 @media screen and (max-width: 580px) {

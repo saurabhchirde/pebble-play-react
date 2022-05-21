@@ -19,17 +19,16 @@ import {
   NotFound,
 } from "./Pages";
 import { BodyWrapper, AnimateLoader, AnimateCamera } from "./Components";
-import { useAnimation, useModal } from "./Context";
+import { useAnimation } from "./Context";
 import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 function App() {
+  const { loader, loaderCamera } = useAnimation();
   const {
     modalState: { showNavMenu },
-  } = useModal();
-  const { loader, loaderCamera } = useAnimation();
-
+  } = useSelector((modalState) => modalState);
   const { auth } = useSelector((authState) => authState);
 
   useEffect(() => {
@@ -38,7 +37,7 @@ function App() {
 
   return (
     <div className="App">
-      <ToastContainer />
+      <ToastContainer className="toast-container" />
       {loader && <AnimateLoader />}
       {loaderCamera && <AnimateCamera />}
       {!loaderCamera && (

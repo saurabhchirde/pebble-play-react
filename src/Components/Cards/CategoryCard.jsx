@@ -5,7 +5,6 @@ import "./CategoryCard.css";
 
 export const CategoryCard = ({ category }) => {
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
 
   const categoryClickHandler = () => {

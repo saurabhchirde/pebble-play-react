@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { useAxiosCalls, useModal } from "Context";
+import { useAxiosCalls } from "Context";
 import { formatTimeDuration } from "Utils/formatTimeDuration";
-import { Button, IconButton } from "Components";
+import { IconButton } from "Components";
 import axios from "axios";
 import "./VideoCard.css";
 import { useDispatch, useSelector } from "react-redux";
-import { videoActions } from "Store/store";
+import { modalActions, videoActions } from "Store/store";
 
 export const VideoCard = ({ videoDetail }) => {
   const {
@@ -29,8 +29,6 @@ export const VideoCard = ({ videoDetail }) => {
     removeFromHistoryListOnServer,
     deleteVideoFromPlaylistOnServer,
   } = useAxiosCalls();
-
-  const { modalDispatch } = useModal();
 
   const [trash, showTrash] = useState(true);
   const { playlistId } = useParams();
@@ -79,7 +77,7 @@ export const VideoCard = ({ videoDetail }) => {
       likeVideoOnServer(likeConfig);
       setLikeButton("fas fa-thumbs-up");
     } else {
-      modalDispatch({ type: "showLogin", payload: true });
+      dispatch(modalActions.showLogin(true));
     }
   };
 
@@ -102,7 +100,7 @@ export const VideoCard = ({ videoDetail }) => {
       addToWatchlaterOnServer(watchlaterConfig);
       setWatchlaterButton("fas fa-clock icon-inactive");
     } else {
-      modalDispatch({ type: "showLogin", payload: true });
+      dispatch(modalActions.showLogin(true));
     }
   };
 
@@ -123,9 +121,9 @@ export const VideoCard = ({ videoDetail }) => {
   const addToPlaylistClickHandler = () => {
     if (auth.token) {
       dispatch(videoActions.tempCacheVideo(videoDetail));
-      modalDispatch({ type: "showPlaylistModal", payload: true });
+      dispatch(modalActions.showPlaylistModal(true));
     } else {
-      modalDispatch({ type: "showLogin", payload: true });
+      dispatch(modalActions.showLogin(true));
     }
   };
 
@@ -133,7 +131,7 @@ export const VideoCard = ({ videoDetail }) => {
     removeFromHistoryListOnServer(historyConfig);
   };
 
-  const onPlaylistVideoDeleteClickHandler = () => {
+  const playlistVideoDeleteClickHandler = () => {
     deleteVideoFromPlaylistOnServer(deleteVideoConfig);
   };
 
@@ -185,7 +183,7 @@ export const VideoCard = ({ videoDetail }) => {
         {onPlaylistPage && trash && (
           <div className="tool-tip">
             <i
-              onClick={onPlaylistVideoDeleteClickHandler}
+              onClick={playlistVideoDeleteClickHandler}
               className="fas fa-trash-alt trash-icon"
             ></i>
             <p className="tool-tip-playlist">Delete from Playlist</p>
@@ -242,20 +240,8 @@ export const VideoCard = ({ videoDetail }) => {
           <div className="video-views-date">
             <p className="mg-point6-rt">{viewCount} Views</p>
             {!onHistoryPage && (
-              <p className="mg-point6-lr">
-                {new Date(publishedAt).toLocaleDateString()}
-              </p>
+              <p className="">{new Date(publishedAt).toLocaleDateString()}</p>
             )}
-          </div>
-        </div>
-        <div className="card-nav">
-          <div className="card-cta-btn">
-            <Link to={`/videos/${videoDetail._id}`}>
-              <Button
-                label=" Watch Now"
-                btnClassName="btn primary-outline-btn-md add-cart"
-              />
-            </Link>
           </div>
         </div>
       </div>

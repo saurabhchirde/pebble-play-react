@@ -9,13 +9,11 @@ export const Playlist = () => {
   const {
     videoState: { playlists, singlePlaylist },
   } = useSelector((videoState) => videoState);
-
-  const { getPlayListFromServer } = useAxiosCalls();
-
   const {
     auth: { token },
   } = useSelector((authState) => authState);
 
+  const { getPlayListFromServer } = useAxiosCalls();
   const { playlistId } = useParams();
   const navigate = useNavigate();
 

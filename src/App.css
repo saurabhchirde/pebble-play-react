@@ -24,9 +24,14 @@
   }
 }
 
+.toast-container {
+  margin-top: 3rem;
+}
+
 .desktop-navigation-bar {
   display: flex;
 }
+
 .mobile-navigation-bar {
   display: none;
 }

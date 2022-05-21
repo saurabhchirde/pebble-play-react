@@ -1,16 +1,17 @@
-import { useModal } from "Context";
 import "./AlertModal.css";
 import { Button } from "Components";
+import { modalActions } from "Store/store";
+import { useDispatch, useSelector } from "react-redux";
 
 export const AlertModal = () => {
   const {
-    modalDispatch,
     modalState: { alertText },
-  } = useModal();
+  } = useSelector((modalState) => modalState);
+  const dispatch = useDispatch();
 
   const closeClickHandler = () => {
-    modalDispatch({ type: "showAlert", payload: false });
-    modalDispatch({ type: "alertText", payload: "" });
+    dispatch(modalActions.showAlert(false));
+    dispatch(modalActions.alertText(""));
   };
 
   return (

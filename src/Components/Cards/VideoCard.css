@@ -1,7 +1,7 @@
 .video-card-vertical {
   padding: 0 0 1rem;
-  height: 19.65rem;
-  width: 14.5rem;
+  height: 18rem;
+  width: 15rem;
   background-color: var(--bg-color);
   border: 1px solid var(--card-hover-bg-color);
 }
@@ -41,24 +41,9 @@
   top: 2px;
 }
 
-.video-card-vertical .card-nav {
-  width: 100%;
-  margin: 0;
-}
-
-.video-card-vertical .card-nav button {
-  width: 13.3rem;
-}
-
-.video-card-vertical .card-nav button:hover {
-  background-color: var(--primary-color);
-  color: var(--text-white);
-}
-
 .video-card-vertical .card-title {
   font-size: 0.9rem;
   height: 2.2rem;
-  width: 13rem;
   overflow: hidden;
   color: var(--title-color);
   margin-bottom: 8px;
@@ -118,7 +103,6 @@
 }
 
 .video-card-vertical .card-nav-icon h2 {
-  margin-left: 5px;
   color: var(--title-color);
 }
 
@@ -201,20 +185,14 @@
 
 @media screen and (max-width: 768px) {
   .video-card-vertical {
-    width: 14rem;
+    height: 16rem;
+    width: 13.2rem;
   }
 }
 
 @media screen and (max-width: 580px) {
   .video-card-vertical {
-    width: 14.5rem;
-  }
-
-  .video-card-vertical .card-title {
-    width: 12.2rem;
-  }
-
-  .video-card-horizontal {
-    max-width: 100%;
+    height: 17rem;
+    width: 15rem;
   }
 }

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useAxiosCalls, useModal } from "Context";
+import { useAxiosCalls, useTheme } from "Context";
 import { AlertToast, Button, IconButton, LabelIconButton } from "Components";
 import "./PlaylistModal.css";
 import { useDispatch, useSelector } from "react-redux";
-import { videoActions } from "Store/store";
+import { modalActions, videoActions } from "Store/store";
 
 const initialPlaylist = {
   title: "",
@@ -18,13 +18,13 @@ export const PlaylistModal = () => {
 
   const { auth } = useSelector((authState) => authState);
   const { token } = auth;
+  const { theme } = useTheme();
 
   const {
     addNewPlayListOnServer,
     addInSelectedPlaylistOnServer,
     deleteVideoFromPlaylistOnServer,
   } = useAxiosCalls();
-  const { modalDispatch } = useModal();
   const [showCreate, setShowCreate] = useState(false);
   const [newPlaylist, setNewPlaylist] = useState(initialPlaylist);
 
@@ -53,7 +53,7 @@ export const PlaylistModal = () => {
 
   const createPlaylistClickHandler = () => {
     if (newPlaylist.title.trim() === "") {
-      AlertToast("info", "Playlist name cannot be blank");
+      AlertToast("info", "Playlist name cannot be blank", theme);
       setNewPlaylist(initialPlaylist);
     } else {
       addNewPlayListOnServer(playlistConfig);
@@ -82,7 +82,7 @@ export const PlaylistModal = () => {
   };
 
   const closePlaylistModal = () => {
-    modalDispatch({ type: "showPlaylistModal", payload: false });
+    dispatch(modalActions.showPlaylistModal(false));
     dispatch(videoActions.tempCacheVideo({}));
   };
 

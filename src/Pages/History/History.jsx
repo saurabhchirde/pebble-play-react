@@ -1,5 +1,5 @@
 import { VideoCard, Button, NotLogged, AlertToast } from "Components";
-import { useAxiosCalls } from "Context";
+import { useAxiosCalls, useTheme } from "Context";
 import { useSelector } from "react-redux";
 import "./History.css";
 
@@ -10,6 +10,7 @@ export const History = () => {
   const {
     videoState: { history },
   } = useSelector((videoState) => videoState);
+  const { theme } = useTheme();
 
   const { removeAllFromHistoryOnServer } = useAxiosCalls();
 
@@ -20,7 +21,7 @@ export const History = () => {
 
   const removeAllHandler = () => {
     if (history.length < 1) {
-      AlertToast("info", "No videos in History");
+      AlertToast("info", "No videos in History", theme);
     } else {
       removeAllFromHistoryOnServer(historyConfig);
     }

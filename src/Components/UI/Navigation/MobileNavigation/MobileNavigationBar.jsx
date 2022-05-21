@@ -5,20 +5,25 @@ import {
   AlertToast,
 } from "Components";
 import logoIcon from "Data/Logo/logoIcon.svg";
-import { useModal } from "Context";
+import { useModal, useTheme } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./MobileNavigationBar.css";
 import { ThemeToggler } from "..";
 import { useSelector, useDispatch } from "react-redux";
-import { authActions, filterActions, userActions } from "Store/store";
+import {
+  authActions,
+  filterActions,
+  modalActions,
+  userActions,
+} from "Store/store";
 
 export const MobileNavigationBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const {
-    modalDispatch,
     modalState: { showNavMenu },
-  } = useModal();
+  } = useSelector((modalState) => modalState);
+  const { theme } = useTheme();
 
   const dispatch = useDispatch();
   const { auth } = useSelector((authState) => authState);
@@ -39,7 +44,7 @@ export const MobileNavigationBar = () => {
 
   const logoutClickHandler = () => {
     dispatch(authActions.logout());
-    AlertToast("success", "Logged out Successfully");
+    AlertToast("success", "Logged out Successfully", theme);
     if (location.pathname.includes("playlist" || "account" || "settings")) {
       navigate("/videos");
     }
@@ -50,7 +55,7 @@ export const MobileNavigationBar = () => {
   };
 
   const toggleAccountNavMenu = () => {
-    modalDispatch({ type: "showNavMenu", payload: !showNavMenu });
+    dispatch(modalActions.showNavMenu(!showNavMenu));
   };
 
   return (

@@ -1,5 +1,6 @@
 import { InputTypeOne, InputTypePassword, Button } from "Components";
-import { useModal } from "Context";
+import { useDispatch } from "react-redux";
+import { modalActions } from "Store/store";
 export const LoginInputForm = ({
   loginSubmitHandler,
   modalInputHandler,
@@ -8,7 +9,7 @@ export const LoginInputForm = ({
   setShowPassword,
   testButtonClickFormHandler,
 }) => {
-  const { modalDispatch } = useModal();
+  const dispatch = useDispatch();
   return (
     <form onSubmit={loginSubmitHandler}>
       <InputTypeOne
@@ -56,8 +57,8 @@ export const LoginInputForm = ({
       <button
         className="btn primary-text-btn-sm create-account-btn"
         onClick={() => {
-          modalDispatch({ type: "showLogin", payload: false });
-          modalDispatch({ type: "showSignup", payload: true });
+          dispatch(modalActions.showLogin(false));
+          dispatch(modalActions.showSignup(true));
         }}
       >
         <h2>
