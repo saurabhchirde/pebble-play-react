@@ -4,7 +4,7 @@ export const Footer = () => {
     <div className="footer-body">
       <h3>
         made with ❤️ by
-        <a href="https://twitter.com/SaurabhChirde" target="_blank">
+        <a href="https://saurabhchirde.com" target="_blank">
           Saurabh Chirde
         </a>
       </h3>
