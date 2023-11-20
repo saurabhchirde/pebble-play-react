@@ -1,5 +1,5 @@
 import { InputTypeOne, InputTypePassword, Button } from "Components";
-import { useDispatch } from "react-redux";
+import { batch, useDispatch } from "react-redux";
 import { modalActions } from "Store/store";
 export const LoginInputForm = ({
   loginSubmitHandler,
@@ -57,8 +57,10 @@ export const LoginInputForm = ({
       <button
         className="btn primary-text-btn-sm create-account-btn"
         onClick={() => {
-          dispatch(modalActions.showLogin(false));
-          dispatch(modalActions.showSignup(true));
+          batch(() => {
+            dispatch(modalActions.showLogin(false));
+            dispatch(modalActions.showSignup(true));
+          });
         }}
       >
         <h2>

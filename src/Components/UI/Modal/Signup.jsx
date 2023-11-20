@@ -4,7 +4,8 @@ import { useAxiosCalls, useTheme } from "Context";
 import { useState } from "react";
 import { SignupInputForm } from "./SignupInputForm/SignupInputForm";
 import { modalActions } from "Store/store";
-import { useDispatch } from "react-redux";
+import { batch, useDispatch } from "react-redux";
+import { SIGNUP_ENDPOINT } from "Utils/endpoints";
 
 const initialSignupState = {
   firstName: "",
@@ -21,7 +22,7 @@ export const Signup = () => {
   const dispatch = useDispatch();
 
   const signupConfig = {
-    url: "/api/auth/signup",
+    url: SIGNUP_ENDPOINT,
     data: user,
   };
 
@@ -38,7 +39,6 @@ export const Signup = () => {
     ) {
       if (user.password === confirmPassword) {
         userSignup(signupConfig);
-        dispatch(modalActions.showSignup(false));
         setUser(initialSignupState);
         setConfirmPassword("");
       } else {
@@ -71,13 +71,17 @@ export const Signup = () => {
   };
 
   const closeClickHandler = () => {
-    dispatch(modalActions.showLogin(false));
-    dispatch(modalActions.showSignup(false));
+    batch(() => {
+      dispatch(modalActions.showLogin(false));
+      dispatch(modalActions.showSignup(false));
+    });
   };
 
   const loginClickHandler = () => {
-    dispatch(modalActions.showLogin(true));
-    dispatch(modalActions.showSignup(false));
+    batch(() => {
+      dispatch(modalActions.showLogin(true));
+      dispatch(modalActions.showSignup(false));
+    });
   };
 
   return (

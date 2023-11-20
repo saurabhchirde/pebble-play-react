@@ -1,18 +1,24 @@
 import "./SignupAlertModal.css";
 import { Button } from "Components";
 import { modalActions } from "Store/store";
-import { useDispatch } from "react-redux";
+import { batch, useDispatch } from "react-redux";
 
 export const SignupAlertModal = () => {
   const dispatch = useDispatch();
 
   const loginClickHandler = () => {
-    dispatch(modalActions.showLogin(true));
-    dispatch(modalActions.showSignup(false));
+    batch(() => {
+      dispatch(modalActions.showLogin(true));
+      dispatch(modalActions.showSignup(false));
+      dispatch(modalActions.showSignupAlert(false));
+    });
   };
 
   const closeClickHandler = () => {
-    dispatch(modalActions.showSignup(false));
+    batch(() => {
+      dispatch(modalActions.showSignup(false));
+      dispatch(modalActions.showSignupAlert(false));
+    });
   };
 
   return (

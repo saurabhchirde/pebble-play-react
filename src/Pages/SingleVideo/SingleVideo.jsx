@@ -3,9 +3,14 @@ import { useEffect, useState } from "react";
 import { PebblePlayer, VideoCard } from "Components";
 import { useAxiosCalls, useModal } from "Context";
 import "./SingleVideo.css";
-import { useDispatch, useSelector } from "react-redux";
+import { batch, useDispatch, useSelector } from "react-redux";
 import { modalActions, videoActions } from "Store/store";
 import { VideoDescription } from "./VideoDescription/VideoDescription";
+import {
+  LIKE_VIDEO_ENDPOINT,
+  SINGLE_VIDEO_ENDPOINT,
+  WATCH_LATER_ENDPOINT,
+} from "Utils/endpoints";
 
 export const SingleVideo = () => {
   const { videoId } = useParams();
@@ -35,19 +40,17 @@ export const SingleVideo = () => {
   );
 
   const videoConfig = {
-    url: `/api/video`,
+    url: SINGLE_VIDEO_ENDPOINT,
     videoId: videoId,
   };
 
   const watchlaterConfig = {
-    url: "/api/user/watchlater",
-    body: { video: { ...singleVideo } },
+    url: `${WATCH_LATER_ENDPOINT}/${singleVideo._id}`,
     headers: { headers: { authorization: token } },
   };
 
   const likeConfig = {
-    url: "/api/user/likes",
-    body: { video: { ...singleVideo } },
+    url: `${LIKE_VIDEO_ENDPOINT}/${singleVideo._id}`,
     headers: { headers: { authorization: token } },
   };
 
@@ -98,8 +101,10 @@ export const SingleVideo = () => {
   // playlist
   const addToPlaylistClickHandler = () => {
     if (token) {
-      dispatch(videoActions.tempCacheVideo(singleVideo));
-      dispatch(modalActions.showPlaylistModal(true));
+      batch(() => {
+        dispatch(videoActions.tempCacheVideo(singleVideo));
+        dispatch(modalActions.showPlaylistModal(true));
+      });
     } else {
       dispatch(modalActions.showLogin(true));
     }

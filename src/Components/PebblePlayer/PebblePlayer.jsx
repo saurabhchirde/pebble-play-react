@@ -1,6 +1,7 @@
 import ReactPlayer from "react-player/lazy";
 import { useAxiosCalls } from "Context";
 import { useSelector } from "react-redux";
+import { HISTORY_ENDPOINT } from "Utils/endpoints";
 
 export const PebblePlayer = ({ videoId, videoDetails, played, setPlayed }) => {
   const {
@@ -13,8 +14,7 @@ export const PebblePlayer = ({ videoId, videoDetails, played, setPlayed }) => {
   const { addInHistoryListOnServer } = useAxiosCalls();
 
   const historyConfig = {
-    url: "/api/user/history",
-    body: { video: { ...videoDetails } },
+    url: `${HISTORY_ENDPOINT}/${videoDetails._id}`,
     headers: { headers: { authorization: token } },
   };
 
@@ -24,7 +24,7 @@ export const PebblePlayer = ({ videoId, videoDetails, played, setPlayed }) => {
     if (!played) {
       setPlayed(true);
       if (token) {
-        if (history?.findIndex((el) => el?._id === videoDetails?._id) !== -1) {
+        if (history?.some((el) => el?._id === videoDetails?._id)) {
           return null;
         } else {
           addInHistoryListOnServer(historyConfig);

@@ -3,10 +3,15 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { useAxiosCalls } from "Context";
 import { formatTimeDuration } from "Utils/formatTimeDuration";
 import { IconButton } from "Components";
-import axios from "axios";
 import "./VideoCard.css";
-import { useDispatch, useSelector } from "react-redux";
+import { batch, useDispatch, useSelector } from "react-redux";
 import { modalActions, videoActions } from "Store/store";
+import {
+  HISTORY_ENDPOINT,
+  LIKE_VIDEO_ENDPOINT,
+  PLAYLISTS_ENDPOINT,
+  WATCH_LATER_ENDPOINT,
+} from "Utils/endpoints";
 
 export const VideoCard = ({ videoDetail }) => {
   const {
@@ -18,7 +23,7 @@ export const VideoCard = ({ videoDetail }) => {
   const { auth } = useSelector((authState) => authState);
   const dispatch = useDispatch();
   const {
-    videoState: { watchlater, likes, singlePlaylist },
+    videoState: { watchlater, likes },
   } = useSelector((videoState) => videoState);
 
   const {
@@ -47,28 +52,24 @@ export const VideoCard = ({ videoDetail }) => {
   );
 
   const watchlaterConfig = {
-    url: "/api/user/watchlater",
-    body: { video: { ...videoDetail } },
+    url: `${WATCH_LATER_ENDPOINT}/${videoDetail._id}`,
     headers: { headers: { authorization: auth.token } },
   };
 
   const likeConfig = {
-    url: "/api/user/likes",
-    body: { video: { ...videoDetail } },
+    url: `${LIKE_VIDEO_ENDPOINT}/${videoDetail._id}`,
     headers: { headers: { authorization: auth.token } },
   };
 
   const historyConfig = {
-    url: "/api/user/history",
+    url: HISTORY_ENDPOINT,
     headers: { headers: { authorization: auth.token } },
     history: videoDetail,
   };
 
   const deleteVideoConfig = {
-    url: "/api/user/playlists",
+    url: `${PLAYLISTS_ENDPOINT}/${playlistId}/video/${videoDetail._id}`,
     headers: { headers: { authorization: auth.token } },
-    videoId: videoDetail._id,
-    playlistId: playlistId,
   };
 
   // like
@@ -120,8 +121,10 @@ export const VideoCard = ({ videoDetail }) => {
   // playlist
   const addToPlaylistClickHandler = () => {
     if (auth.token) {
-      dispatch(videoActions.tempCacheVideo(videoDetail));
-      dispatch(modalActions.showPlaylistModal(true));
+      batch(() => {
+        dispatch(videoActions.tempCacheVideo(videoDetail));
+        dispatch(modalActions.showPlaylistModal(true));
+      });
     } else {
       dispatch(modalActions.showLogin(true));
     }
@@ -154,17 +157,6 @@ export const VideoCard = ({ videoDetail }) => {
       setLikeButton("far fa-thumbs-up icon-inactive");
     }
   }, [likes, watchlater, videoDetail._id, setWatchlaterButton, setLikeButton]);
-
-  useEffect(() => {
-    const fetchPlaylists = async () => {
-      const respPlaylist = await axios.get("/api/user/playlists", {
-        headers: { authorization: auth.token },
-      });
-      dispatch(videoActions.getPlaylistFromServer(respPlaylist.data.playlists));
-    };
-
-    fetchPlaylists();
-  }, [singlePlaylist, auth.token, dispatch]);
 
   return (
     <div

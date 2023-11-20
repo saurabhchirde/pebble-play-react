@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useAxiosCalls } from "Context";
 import "./PlaylistCard.css";
 import { useSelector } from "react-redux";
+import { PLAYLISTS_ENDPOINT } from "Utils/endpoints";
 
 export const PlaylistCard = ({ list }) => {
   const { removePlayListFromServer } = useAxiosCalls();
@@ -14,9 +15,9 @@ export const PlaylistCard = ({ list }) => {
   const [trash, showTrash] = useState(true);
 
   const playlistConfig = {
-    url: "/api/user/playlists",
+    url: PLAYLISTS_ENDPOINT,
     headers: { headers: { authorization: token } },
-    playlistId: list._id,
+    playlistId: list.id,
   };
 
   const playlistDeleteClickHandler = () => {
@@ -39,7 +40,7 @@ export const PlaylistCard = ({ list }) => {
           className="fas fa-trash-alt"
         ></i>
       )}
-      <Link to={`/playlist/${list._id}`}>
+      <Link to={`/playlist/${list.id}`}>
         <h1 className="playlist-card-detail">{list.title}</h1>
       </Link>
     </div>

@@ -2,6 +2,7 @@ import { VideoCard, Button, NotLogged, AlertToast } from "Components";
 import { useAxiosCalls, useTheme } from "Context";
 import { useSelector } from "react-redux";
 import "./History.css";
+import { HISTORY_ENDPOINT } from "Utils/endpoints";
 
 export const History = () => {
   const {
@@ -15,7 +16,7 @@ export const History = () => {
   const { removeAllFromHistoryOnServer } = useAxiosCalls();
 
   const historyConfig = {
-    url: "/api/user/history/all",
+    url: HISTORY_ENDPOINT,
     headers: { headers: { authorization: token } },
   };
 

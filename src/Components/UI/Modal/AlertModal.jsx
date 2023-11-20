@@ -1,7 +1,7 @@
 import "./AlertModal.css";
 import { Button } from "Components";
 import { modalActions } from "Store/store";
-import { useDispatch, useSelector } from "react-redux";
+import { batch, useDispatch, useSelector } from "react-redux";
 
 export const AlertModal = () => {
   const {
@@ -10,8 +10,10 @@ export const AlertModal = () => {
   const dispatch = useDispatch();
 
   const closeClickHandler = () => {
-    dispatch(modalActions.showAlert(false));
-    dispatch(modalActions.alertText(""));
+    batch(() => {
+      dispatch(modalActions.showAlert(false));
+      dispatch(modalActions.alertText(""));
+    });
   };
 
   return (

@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useAxiosCalls, useTheme } from "Context";
 import { AlertToast, Button, IconButton, LabelIconButton } from "Components";
 import "./PlaylistModal.css";
-import { useDispatch, useSelector } from "react-redux";
+import { batch, useDispatch, useSelector } from "react-redux";
 import { modalActions, videoActions } from "Store/store";
+import { PLAYLISTS_ENDPOINT } from "Utils/endpoints";
 
 const initialPlaylist = {
   title: "",
@@ -29,8 +30,8 @@ export const PlaylistModal = () => {
   const [newPlaylist, setNewPlaylist] = useState(initialPlaylist);
 
   const playlistConfig = {
-    url: "/api/user/playlists",
-    body: { playlist: { ...newPlaylist } },
+    url: PLAYLISTS_ENDPOINT,
+    body: newPlaylist,
     headers: { headers: { authorization: token } },
   };
 
@@ -64,26 +65,24 @@ export const PlaylistModal = () => {
   const playlistSelectHandler = (playlist, e) => {
     if (e.target.checked) {
       const addInPlaylistConfig = {
-        url: "/api/user/playlists",
-        body: { video: { ...tempVideo } },
+        url: `${PLAYLISTS_ENDPOINT}/${playlist.id}/video/${tempVideo._id}`,
         headers: { headers: { authorization: token } },
-        playlist: playlist,
       };
       tempVideo._id && addInSelectedPlaylistOnServer(addInPlaylistConfig);
     } else if (!e.target.checked) {
       const deleteVideoConfig = {
-        url: "/api/user/playlists",
+        url: `${PLAYLISTS_ENDPOINT}/${playlist.id}/video/${tempVideo._id}`,
         headers: { headers: { authorization: token } },
-        videoId: tempVideo._id,
-        playlistId: playlist._id,
       };
       deleteVideoFromPlaylistOnServer(deleteVideoConfig);
     }
   };
 
   const closePlaylistModal = () => {
-    dispatch(modalActions.showPlaylistModal(false));
-    dispatch(videoActions.tempCacheVideo({}));
+    batch(() => {
+      dispatch(modalActions.showPlaylistModal(false));
+      dispatch(videoActions.tempCacheVideo({}));
+    });
   };
 
   const playlistAvailable = playlists.length > 0 ? true : false;

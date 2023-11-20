@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { VideoCard } from "Components";
+import { NotLogged, VideoCard } from "Components";
 import { useAxiosCalls } from "Context";
 import "./Playlist.css";
 import { useSelector } from "react-redux";
+import { PLAYLISTS_ENDPOINT } from "Utils/endpoints";
 
 export const Playlist = () => {
   const {
@@ -18,7 +19,7 @@ export const Playlist = () => {
   const navigate = useNavigate();
 
   const getPlaylistConfig = {
-    url: "/api/user/playlists",
+    url: PLAYLISTS_ENDPOINT,
     headers: { headers: { authorization: token } },
     playlistId: playlistId,
   };
@@ -45,13 +46,19 @@ export const Playlist = () => {
 
   return (
     <div className="playlist-body">
-      <div className="flex-row-center flex-justify-space-between">
-        <h1 className="playlist-title">{singlePlaylist?.title}</h1>
-        <h1 className="playlist-title">
-          Total videos : {singlePlaylist?.videos?.length}
-        </h1>
-      </div>
-      {singlePlaylist?.videos?.length > 0 ? showPlaylist : noVideosMessage}
+      {token ? (
+        <>
+          <div className="flex-row-center flex-justify-space-between">
+            <h1 className="playlist-title">{singlePlaylist?.title}</h1>
+            <h1 className="playlist-title">
+              Total videos : {singlePlaylist?.videos?.length}
+            </h1>
+          </div>
+          {singlePlaylist?.videos?.length > 0 ? showPlaylist : noVideosMessage}
+        </>
+      ) : (
+        <NotLogged message="Login to see your playlist" />
+      )}
     </div>
   );
 };

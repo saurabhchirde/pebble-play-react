@@ -3,8 +3,9 @@ import { AlertToast, IconButton } from "Components";
 import { useState } from "react";
 import "./Login.css";
 import { LoginInputForm } from "./LoginInputForm/LoginInputForm";
-import { useDispatch, useSelector } from "react-redux";
+import { batch, useDispatch, useSelector } from "react-redux";
 import { modalActions, userActions } from "Store/store";
+import { LOGIN_ENDPOINT } from "Utils/endpoints";
 
 export const Login = () => {
   const {
@@ -17,15 +18,15 @@ export const Login = () => {
   const { theme } = useTheme();
 
   const loginConfig = {
-    url: "/api/auth/login",
+    url: LOGIN_ENDPOINT,
     data: loginInput,
   };
 
   const testLoginConfig = {
-    url: "/api/auth/login",
+    url: LOGIN_ENDPOINT,
     data: {
-      email: "test@gmail.com",
-      password: "test@123",
+      email: "hello@saurabhchirde.com",
+      password: "qwerty@123",
     },
   };
 
@@ -79,8 +80,10 @@ export const Login = () => {
           btnClassName="btn icon-btn-sm close-modal-btn"
           icon="fas fa-times"
           onClick={() => {
-            dispatch(modalActions.showLogin(false));
-            dispatch(modalActions.showSignup(false));
+            batch(() => {
+              dispatch(modalActions.showLogin(false));
+              dispatch(modalActions.showSignup(false));
+            });
           }}
         />
         <LoginInputForm
