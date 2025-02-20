@@ -10,14 +10,15 @@
 
 ### Link
 
-[Pebble Play](https://play.pebbleui.com/)
+[Pebble Play](https://play.saurabhchirde.com/)
 
 ### Guest User Flow
+
 ![guest user](https://user-images.githubusercontent.com/92800463/169607214-b6c2d69a-b3b7-49a8-b908-34e6bbc25fac.gif)
 
 ### Registered User Flow
-![user account](https://user-images.githubusercontent.com/92800463/169607280-349366f5-ad64-473d-b811-959c3caf9abc.gif)
 
+![user account](https://user-images.githubusercontent.com/92800463/169607280-349366f5-ad64-473d-b811-959c3caf9abc.gif)
 
 </br>
 
@@ -43,7 +44,7 @@
 
 ## Tech Stack
 
-**Client side:** React, React Router, Redux, Context API, [Pebble UI](https://pebbleui.com/)
+**Client side:** React, React Router, Redux, Context API, [Pebble UI](https://ui.saurabhchirde.com/)
 
 **Server side:** Mockbee (Mock Backend)
 
